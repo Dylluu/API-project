@@ -4,7 +4,7 @@
 
 ![airbnb-dbdiagram]
 
-[airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
+[airbnb-dbdiagram]: file:///Users/dylanluu/Desktop/AppAcademy/Mod4/wk3/authenticate/mod4_proj_documentation_9_21_v8/assets/airbnb_dbdiagram.png
 
 ## API Documentation
 
