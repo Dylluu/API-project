@@ -1,12 +1,10 @@
-# API-project
-
-# `<name of application here>`
+# AirBnB Clone
 
 ## Database Schema Design
 
-`<insert database schema design here>`
-<a href='https://user-images.githubusercontent.com/107580209/191596045-bc13d441-5177-4bb8-aa04-fca98d523353.png'></a>
-<img src='https://user-images.githubusercontent.com/107580209/191596045-bc13d441-5177-4bb8-aa04-fca98d523353.png'>
+![airbnb-dbdiagram]
+
+[airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
 
 ## API Documentation
 
@@ -1415,8 +1413,8 @@ Return spots filtered by query parameters.
   * Method: GET
   * URL: /api/spots
   * Query Parameters
-    * page: integer, minimum: 0, maximum: 10, default: 0
-    * size: integer, minimum: 0, maximum: 20, default: 20
+    * page: integer, minimum: 1, maximum: 10, default: 1
+    * size: integer, minimum: 1, maximum: 20, default: 20
     * minLat: decimal, optional
     * maxLat: decimal, optional
     * minLng: decimal, optional
@@ -1467,8 +1465,8 @@ Return spots filtered by query parameters.
       "message": "Validation Error",
       "statusCode": 400,
       "errors": {
-        "page": "Page must be greater than or equal to 0",
-        "size": "Size must be greater than or equal to 0",
+        "page": "Page must be greater than or equal to 1",
+        "size": "Size must be greater than or equal to 1",
         "maxLat": "Maximum latitude is invalid",
         "minLat": "Minimum latitude is invalid",
         "minLng": "Maximum longitude is invalid",
