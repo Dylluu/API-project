@@ -21,7 +21,18 @@ router.get('/', async(req, res, next) => {
             ],
             raw: true
         })
-        spots[i].avgRating = review[0].avgRating.toFixed(2)
+        spots[i].avgRating = review[0].avgRating.toFixed(1)
+
+        let previewImage = await SpotImage.findAll({
+            where: {
+                [Op.and]: [
+                    {spotId: spots[i].id},
+                    {preview: true}
+                ]
+            },
+            raw: true
+        })
+        spots[i].previewImage = previewImage[0].url
     }
 
     responseBody.Spots = spots
