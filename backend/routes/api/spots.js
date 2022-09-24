@@ -35,7 +35,7 @@ router.get('/current', authenticate, async(req, res) => {
             ],
             raw: true
         })
-        const numRating = review[0].avgRating
+        const numRating = parseFloat(review[0].avgRating)
 
         const fixedRating = numRating.toFixed(1)
 
@@ -75,7 +75,7 @@ router.get('/', async(req, res, next) => {
             raw: true
         })
 
-        const numRating = review[0].avgRating
+        const numRating = parseFloat(review[0].avgRating)
 
         const fixedRating = numRating.toFixed(1)
 
