@@ -35,11 +35,11 @@ router.get('/current', authenticate, async(req, res) => {
             ],
             raw: true
         })
-        const numRating = parseInt(review[0].avgRating)
+        const numRating = parseFloat(review[0].avgRating)
 
         const fixedRating = numRating.toFixed(1)
 
-        spots[i].avgRating = fixedRating
+        spots[i].avgRating = parseFloT(fixedRating)
 
         let previewImage = await SpotImage.findAll({
             where: {
@@ -75,11 +75,11 @@ router.get('/', async(req, res, next) => {
             raw: true
         })
 
-        const numRating = parseInt(review[0].avgRating)
+        const numRating = parseFloat(review[0].avgRating)
 
         const fixedRating = numRating.toFixed(1)
 
-        spots[i].avgRating = fixedRating
+        spots[i].avgRating = parseFloat(fixedRating)
 
         let previewImage = await SpotImage.findAll({
             where: {
