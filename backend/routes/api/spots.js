@@ -35,7 +35,7 @@ router.get('/current', authenticate, async(req, res) => {
             ],
             raw: true
         })
-        spots[i].avgRating = review[0].avgRating.toFixed(1)
+        spots[i].avgRating = review[0].avgRating
 
         let previewImage = await SpotImage.findAll({
             where: {
@@ -70,7 +70,7 @@ router.get('/', async(req, res, next) => {
             ],
             raw: true
         })
-        spots[i].avgRating = review[0].avgRating.toFixed(1)
+        spots[i].avgRating = review[0].avgRating
 
         let previewImage = await SpotImage.findAll({
             where: {
