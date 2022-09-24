@@ -157,11 +157,79 @@ router.get('/', async(req, res, next) => {
             },
             raw: true
         })
+        if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
+        }
     }
 
     responseBody.Spots = spots
     return res.json(responseBody)
+
+})
+
+// handler for posting new spot
+router.post('/', authenticate, async(req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const ownerId = req.user.id
+try{
+    const newSpot = await Spot.build({
+        ownerId,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    })
+
+    await newSpot.validate()
+    await newSpot.save()
+
+    res.json(postedSpot)
+} catch {
+    res.status(400);
+    res.json({
+        message: 'Validation Error',
+        statusCode: 400,
+        errors: {
+            address: 'Street address is required',
+            city: 'City is required',
+            state: 'State is required',
+            country: 'Country is required',
+            lat: 'Latitude is not valid',
+            lng: 'Longitude is not valid',
+            name: 'Name must be less than 50 characters',
+            description: 'Description is required',
+            price: 'Price per day is required'
+        }
+    })
+}
+})
+
+// handler for adding an image to spot
+router.post('/:spotId/images', authenticate, async(req, res) => {
+    const { url, preview } = req.body;
+
+    try{
+    const newImage = await SpotImage.build({
+        url,
+        preview
+    })
+
+    await newImage.validate();
+    await newImage.save();
+    res.json(newImage);
+} catch {
+    res.status(404);
+    res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+    })
+}
 })
 
 module.exports = router
