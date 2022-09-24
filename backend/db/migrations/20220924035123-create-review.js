@@ -9,14 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       spotId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Spots'},
-        allowNull: false
+        references: {model: 'Spots'}
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Users'},
-        allowNull: false
+        references: {model: 'Users'}
       },
       review: {
         type: Sequelize.STRING,
