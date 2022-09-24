@@ -10,7 +10,6 @@ router.get('/', async(req, res, next) => {
     const spots = await Spot.findAll({
         raw: true
     })
-    console.log(spots)
 
     for(let i = 0; i < spots.length; i++){
         let review = await Review.findAll({
@@ -22,12 +21,11 @@ router.get('/', async(req, res, next) => {
             ],
             raw: true
         })
-        console.log(review)
         spots[i].avgRating = review[0].avgRating
     }
 
     responseBody.Spots = spots
-    res.json(responseBody)
+    return res.json(responseBody)
 })
 
 module.exports = router
