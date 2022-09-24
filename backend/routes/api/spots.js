@@ -162,6 +162,16 @@ router.get('/', async(req, res, next) => {
 
     responseBody.Spots = spots
     return res.json(responseBody)
+
+})
+
+// handler for posting new spot
+router.post('/', authenticate, async(req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const newSpot = await Spot.build({
+
+    })
 })
 
 module.exports = router
