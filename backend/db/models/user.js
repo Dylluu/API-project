@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Spot, {
         foreignKey: 'ownerId'
       })
+      User.hasMany(models.Booking, {
+        foreignKey: 'userId'
+      })
     }
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
