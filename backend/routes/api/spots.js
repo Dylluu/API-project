@@ -210,4 +210,26 @@ try{
 }
 })
 
+// handler for adding an image to spot
+router.post('/:spotId/images', authenticate, async(req, res) => {
+    const { url, preview } = req.body;
+
+    try{
+    const newImage = await SpotImage.build({
+        url,
+        preview
+    })
+
+    await newImage.validate();
+    await newImage.save();
+    res.json(newImage);
+} catch {
+    res.status(404);
+    res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+    })
+}
+})
+
 module.exports = router
