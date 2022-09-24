@@ -38,7 +38,7 @@ module.exports = {
    },
    {
     ownerId: 3,
-    address: '517 W. Figueroa St.',
+    address: '517 W. Figueroa St. 2',
     city: 'Santa Barbara',
     state: 'California',
     country: 'USA',
