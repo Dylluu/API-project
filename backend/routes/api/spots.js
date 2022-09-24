@@ -39,7 +39,7 @@ router.get('/current', authenticate, async(req, res) => {
 
         const fixedRating = numRating.toFixed(1)
 
-        spots[i].avgRating = parseFloT(fixedRating)
+        spots[i].avgRating = parseFloat(fixedRating)
 
         let previewImage = await SpotImage.findAll({
             where: {
