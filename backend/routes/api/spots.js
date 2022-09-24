@@ -157,7 +157,9 @@ router.get('/', async(req, res, next) => {
             },
             raw: true
         })
+        if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
+        }
     }
 
     responseBody.Spots = spots
