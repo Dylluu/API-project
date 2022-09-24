@@ -21,7 +21,7 @@ router.get('/', async(req, res, next) => {
             ],
             raw: true
         })
-        spots[i].avgRating = review[0].avgRating
+        spots[i].avgRating = review[0].avgRating.toFixed(2)
     }
 
     responseBody.Spots = spots
