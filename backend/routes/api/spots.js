@@ -217,7 +217,7 @@ router.post('/', authenticate, async(req, res) => {
 router.post('/:spotId/images', authenticate, async(req, res) => {
     const { url, preview } = req.body;
     const ownerId = req.user.id
-    try{
+
     const spot = await Spot.findByPk(req.params.spotId);
 
     if(spot){
@@ -237,15 +237,15 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
     await newImage.validate();
     await newImage.save();
     await spot.addSpotImage(newImage)
-    res.json(newImage);
+    return res.json(newImage);
 }
-} catch {
+
     res.status(404);
     res.json({
         message: "Spot couldn't be found",
         statusCode: 404
     })
-}
+
 })
 
 module.exports = router
