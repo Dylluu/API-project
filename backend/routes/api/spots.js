@@ -216,8 +216,18 @@ router.post('/', authenticate, async(req, res) => {
 // handler for adding an image to spot
 router.post('/:spotId/images', authenticate, async(req, res) => {
     const { url, preview } = req.body;
-
+    const ownerId = req.user.id
     try{
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if(spot){
+        if(ownerId !== spot.ownerId){
+            res.status(403)
+            res.json({
+                message: 'Forbidden',
+                statusCode: 403
+            })
+        }
     const newImage = await SpotImage.build({
         spotId: req.params.spotId,
         url,
@@ -226,9 +236,9 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
 
     await newImage.validate();
     await newImage.save();
-    const spot = await Spot.findByPk(req.params.spotId);
     await spot.addSpotImage(newImage)
     res.json(newImage);
+}
 } catch {
     res.status(404);
     res.json({
