@@ -52,7 +52,7 @@ router.get('/current', authenticate, async(req, res) => {
             raw: true
         })
 
-        if(previewImage){
+        if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
         }
     }
