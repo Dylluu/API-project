@@ -216,6 +216,7 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
 
     try{
     const newImage = await SpotImage.build({
+        spotId: req.params.spotId,
         url,
         preview
     })
