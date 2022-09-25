@@ -248,4 +248,43 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
 
 })
 
+// handler for editing a spot
+router.put('/:spotId', authenticate, async(req, res) => {
+    const ownerId = req.user.id;
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if(spot){
+        if(ownerId !== spot.ownerId){
+            res.status(403)
+            return res.json({
+                message: 'Forbidden',
+                statusCode: 403
+            })
+        }
+        const updatedSpot = await spot.update({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
+        return res.json(updatedSpot)
+    }
+    res.status(404);
+    res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+    })
+
+})
+
+// handler for deleting a spot
+router.delete('/')
+
 module.exports = router
