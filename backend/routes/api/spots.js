@@ -172,7 +172,7 @@ router.post('/', authenticate, async(req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const ownerId = req.user.id
-try{
+    try{
     const newSpot = await Spot.build({
         ownerId,
         address,
@@ -189,7 +189,7 @@ try{
     await newSpot.validate()
     await newSpot.save()
 
-    res.json(postedSpot)
+    res.json(newSpot)
 } catch {
     res.status(400);
     res.json({
@@ -222,6 +222,8 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
 
     await newImage.validate();
     await newImage.save();
+    const spot = await Spot.findByPk(req.params.spotId);
+    await spot.addSpotImage(newImage)
     res.json(newImage);
 } catch {
     res.status(404);
