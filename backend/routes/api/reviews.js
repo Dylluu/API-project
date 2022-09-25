@@ -34,7 +34,12 @@ router.get('/current', authenticate, async(req, res) => {
             attributes: {
                 exclude: ['description', 'createdAt', 'updatedAt']
             }
-        }]
+        },
+        {
+            model: ReviewImage,
+            attributes: ['id', 'url']
+        }
+        ]
     })
 
     // console.log(reviews[0].toJSON())
