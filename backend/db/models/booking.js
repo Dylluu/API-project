@@ -22,8 +22,15 @@ module.exports = (sequelize, DataTypes) => {
   Booking.init({
     spotId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    startDate: DataTypes.DATEONLY,
-    endDate: DataTypes.DATEONLY
+    startDate: {
+      type: DataTypes.DATEONLY
+    },
+    endDate: {
+      type: DataTypes.DATEONLY,
+      validate: {
+        isAfter: this.startDate
+      }
+    }
   }, {
     sequelize,
     modelName: 'Booking',
