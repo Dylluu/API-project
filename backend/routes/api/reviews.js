@@ -1,6 +1,6 @@
 const express = require('express');
 const { Spot, Review, SpotImage, sequelize, User, Booking, ReviewImage } = require('../../db/models');
-const { Op } = require('sequelize');
+const { Op, json } = require('sequelize');
 const router = express.Router();
 
 const authenticate = (req, res, next) => {
@@ -64,5 +64,71 @@ router.get('/current', authenticate, async(req, res) => {
     res.json({Reviews})
 })
 
+
+// handler for adding an image to review based on review id
+router.post('/:reviewId/images', authenticate, async(req, res) => {
+    const review = await Review.findByPk(req.params.reviewId);
+
+    if(!review){
+        res.status(404);
+        return res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(review.userId !== req.user.id){
+        res.status(403);
+        return res.json({
+            message: 'Forbidden',
+            statusCode: 403
+        })
+    }
+
+    const reviewCount = await ReviewImage.count({
+        where: {
+            reviewId: req.params.reviewId
+        }
+    })
+
+    console.log(reviewCount)
+    if(reviewCount >= 10){
+        res.status(403);
+        return res.json({
+            message: "Maximum number of images for this resource was reached",
+            statusCode: 403
+        })
+    }
+
+    const { url } = req.body;
+
+    try{
+    const newImage = await ReviewImage.build({
+        reviewId: review.id,
+        url
+    })
+    await newImage.validate()
+    await newImage.save()
+    await review.addReviewImage(newImage)
+
+    let jsonReviewImage = newImage.toJSON();
+
+    let responseBody = {};
+    responseBody.id = jsonReviewImage.id;
+    responseBody.url = jsonReviewImage.url;
+
+    return res.json(responseBody)
+} catch {
+    res.status(400);
+    return res.json({
+        message: "Validation",
+        statusCode: 400,
+        errors: {
+            review: "Review text is required",
+            stars: "Stars must be an integer from 1 to 5"
+        }
+    })
+}
+})
 
 module.exports = router
