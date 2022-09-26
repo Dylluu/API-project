@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         emptyString(value){
-          if(value.length < 1){
+          if(value === ''){
             throw new Error('Review cannot be blank')
           }
         }
