@@ -192,6 +192,7 @@ router.post('/', authenticate, async(req, res) => {
     await newSpot.validate()
     await newSpot.save()
 
+    res.status(201);
     res.json(newSpot)
 } catch {
     res.status(400);
