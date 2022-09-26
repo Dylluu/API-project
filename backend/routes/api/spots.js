@@ -413,7 +413,7 @@ router.post('/:spotId/reviews', authenticate, async(req, res) => {
 
         await newReview.validate();
         await newReview.save();
-        await Spot.addReview(newReview);
+        await spot.addReview(newReview);
         res.status(201);
         return res.json(newReview);
     } catch {
