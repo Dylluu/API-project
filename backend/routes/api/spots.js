@@ -54,6 +54,8 @@ router.get('/current', authenticate, async(req, res) => {
 
         if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
+        } else if(!previewImage[0]){
+            spots[i].previewImage = null
         }
     }
 
@@ -162,6 +164,8 @@ router.get('/', async(req, res, next) => {
         })
         if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
+        } else if(!previewImage[0]){
+        spots[i].previewImage = null
         }
     }
 
