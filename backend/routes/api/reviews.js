@@ -130,4 +130,39 @@ router.post('/:reviewId/images', authenticate, async(req, res) => {
 }
 })
 
+
+// handler for editing a review
+router.put('/:reviewId', authenticate, async(req, res, next) => {
+    const findReview = await Review.findByPk(req.params.reviewId);
+    const { review, stars } = req.body;
+
+    if(!findReview){
+        res.status(404);
+        return res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(findReview.userId !== req.user.id){
+        res.status(403);
+        return res.json({
+            message: 'Forbidden',
+            statusCode: 403
+        })
+    }
+
+    try{
+        const updatedReview = await findReview.update({
+            review,
+            stars
+        })
+        return res.json(updatedReview)
+    } catch(error) {
+        error.status = 400;
+        error.message = 'Validation error'
+        next(error)
+    }
+})
+
 module.exports = router
