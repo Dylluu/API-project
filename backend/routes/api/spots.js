@@ -334,6 +334,15 @@ router.delete('/:spotId', authenticate, async(req, res) => {
 router.get('/:spotId/reviews', async(req, res) => {
     const Reviews = [];
 
+    const spot = await Spot.findByPk(req.params.spotId);
+    if(!spot){
+        res.status(404);
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
     const reviews = await Review.findAll({
         where: {
             spotId: req.params.spotId
@@ -350,16 +359,23 @@ router.get('/:spotId/reviews', async(req, res) => {
     ]
     })
 
-    if(!reviews.length){
-        res.status(404);
-        return res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
-    }
+    // if(!reviews.length){
+    //     res.status(404);
+    //     return res.json({
+    //         message: "Spot couldn't be found",
+    //         statusCode: 404
+    //     })
+    // }
     Reviews.push(...reviews)
 
     res.json({Reviews})
+})
+
+// handler for creating a review based on the spot's id
+router.post('/:spotId/reviews', authenticate, async(req, res) => {
+    const { review, stars } = req.body;
+
+    const spot = await Spot.findByPk(req.params.spotId);
 })
 
 module.exports = router
