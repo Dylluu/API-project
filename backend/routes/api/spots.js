@@ -349,6 +349,14 @@ router.get('/:spotId/reviews', async(req, res) => {
         }
     ]
     })
+
+    if(!reviews.length){
+        res.status(404);
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
     Reviews.push(...reviews)
 
     res.json({Reviews})
