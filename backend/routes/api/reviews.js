@@ -124,8 +124,7 @@ router.post('/:reviewId/images', authenticate, async(req, res) => {
         message: "Validation",
         statusCode: 400,
         errors: {
-            review: "Review text is required",
-            stars: "Stars must be an integer from 1 to 5"
+            url: "Review image url cannot be null"
         }
     })
 }
