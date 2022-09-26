@@ -379,8 +379,9 @@ router.post('/:spotId/reviews', authenticate, async(req, res) => {
 
     if(!spot){
         res.status(404);
-        res.json({
-
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
         })
     }
 })
