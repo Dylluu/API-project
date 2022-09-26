@@ -330,4 +330,28 @@ router.delete('/:spotId', authenticate, async(req, res) => {
     })
 })
 
+// handler to get reviews by spot's id
+router.get('/:spotId/reviews', async(req, res) => {
+    const Reviews = [];
+
+    const reviews = await Review.findAll({
+        where: {
+            spotId: req.params.spotId
+        },
+        attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
+        include: [{
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+            model: ReviewImage,
+            attributes: ['id', 'url']
+        }
+    ]
+    })
+    Reviews.push(...reviews)
+
+    res.json({Reviews})
+})
+
 module.exports = router

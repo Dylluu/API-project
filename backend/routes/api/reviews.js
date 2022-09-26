@@ -17,7 +17,6 @@ const authenticate = (req, res, next) => {
 
 // handler for getting all reviews of current user
 router.get('/current', authenticate, async(req, res) => {
-    const responseBody = {};
     const Reviews = [];
 
     const reviews = await Review.findAll({
@@ -62,12 +61,8 @@ router.get('/current', authenticate, async(req, res) => {
         Reviews.push(review)
     }
 
-    const spots =
-
-    responseBody.Reviews = Reviews;
-
-
     res.json({Reviews})
 })
+
 
 module.exports = router
