@@ -376,6 +376,13 @@ router.post('/:spotId/reviews', authenticate, async(req, res) => {
     const { review, stars } = req.body;
 
     const spot = await Spot.findByPk(req.params.spotId);
+
+    if(!spot){
+        res.status(404);
+        res.json({
+
+        })
+    }
 })
 
 module.exports = router

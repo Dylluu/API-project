@@ -23,10 +23,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Review.init({
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    review: DataTypes.STRING,
-    stars: DataTypes.INTEGER
+    spotId: {
+      type: DataTypes.INTEGER
+    },
+    userId: {
+      type: DataTypes.INTEGER
+    },
+    review: {
+      type: DataTypes.STRING,
+      validate: {
+        emptyString(value){
+          if(value.length < 1){
+            throw new Error('Review cannot be blank')
+          }
+        }
+      }
+    },
+    stars: {
+      type: DataTypes.INTEGER,
+      validate: {
+        oneToFive(value){
+          if(value < 1 || value > 5){
+            throw new Error('Stars must be between 1 and 5')
+          }
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Review',
