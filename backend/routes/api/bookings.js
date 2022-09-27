@@ -77,6 +77,17 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         })
     }
 
+    if(startDate > endDate){
+        res.status(400);
+            return res.json({
+                message: 'Validation error',
+                statusCode: 400,
+                errors: {
+                    endDate: 'endDate cannot come before startDate'
+                }
+            })
+    }
+
     const currDate = new Date().toJSON().slice(0, 10);
     if(currDate > booking.endDate){
         res.status(403);
@@ -94,8 +105,8 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         let jsonBookings = bookings[i].toJSON();
         let start = jsonBookings.startDate;
         let end = jsonBookings.endDate;
-        console.log(jsonBookings.id)
-        console.log(parseInt(req.params.bookingId))
+        // console.log(jsonBookings.id)
+        // console.log(parseInt(req.params.bookingId))
 
         if((startDate == start || startDate == end || (startDate > start && startDate < end)) && jsonBookings.id !== parseInt(req.params.bookingId)){
             res.status(403);
@@ -119,27 +130,13 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         }
     }
 
-    try{
-        if(startDate < endDate){
+
         const updatedBooking = await booking.update({
             startDate,
             endDate
         })
         return res.json(updatedBooking)
-    } else {
-        throw new Error('error')
-    }
 
-        } catch{
-            res.status(400);
-            return res.json({
-                message: 'Validation error',
-                statusCode: 400,
-                errors: {
-                    endDate: 'endDate cannot come before startDate'
-                }
-            })
-        }
 })
 
 
