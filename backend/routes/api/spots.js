@@ -27,6 +27,13 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
             statusCode: 404
         })
     }
+    if(spot.ownerId === req.user.id){
+        res.status(403);
+        return res.json({
+            message: 'Forbidden',
+            statusCode: 403
+        })
+    }
 
     const { startDate, endDate } = req.body;
 
@@ -72,7 +79,7 @@ router.get('/:spotId/bookings', authenticate, async(req, res) => {
         })
         return res.json({Bookings})
     }
-    if(spot.ownerId == req.user.id){
+    if(spot.ownerId === req.user.id){
         const Bookings = await Booking.findAll({
             where: {
                 spotId: req.params.spotId
