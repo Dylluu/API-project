@@ -34,6 +34,7 @@ const validateSignup = [
     handleValidationErrors
   ];
 
+  // handler for signing up user
 router.post(
     '/',
     validateSignup,
@@ -48,6 +49,7 @@ router.post(
         firstName,
         lastName,
         email,
+        username,
         token
       };
 
