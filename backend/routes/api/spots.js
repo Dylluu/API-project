@@ -19,6 +19,7 @@ const authenticate = (req, res, next) => {
 // handler for creating a booking fom a spot based on spotId
 router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
+    const { startDate, endDate } = req.body;
 
     if(!spot){
         res.status(404);
@@ -35,7 +36,34 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
         })
     }
 
-    const { startDate, endDate } = req.body;
+    const bookings = await spot.getBookings()
+
+    for(let i = 0; i < bookings.length; i++){
+        let jsonBookings = bookings[i].toJSON();
+        let start = jsonBookings.startDate;
+        let end = jsonBookings.endDate;
+
+        if(startDate == start || startDate == end || (startDate > start && startDate < end)){
+            res.status(403);
+            return res.json({
+                message: 'Sorry, this spot is already booked for the specified dates',
+                statusCode: 403,
+                errors: {
+                    startDate: 'Start date conflicts with an existing booking'
+                }
+            })
+        }
+        if(endDate == start || endDate == end || (endDate > start && endDate < end)){
+            res.status(403);
+            return res.json({
+                message: 'Sorry, this spot is already booked for the specified dates',
+                statusCode: 403,
+                errors: {
+                    endDate: 'End date conflicts with an existing booking'
+                }
+            })
+        }
+    }
 
     try{
     const newBooking = await Booking.build({
