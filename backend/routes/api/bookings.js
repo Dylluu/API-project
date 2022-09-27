@@ -19,16 +19,43 @@ const authenticate = (req, res, next) => {
 // handler for getting all bookings of current user
 router.get('/current', authenticate, async(req, res) => {
     const responseBody = {};
+    const bookingsArray = [];
 
     const bookings = await Booking.findAll({
         where: {
             userId: req.user.id
         },
-        include: {model: Spot}
+        include: {
+        model: Spot,
+        attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        }
+    }
     })
 
-    responseBody.Bookings = bookings;
 
+    for(let i = 0; i < bookings.length; i++){
+        let jsonBooking = bookings[i].toJSON()
+        let previewImage = await SpotImage.findAll({
+            where: {
+                [Op.and]: [
+                    {spotId: jsonBooking.spotId},
+                    {preview: true}
+                ]
+            },
+            raw: true
+        })
+
+
+        if(previewImage[0]){
+        jsonBooking.Spot.previewImage = previewImage[0].url
+        } else if(!previewImage[0]){
+            jsonBooking.Spot.previewImage = null
+        }
+        bookingsArray.push(jsonBooking)
+    }
+
+    responseBody.Bookings = bookingsArray;
     res.json(responseBody)
 })
 
