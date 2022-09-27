@@ -108,6 +108,17 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         // console.log(jsonBookings.id)
         // console.log(parseInt(req.params.bookingId))
 
+        if(start > startDate && end < endDate){
+            res.status(403);
+            return res.json({
+                message: 'Sorry, this spot is already booked for the specified dates',
+                statusCode: 403,
+                errors: {
+                    endDate: 'Another booking starts before your current endDate'
+                }
+            })
+        }
+
         if((startDate == start || startDate == end || (startDate > start && startDate < end)) && jsonBookings.id !== parseInt(req.params.bookingId)){
             res.status(403);
             return res.json({
