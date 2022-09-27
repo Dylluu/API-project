@@ -30,6 +30,23 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         })
     }
 
+    if(booking.userId !== req.user.id){
+        res.status(403);
+        return res.json({
+            message: 'Forbidden',
+            statusCode: 403
+        })
+    }
+
+    const currDate = new Date().toJSON().slice(0, 10);
+    if(currDate > booking.endDate){
+        res.status(403);
+        return res.json({
+            message: "Past bookings can't be modified",
+            statusCode: 403
+        })
+    }
+
     try{
         if(startDate < endDate){
         const updatedBooking = await booking.update({
