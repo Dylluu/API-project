@@ -15,6 +15,22 @@ const authenticate = (req, res, next) => {
     }
 }
 
+
+// handler for getting all bookings for a spot based on the spotId
+router.get('/:spotId/bookings', authenticate, async(req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if(spot.ownerId === req.user.id){
+        const Bookings = await Booking.findAll({
+            where: {
+                spotId: req.params.spotId
+            },
+            attributes: ['spotId', 'startDate', 'endDate']
+        })
+        res.json({Bookings})
+    }
+})
+
 // Handler for get spots of current user
 router.get('/current', authenticate, async(req, res) => {
     const responseBody = {};
