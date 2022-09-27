@@ -20,14 +20,35 @@ const authenticate = (req, res, next) => {
 router.get('/:spotId/bookings', authenticate, async(req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
 
-    if(spot.ownerId === req.user.id){
+    if(!spot){
+        res.status(404);
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(spot.ownerId !== req.user.id){
         const Bookings = await Booking.findAll({
             where: {
                 spotId: req.params.spotId
             },
             attributes: ['spotId', 'startDate', 'endDate']
         })
-        res.json({Bookings})
+        return res.json({Bookings})
+    }
+    if(spot.ownerId == req.user.id){
+        const Bookings = await Booking.findAll({
+            where: {
+                spotId: req.params.spotId
+            },
+            attributes: ['id','spotId', 'userId', 'startDate', 'endDate','createdAt', 'updatedAt'],
+            include: {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }
+        })
+        return res.json({Bookings})
     }
 })
 
