@@ -17,6 +17,45 @@ const authenticate = (req, res, next) => {
 }
 
 
+// handler for deleting a booking
+router.delete('/:bookingId', authenticate, async(req, res) => {
+    const booking = await Booking.findByPk(req.params.bookingId);
+
+    if(!booking){
+        res.status(404);
+        return res.json({
+            message: "Booking couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(booking.userId !== req.user.id){
+        res.status(403);
+        return res.json({
+            message: 'Forbidden',
+            statusCode: 403
+        })
+    }
+
+    const currDate = new Date().toJSON().slice(0, 10);
+    if(currDate > booking.startDate){
+        res.status(403);
+        return res.json({
+            message: "Bookings that have been started can't be deleted",
+            statusCode: 403
+        })
+    }
+
+    await booking.destroy();
+    res.status(200);
+    return res.json({
+        message: 'Successfully deleted',
+        statusCode: 200
+    })
+
+})
+
+
 // handler for editing a booking
 router.put('/:bookingId', authenticate, async(req, res, next) => {
     const { startDate, endDate } = req.body;
