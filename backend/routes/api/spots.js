@@ -16,6 +16,41 @@ const authenticate = (req, res, next) => {
 }
 
 
+// handler for creating a booking fom a spot based on spotId
+router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if(!spot){
+        res.status(404);
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    const { startDate, endDate } = req.body;
+
+    try{
+    const newBooking = await Booking.build({
+        spotId: req.params.spotId,
+        userId: req.user.id,
+        startDate,
+        endDate
+    })
+
+    await newBooking.validate();
+    await newBooking.save();
+    return res.json(newBooking)
+
+    } catch(error){
+        console.log(error)
+        error.status = 400;
+        error.message = 'Validation error';
+        next(error)
+    }
+})
+
+
 // handler for getting all bookings for a spot based on the spotId
 router.get('/:spotId/bookings', authenticate, async(req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);

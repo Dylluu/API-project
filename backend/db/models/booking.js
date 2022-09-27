@@ -23,12 +23,22 @@ module.exports = (sequelize, DataTypes) => {
     spotId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     startDate: {
-      type: DataTypes.DATEONLY
+      type: DataTypes.DATEONLY,
+      validate: {
+        isAfter: {
+          args: new Date().toString(),
+          msg: 'startDate cannot be before current time'
+        }
+      }
     },
     endDate: {
       type: DataTypes.DATEONLY,
       validate: {
-        isAfter: this.startDate
+        endDate(value){
+          if(value <= this.startDate){
+            throw new Error('endDate cannot be on or before startDate')
+          }
+        }
       }
     }
   }, {
