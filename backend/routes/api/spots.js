@@ -78,7 +78,6 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
     return res.json(newBooking)
 
     } catch(error){
-        console.log(error)
         error.status = 400;
         error.message = 'Validation error';
         next(error)

@@ -16,6 +16,44 @@ const authenticate = (req, res, next) => {
     }
 }
 
+
+// handler for editing a booking
+router.put('/:bookingId', authenticate, async(req, res, next) => {
+    const { startDate, endDate } = req.body;
+    const booking = await Booking.findByPk(req.params.bookingId);
+
+    if(!booking){
+        res.status(404);
+        return res.json({
+            message: "Booking couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    try{
+        if(startDate < endDate){
+        const updatedBooking = await booking.update({
+            startDate,
+            endDate
+        })
+        return res.json(updatedBooking)
+    } else {
+        throw new Error('error')
+    }
+
+        } catch{
+            res.status(400);
+            return res.json({
+                message: 'Validation error',
+                statusCode: 400,
+                errors: {
+                    endDate: 'endDate cannot come before startDate'
+                }
+            })
+        }
+})
+
+
 // handler for getting all bookings of current user
 router.get('/current', authenticate, async(req, res) => {
     const responseBody = {};
