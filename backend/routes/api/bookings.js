@@ -55,8 +55,10 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
         let jsonBookings = bookings[i].toJSON();
         let start = jsonBookings.startDate;
         let end = jsonBookings.endDate;
+        console.log(jsonBookings.id)
+        console.log(parseInt(req.params.bookingId))
 
-        if(startDate == start || startDate == end || (startDate > start && startDate < end)){
+        if((startDate == start || startDate == end || (startDate > start && startDate < end)) && jsonBookings.id !== parseInt(req.params.bookingId)){
             res.status(403);
             return res.json({
                 message: 'Sorry, this spot is already booked for the specified dates',
@@ -66,7 +68,7 @@ router.put('/:bookingId', authenticate, async(req, res, next) => {
                 }
             })
         }
-        if(endDate == start || endDate == end || (endDate > start && endDate < end)){
+        if((endDate == start || endDate == end || (endDate > start && endDate < end)) && jsonBookings.id !== parseInt(req.params.bookingId)){
             res.status(403);
             return res.json({
                 message: 'Sorry, this spot is already booked for the specified dates',
