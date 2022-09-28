@@ -237,8 +237,21 @@ router.get('/:spotId', async(req, res) => {
 // handler for get all spots
 router.get('/', async(req, res, next) => {
     const responseBody = {};
+    const pagination = {};
+    const { page, size } = req.query;
+
+    if(!page || page <= 0 || isNaN(page)){
+        page = 1
+    }
+    if(!size || size <= 0 || isNaN(size)){
+        size = 20
+    }
+    pagination.limit = size;
+    pagination.offset = (page - 1) * size;
+
 
     const spots = await Spot.findAll({
+        ...pagination,
         raw: true
     })
 
@@ -275,7 +288,9 @@ router.get('/', async(req, res, next) => {
         }
     }
 
-    responseBody.Spots = spots
+    responseBody.Spots = spots;
+    responseBody.page = page;
+    responseBody.size = size;
     return res.json(responseBody)
 
 })
