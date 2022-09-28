@@ -183,7 +183,9 @@ router.get('/current', authenticate, async(req, res) => {
 
         const fixedRating = numRating.toFixed(1)
 
-        spots[i].avgRating = parseFloat(fixedRating)
+        if(isNaN(fixedRating)){
+            spots[i].avgRating = 'No ratings available'
+        } else{spots[i].avgRating = parseFloat(fixedRating)}
 
         let previewImage = await SpotImage.findAll({
             where: {
@@ -198,7 +200,7 @@ router.get('/current', authenticate, async(req, res) => {
         if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
         } else if(!previewImage[0]){
-            spots[i].previewImage = null
+            spots[i].previewImage = 'Preview image not set'
         }
     }
 
@@ -246,8 +248,11 @@ router.get('/:spotId', async(req, res) => {
 
         const fixedRating = numRating.toFixed(1)
 
+        if(isNaN(fixedRating)){
+            spot.avgStarRating = 'No ratings available'
+        } else{spot.avgStarRating = parseFloat(fixedRating)}
+
         spot.numReviews = reviewCount
-        spot.avgStarRating = parseFloat(fixedRating)
 
     let imagesList = await SpotImage.findAll({
         where: {
@@ -339,7 +344,11 @@ router.get('/', validateQueries, async(req, res, next) => {
 
         const fixedRating = numRating.toFixed(1)
 
-        spots[i].avgRating = parseFloat(fixedRating)
+        if(isNaN(fixedRating)){
+            spots[i].avgRating = 'No reviews available'
+        } else {
+            spots[i].avgRating = parseFloat(fixedRating)
+        }
 
         let previewImage = await SpotImage.findAll({
             where: {
@@ -353,7 +362,7 @@ router.get('/', validateQueries, async(req, res, next) => {
         if(previewImage[0]){
         spots[i].previewImage = previewImage[0].url
         } else if(!previewImage[0]){
-        spots[i].previewImage = null
+        spots[i].previewImage = "Preview image not set"
         }
     }
 

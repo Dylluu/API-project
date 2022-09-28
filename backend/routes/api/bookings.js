@@ -185,7 +185,7 @@ router.get('/current', authenticate, async(req, res) => {
         if(previewImage[0]){
         jsonBooking.Spot.previewImage = previewImage[0].url
         } else if(!previewImage[0]){
-            jsonBooking.Spot.previewImage = null
+            jsonBooking.Spot.previewImage = "Preview image not set"
         }
         bookingsArray.push(jsonBooking)
     }
