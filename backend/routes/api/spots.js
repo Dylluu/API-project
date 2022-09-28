@@ -240,15 +240,17 @@ router.get('/', async(req, res, next) => {
     let pagination = {};
     let { page, size } = req.query;
 
-    if(!page || page <= 0 || isNaN(page)){
+    if(page && (page <= 0 || isNaN(page))){
         page = 1
     }
-    if(!size || size <= 0 || isNaN(size)){
+    if(size && (size <= 0 || isNaN(size))){
         size = 20
     }
+
+    if(page && size){
     pagination.limit = size;
     pagination.offset = (page - 1) * size;
-
+    }
 
 
     const spots = await Spot.findAll({
@@ -290,8 +292,10 @@ router.get('/', async(req, res, next) => {
     }
 
     responseBody.Spots = spots;
-    responseBody.page = page;
-    responseBody.size = size;
+
+        responseBody.page = parseInt(page),
+        responseBody.size = parseInt(size)
+
     return res.json(responseBody)
 
 })
