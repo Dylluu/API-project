@@ -250,6 +250,7 @@ router.get('/', async(req, res, next) => {
     pagination.offset = (page - 1) * size;
 
 
+
     const spots = await Spot.findAll({
         ...pagination,
         raw: true
