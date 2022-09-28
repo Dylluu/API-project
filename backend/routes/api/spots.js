@@ -475,7 +475,6 @@ router.post('/:spotId/reviews', authenticate, async(req, res) => {
         })
     }
 
-    try{
         const newReview = await Review.build({
             spotId: req.params.spotId,
             userId: currentUserId,
@@ -488,17 +487,6 @@ router.post('/:spotId/reviews', authenticate, async(req, res) => {
         await spot.addReview(newReview);
         res.status(201);
         return res.json(newReview);
-    } catch {
-        res.status(400);
-        return res.json({
-            message: 'Validation error',
-            statusCode: 400,
-            errors: {
-                review: 'Review text is required',
-                stars: 'Stars must be an integer from 1 to 5'
-            }
-        })
-    }
 })
 
 module.exports = router

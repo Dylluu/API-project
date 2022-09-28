@@ -91,7 +91,7 @@ router.post('/:reviewId/images', authenticate, async(req, res) => {
         }
     })
 
-    console.log(reviewCount)
+    // console.log(reviewCount)
     if(reviewCount >= 10){
         res.status(403);
         return res.json({
@@ -141,17 +141,11 @@ router.put('/:reviewId', authenticate, async(req, res, next) => {
         })
     }
 
-    try{
         const updatedReview = await findReview.update({
             review,
             stars
         })
         return res.json(updatedReview)
-    } catch(error) {
-        error.status = 400;
-        error.message = 'Validation error'
-        next(error)
-    }
 })
 
 
