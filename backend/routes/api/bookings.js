@@ -163,7 +163,7 @@ router.get('/current', authenticate, async(req, res) => {
         include: {
         model: Spot,
         attributes: {
-            exclude: ['createdAt', 'updatedAt']
+            exclude: ['description', 'createdAt', 'updatedAt']
         }
     }
     })
