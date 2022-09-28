@@ -1,6 +1,8 @@
 const express = require('express');
 const { Spot, Review, SpotImage, sequelize, User, Booking, ReviewImage } = require('../../db/models');
 const { Op } = require('sequelize');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation')
 const router = express.Router();
 
 const authenticate = (req, res, next) => {
@@ -15,6 +17,41 @@ const authenticate = (req, res, next) => {
     }
 }
 
+const validateQueries = [
+    check('page')
+        .optional()
+        .isInt({max: 10, min: 1})
+        .withMessage('Page must be within 1 to 10'),
+    check('size')
+        .optional()
+        .isInt({max: 20, min: 1})
+        .withMessage('Size must be within 1 to 20'),
+    check('minLat')
+        .optional()
+        .isFloat({min: -90, max: 90})
+        .withMessage('Minimum latitude is invalid'),
+    check('maxLat')
+        .optional()
+        .isFloat({min: -90, max: 90})
+        .withMessage('Maximum latitude is invalid'),
+    check('minLng')
+        .optional()
+        .isFloat({min: -180, max: 180})
+        .withMessage('Minimum longitude is invalid'),
+    check('maxLng')
+        .optional()
+        .isFloat({min: -180, max: 180})
+        .withMessage('Minimum longitude is invalid'),
+    check('minPrice')
+        .optional()
+        .isFloat({min: 1})
+        .withMessage('minPrice must be greater than 0'),
+    check('maxPrice')
+        .optional()
+        .isFloat({min: 1})
+        .withMessage('maxPrice must be greater than 0'),
+    handleValidationErrors
+]
 
 // handler for creating a booking fom a spot based on spotId
 router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
@@ -235,10 +272,11 @@ router.get('/:spotId', async(req, res) => {
 
 
 // handler for get all spots
-router.get('/', async(req, res, next) => {
+router.get('/', validateQueries, async(req, res, next) => {
     let responseBody = {};
     let pagination = {};
-    let { page, size } = req.query;
+    let where = {};
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
     if(page && (page <= 0 || isNaN(page))){
         page = 1
@@ -251,10 +289,38 @@ router.get('/', async(req, res, next) => {
     pagination.limit = size;
     pagination.offset = (page - 1) * size;
     }
+    if(minLat){
+        where.lat = {[Op.gte] : minLat}
+    }
+    if(maxLat){
+        where.lat = {[Op.lte] : maxLat}
+    }
+    if(minLat && maxLat){
+        where.lat = {[Op.between]: [minLat, maxLat]}
+    }
+    if(minLng){
+        where.lng = {[Op.gte] : minLng}
+    }
+    if(maxLng){
+        where.lng = {[Op.lte] : maxLng}
+    }
+    if(minLng && maxLng){
+        where.lng = {[Op.between]: [minLng, maxLng]}
+    }
+    if(minPrice){
+        where.price = {[Op.gte]: minPrice}
+    }
+    if(maxPrice){
+        where.price = {[Op.lte]: maxPrice}
+    }
+    if(minPrice && maxPrice){
+        where.price = {[Op.between]: [minPrice, maxPrice]}
+    }
 
 
     const spots = await Spot.findAll({
         ...pagination,
+        where,
         raw: true
     })
 
