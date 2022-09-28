@@ -58,7 +58,8 @@ router.post(
       return res.json(
         responseBody
       );
-    } catch{
+    } catch (error){
+      if(error.errors[0].path.toString() === 'email'){
         res.status(403);
         return res.json({
           message: "User already exists",
@@ -67,6 +68,16 @@ router.post(
             email: 'User with that email already exists'
           }
         })
+      } else if(error.errors[0].path.toString() === 'username'){
+        res.status(403);
+        return res.json({
+          message: "User already exists",
+          statusCode: 403,
+          errors: {
+            username: 'User with that username already exists'
+          }
+        })
+      }
     }
     }
   );
