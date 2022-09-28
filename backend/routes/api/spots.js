@@ -293,9 +293,10 @@ router.get('/', async(req, res, next) => {
 
     responseBody.Spots = spots;
 
+    if(page && size){
         responseBody.page = parseInt(page),
         responseBody.size = parseInt(size)
-
+    }
     return res.json(responseBody)
 
 })
