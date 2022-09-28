@@ -347,8 +347,13 @@ router.put('/:spotId', authenticate, async(req, res) => {
 
     const spot = await Spot.findByPk(req.params.spotId);
 
-    try{
-    if(spot){
+    if(!spot){
+        res.status(404);
+        return res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+        })
+    }
         if(ownerId !== spot.ownerId){
             res.status(403)
             return res.json({
@@ -368,31 +373,6 @@ router.put('/:spotId', authenticate, async(req, res) => {
             price
         })
         return res.json(updatedSpot)
-    }
-    res.status(404);
-    res.json({
-        message: "Spot couldn't be found",
-        statusCode: 404
-    })
-} catch {
-    res.status(400);
-    res.json({
-        message: 'Validation Error',
-        statusCode: 400,
-        errors: {
-            address: 'Street address is required',
-            city: 'City is required',
-            state: 'State is required',
-            country: 'Country is required',
-            lat: 'Latitude is not valid',
-            lng: 'Longitude is not valid',
-            name: 'Name must be less than 50 characters',
-            description: 'Description is required',
-            price: 'Price per day is required'
-        }
-    })
-}
-
 })
 
 // handler for deleting a spot
