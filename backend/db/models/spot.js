@@ -123,6 +123,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Price per day is required'
+        },
+        min: {
+          args: [1],
+          msg: "Price per day cannot be lower than 1"
         }
       }
     }
