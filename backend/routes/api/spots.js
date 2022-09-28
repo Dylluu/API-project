@@ -73,6 +73,17 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
         })
     }
 
+    if(startDate > endDate){
+        res.status(400);
+            return res.json({
+                message: 'Validation error',
+                statusCode: 400,
+                errors: {
+                    endDate: 'endDate cannot come before startDate'
+                }
+            })
+    }
+
     const bookings = await spot.getBookings()
 
     for(let i = 0; i < bookings.length; i++){
@@ -102,7 +113,6 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
         }
     }
 
-    try{
     const newBooking = await Booking.build({
         spotId: req.params.spotId,
         userId: req.user.id,
@@ -113,12 +123,6 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
     await newBooking.validate();
     await newBooking.save();
     return res.json(newBooking)
-
-    } catch(error){
-        error.status = 400;
-        error.message = 'Validation error';
-        next(error)
-    }
 })
 
 
