@@ -236,9 +236,9 @@ router.get('/:spotId', async(req, res) => {
 
 // handler for get all spots
 router.get('/', async(req, res, next) => {
-    const responseBody = {};
-    const pagination = {};
-    const { page, size } = req.query;
+    let responseBody = {};
+    let pagination = {};
+    let { page, size } = req.query;
 
     if(!page || page <= 0 || isNaN(page)){
         page = 1
