@@ -285,7 +285,6 @@ router.post('/', authenticate, async(req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const ownerId = req.user.id
-    try{
     const newSpot = await Spot.build({
         ownerId,
         address,
@@ -304,24 +303,6 @@ router.post('/', authenticate, async(req, res) => {
 
     res.status(201);
     res.json(newSpot)
-} catch {
-    res.status(400);
-    res.json({
-        message: 'Validation Error',
-        statusCode: 400,
-        errors: {
-            address: 'Street address is required',
-            city: 'City is required',
-            state: 'State is required',
-            country: 'Country is required',
-            lat: 'Latitude is not valid',
-            lng: 'Longitude is not valid',
-            name: 'Name must be less than 50 characters',
-            description: 'Description is required',
-            price: 'Price per day is required'
-        }
-    })
-}
 })
 
 // handler for adding an image to spot
