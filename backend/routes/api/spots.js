@@ -329,7 +329,13 @@ router.post('/:spotId/images', authenticate, async(req, res) => {
     await newImage.validate();
     await newImage.save();
     await spot.addSpotImage(newImage)
-    return res.json(newImage);
+
+    const resBody = {
+        id: newImage.id,
+        url: newImage.url,
+        preview: newImage.preview
+    };
+    return res.json(resBody);
 }
 
     res.status(404);
