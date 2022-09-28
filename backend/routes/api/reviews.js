@@ -102,7 +102,6 @@ router.post('/:reviewId/images', authenticate, async(req, res) => {
 
     const { url } = req.body;
 
-    try{
     const newImage = await ReviewImage.build({
         reviewId: review.id,
         url
@@ -118,16 +117,6 @@ router.post('/:reviewId/images', authenticate, async(req, res) => {
     responseBody.url = jsonReviewImage.url;
 
     return res.json(responseBody)
-} catch {
-    res.status(400);
-    return res.json({
-        message: "Validation",
-        statusCode: 400,
-        errors: {
-            url: "Review image url cannot be null"
-        }
-    })
-}
 })
 
 
