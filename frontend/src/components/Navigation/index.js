@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
+import LoginFormModal from '../LoginFormModal/index.js';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -36,16 +37,12 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <div onClick={openMenu} className='menu-user'>
-                    <i class="fa-solid fa-bars"></i>
-                    <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-bars"></i>
+                    <i className="fa-solid fa-user"></i>
                 </div>
                 {showMenu && (
                     <div className='profile-dropdown'>
-                        <NavLink to="/login">
-                            <div className='profile-dropdown-text-divs'>
-                                Log In
-                            </div>
-                        </NavLink>
+                        <LoginFormModal />
                         <NavLink to="/signup">
                             <div className='profile-dropdown-text-divs' style={{borderTop: 'solid 1px lightgray'}}>
                                 Sign Up
