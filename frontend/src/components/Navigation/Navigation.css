@@ -1,0 +1,36 @@
+.nav-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px;
+    border-bottom: solid 1px lightgray;
+}
+
+.home-container {
+    position: absolute;
+    margin-left: 65px
+}
+
+.menu-user, .profile-button {
+    display: flex;
+    position: absolute;
+    right: 65px;
+    justify-content: center;
+    width: 60px;
+    border: solid 1px lightgray;
+}
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 65px;
+    top: 40px;
+    background-color: lightblue;
+    width: 150px;
+    height: 100px;
+    margin-top: 20px;
+}
