@@ -6,58 +6,66 @@ import './Navigation.css';
 import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 
-function Navigation({ isLoaded }){
-  const sessionUser = useSelector(state => state.session.user);
-  const [showMenu, setShowMenu] = useState(false);
+function Navigation({ isLoaded }) {
+    const sessionUser = useSelector(state => state.session.user);
+    const [showMenu, setShowMenu] = useState(false);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = () => {
-      setShowMenu(false);
+    const openMenu = () => {
+        if (showMenu) return;
+        setShowMenu(true);
     };
 
-    document.addEventListener('click', closeMenu);
+    useEffect(() => {
+        if (!showMenu) return;
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+        const closeMenu = () => {
+            setShowMenu(false);
+        };
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser}/>
-    );
-  } else {
-    sessionLinks = (
-      <>
-      <div onClick={openMenu} className='menu-user'>
-      <i class="fa-solid fa-bars"></i>
-      <i class="fa-solid fa-user"></i>
-      </div>
-        {showMenu && (
-        <div className='profile-dropdown'>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        document.addEventListener('click', closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+    let sessionLinks;
+    if (sessionUser) {
+        sessionLinks = (
+            <ProfileButton user={sessionUser} />
+        );
+    } else {
+        sessionLinks = (
+            <>
+                <div onClick={openMenu} className='menu-user'>
+                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                {showMenu && (
+                    <div className='profile-dropdown'>
+                        <NavLink to="/login">
+                            <div className='profile-dropdown-text-divs'>
+                                Log In
+                            </div>
+                        </NavLink>
+                        <NavLink to="/signup">
+                            <div className='profile-dropdown-text-divs' style={{borderTop: 'solid 1px lightgray'}}>
+                                Sign Up
+                            </div>
+                        </NavLink>
+                    </div>
+                )
+                }
+            </>
+        );
+    }
+
+    return (
+        <div className='nav-container'>
+            <div className='home-container'>
+                <NavLink exact to="/">Home</NavLink>
+            </div>
+            {isLoaded && sessionLinks}
         </div>
-        )
-        }
-      </>
     );
-  }
-
-  return (
-    <div className='nav-container'>
-        <div className='home-container'>
-        <NavLink exact to="/">Home</NavLink>
-        </div>
-        {isLoaded && sessionLinks}
-    </div>
-  );
 }
 
 export default Navigation;

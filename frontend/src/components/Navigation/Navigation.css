@@ -14,23 +14,53 @@
     margin-left: 65px
 }
 
-.menu-user, .profile-button {
+.menu-user{
     display: flex;
+    align-items: center;
     position: absolute;
     right: 65px;
     justify-content: center;
-    width: 60px;
+    width: 80px;
+    height: 35px;
     border: solid 1px lightgray;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.menu-user:hover {
+    box-shadow: 0 2px 10px lightgray;
+}
+
+.fa-solid {
+    margin: 9px;
+    color: gray;
 }
 
 .profile-dropdown {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     position: absolute;
     right: 65px;
     top: 40px;
-    background-color: lightblue;
+    background-color: white;
     width: 150px;
-    height: 100px;
-    margin-top: 20px;
+    height: 80px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px lightgray;
+}
+
+.profile-dropdown-text-divs {
+   font-size: 15px;
+   height: 40px;
+   color: grey;
+   text-indent: 10px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+}
+
+a:link {
+    text-decoration: none;
 }
