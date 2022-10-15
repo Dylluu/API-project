@@ -54,11 +54,9 @@ function Navigation({ isLoaded }) {
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
                         </div>
-                        <NavLink to="/signup">
                             <div id='sign-up-div' onClick={() => setShowSUModal(true)} className='profile-dropdown-text-divs'>
                                 Sign Up
                             </div>
-                        </NavLink>
                     </div>
                 )
                 }
