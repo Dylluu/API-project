@@ -5,14 +5,21 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
+import LoginFormModal from '../LoginFormPage/index';
+import { Modal } from '../../context/Modal';
+import LoginFormPage from '../LoginFormPage/LoginFormPage';
+import logo from '../../assets/airbnbLogo.png';
 
 function Navigation({ isLoaded }) {
+    const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
+    const menuProfile = document.querySelector('.menu-user')
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
+        menuProfile.style.boxShadow = '0 2px 10px lightgray'
     };
 
     useEffect(() => {
@@ -20,6 +27,7 @@ function Navigation({ isLoaded }) {
 
         const closeMenu = () => {
             setShowMenu(false);
+            menuProfile.style.boxShadow = 'none'
         };
 
         document.addEventListener('click', closeMenu);
@@ -41,19 +49,22 @@ function Navigation({ isLoaded }) {
                 </div>
                 {showMenu && (
                     <div className='profile-dropdown'>
-                        <NavLink to="/login">
-                            <div className='profile-dropdown-text-divs'>
-                                Log In
-                            </div>
-                        </NavLink>
+                        <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
+                            Login
+                        </div>
                         <NavLink to="/signup">
-                            <div className='profile-dropdown-text-divs' style={{borderTop: 'solid 1px lightgray'}}>
+                            <div id='sign-up-div' className='profile-dropdown-text-divs'>
                                 Sign Up
                             </div>
                         </NavLink>
                     </div>
                 )
                 }
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <LoginFormPage />
+                    </Modal>
+                )}
             </>
         );
     }
@@ -61,7 +72,9 @@ function Navigation({ isLoaded }) {
     return (
         <div className='nav-container'>
             <div className='home-container'>
-                <NavLink exact to="/">Home</NavLink>
+                <NavLink exact to="/">
+                    <img alt='logo' className='logo' src={logo}/>
+                </NavLink>
             </div>
             {isLoaded && sessionLinks}
         </div>
