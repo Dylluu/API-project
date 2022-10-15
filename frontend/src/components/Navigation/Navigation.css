@@ -26,15 +26,15 @@
     right: 65px;
     justify-content: center;
     width: 70px;
-    height: 36px;
+    height: 40px;
     border: solid 1px lightgray;
     border-radius: 25px;
     cursor: pointer;
 }
 
-/* .menu-user:hover {
+.menu-user:hover {
     box-shadow: 0 2px 10px lightgray;
-} */
+}
 
 .fa-solid {
     margin: 9px;

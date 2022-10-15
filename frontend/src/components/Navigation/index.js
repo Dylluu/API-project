@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
-import LoginFormModal from '../LoginFormPage/index';
+// import LoginFormModal from '../LoginFormPage/index';
 import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
 import logo from '../../assets/airbnbLogo.png';
@@ -16,12 +16,12 @@ function Navigation({ isLoaded }) {
     const [showSUModal, setShowSUModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
-    const menuProfile = document.querySelector('.menu-user')
+    // const menuProfile = document.querySelector('.menu-user')
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
-        menuProfile.style.boxShadow = '0 2px 10px lightgray'
+        // menuProfile.style.boxShadow = '0 2px 10px lightgray'
     };
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
 
         const closeMenu = () => {
             setShowMenu(false);
-            menuProfile.style.boxShadow = 'none'
+            // menuProfile.style.boxShadow = 'none'
         };
 
         document.addEventListener('click', closeMenu);

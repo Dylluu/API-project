@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 12px;
     height: 700px;
-    width: 450px;
+    width: 550px;
 }
 
 .top-bar {
@@ -37,8 +37,7 @@
 
 .su-input {
     height: 45px;
-    width: 380px;
-    border-bottom: none;
+    width: 480px;
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 25px;
@@ -50,7 +49,7 @@
     font-size: 15px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     margin-top: 20px;
-    width: 388px;
+    width: 488px;
     height: 50px;
     border-color: transparent;
     border-radius: 10px;
