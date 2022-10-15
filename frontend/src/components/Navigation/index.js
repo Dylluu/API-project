@@ -9,9 +9,11 @@ import LoginFormModal from '../LoginFormPage/index';
 import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
 import logo from '../../assets/airbnbLogo.png';
+import SignupFormPage from '../SignupFormPage/SignupFormPage';
 
 function Navigation({ isLoaded }) {
     const [showModal, setShowModal] = useState(false);
+    const [showSUModal, setShowSUModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
     const menuProfile = document.querySelector('.menu-user')
@@ -53,7 +55,7 @@ function Navigation({ isLoaded }) {
                             Login
                         </div>
                         <NavLink to="/signup">
-                            <div id='sign-up-div' className='profile-dropdown-text-divs'>
+                            <div id='sign-up-div' onClick={() => setShowSUModal(true)} className='profile-dropdown-text-divs'>
                                 Sign Up
                             </div>
                         </NavLink>
@@ -65,6 +67,11 @@ function Navigation({ isLoaded }) {
                         <LoginFormPage />
                     </Modal>
                 )}
+                {showSUModal && (
+        <Modal onClose={() => setShowSUModal(false)}>
+          <SignupFormPage />
+        </Modal>
+      )}
             </>
         );
     }

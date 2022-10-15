@@ -11,9 +11,9 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  // if (sessionUser) return (
+  //   <Redirect to="/" />
+  // );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ function LoginFormPage() {
     <div className='container'>
         <div className="top-bar">
                 {/* <span className="x">X</span> */}
-                <span className="log-in">Log in or sign up</span>
+                <span className="log-in">Log In</span>
         </div>
         <div className='welcome'>
             <span>Welcome To AirBenbe</span>
