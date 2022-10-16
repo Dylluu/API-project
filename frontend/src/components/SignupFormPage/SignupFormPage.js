@@ -37,7 +37,7 @@ function SignupFormPage() {
         <span className="sign-up">Sign Up</span>
       </div>
       <div className='welcome'>
-        <span>Welcome To AirBenbe</span>
+        <span>Welcome To Airbenbe</span>
       </div>
       <form onSubmit={handleSubmit}>
         <ul>

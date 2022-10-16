@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    height: 700px;
+    height: 710px;
     width: 550px;
 }
 
@@ -38,7 +38,7 @@
 .su-input {
     height: 45px;
     width: 480px;
-    border: 1px solid lightgray;
+    border: 1px solid #BEBEBE;
     border-radius: 10px;
     margin-bottom: 25px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -48,7 +48,7 @@
     color: white;
     font-size: 15px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-    margin-top: 20px;
+    margin-top: 17px;
     width: 488px;
     height: 50px;
     border-color: transparent;

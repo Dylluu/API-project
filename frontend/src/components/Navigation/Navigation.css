@@ -11,7 +11,7 @@
 
 .home-container {
     position: absolute;
-    margin-left: 65px
+    margin-left: 75px
 }
 
 .logo {
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    right: 65px;
+    right: 75px;
     justify-content: center;
     width: 70px;
     height: 40px;
@@ -72,6 +72,14 @@
 
 .profile-dropdown-text-divs:hover {
     background-color: #F8F8F8;
+}
+
+#profile-dropdown-LO {
+    height: 33px;
+}
+
+#logout-div:hover {
+    border-radius: 12px;
 }
 
 a:link {

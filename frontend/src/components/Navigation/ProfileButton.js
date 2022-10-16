@@ -35,8 +35,8 @@ function ProfileButton({ user }) {
       <i className="fa-solid fa-user"></i>
       </div>
       {showMenu && (
-        <div className="profile-dropdown">
-            <button onClick={logout}>Log Out</button>
+        <div className="profile-dropdown" id='profile-dropdown-LO'>
+            <div id='logout-div' className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
         </div>
       )}
     </>

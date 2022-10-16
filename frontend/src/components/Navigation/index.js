@@ -54,9 +54,9 @@ function Navigation({ isLoaded }) {
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
                         </div>
-                            <div id='sign-up-div' onClick={() => setShowSUModal(true)} className='profile-dropdown-text-divs'>
-                                Sign Up
-                            </div>
+                        <div id='sign-up-div' onClick={() => setShowSUModal(true)} className='profile-dropdown-text-divs'>
+                            Sign Up
+                        </div>
                     </div>
                 )
                 }
@@ -66,10 +66,10 @@ function Navigation({ isLoaded }) {
                     </Modal>
                 )}
                 {showSUModal && (
-        <Modal onClose={() => setShowSUModal(false)}>
-          <SignupFormPage />
-        </Modal>
-      )}
+                    <Modal onClose={() => setShowSUModal(false)}>
+                        <SignupFormPage />
+                    </Modal>
+                )}
             </>
         );
     }
@@ -78,7 +78,7 @@ function Navigation({ isLoaded }) {
         <div className='nav-container'>
             <div className='home-container'>
                 <NavLink exact to="/">
-                    <img alt='logo' className='logo' src={logo}/>
+                    <img alt='logo' className='logo' src={logo} />
                 </NavLink>
             </div>
             {isLoaded && sessionLinks}

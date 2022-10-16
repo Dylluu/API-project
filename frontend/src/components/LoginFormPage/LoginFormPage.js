@@ -32,7 +32,7 @@ function LoginFormPage() {
                 <span className="log-in">Log In</span>
         </div>
         <div className='welcome'>
-            <span>Welcome To AirBenbe</span>
+            <span>Welcome To Airbenbe</span>
         </div>
         <form onSubmit={handleSubmit}>
         <ul>
