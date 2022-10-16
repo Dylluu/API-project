@@ -21,9 +21,7 @@ export default function spotsReducer(state = {}, action) {
     const newState = {...state}
     switch (action.type) {
         case LOAD_SPOTS:
-            console.log('----------', {...action.spots.Spots})
-            newState.Spots = action.spots.Spots
-            return newState;
+            return {...newState, ...action.spots.Spots};
         default:
             return state;
     }

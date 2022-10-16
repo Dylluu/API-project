@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadSpots } from '../../store/spots';
 import { getSpots } from '../../store/spots';
+import './Spots.css'
+import SpotCard from '../SpotCard';
 
 const SpotsBrowser = () => {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots.Spots);
-    console.log('NEW STATE', spots)
+    const spots = useSelector(state => state.spots);
+    const spotsArray = Object.values(spots)
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
 
     return (
-        <div>
+        <div className='spots-container'>
             Spots here
-            <ul>
-            {/* {spots.map(spot => (
-                <li>
-                    {spot.address}
-                </li>
-            ))} */}
-            </ul>
+            {spotsArray.map(spot => (
+                <SpotCard spot={spot}/>
+            ))}
         </div>
     )
 }

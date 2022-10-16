@@ -5,7 +5,7 @@ import LoginFormPage from './components/LoginFormPage/LoginFormPage';
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SpotsBrowser from "./components/Spots";
+import SpotsBrowser from "./components/SpotsBrowser";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return isLoaded && (
-    < div>
+    < div >
     <Navigation isLoaded={isLoaded}/>
     <SpotsBrowser/>
 

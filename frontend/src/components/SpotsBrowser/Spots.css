@@ -1,0 +1,6 @@
+.spots-container {
+    position: relative;
+    top: 80px;
+    width: 98vw;
+    z-index: -1;
+}
