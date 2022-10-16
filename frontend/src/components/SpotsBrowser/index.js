@@ -14,9 +14,8 @@ const SpotsBrowser = () => {
 
     return (
         <div className='spots-container'>
-            Spots here
             {spotsArray.map(spot => (
-                <SpotCard spot={spot}/>
+                <SpotCard key={spot.id} spot={spot}/>
             ))}
         </div>
     )

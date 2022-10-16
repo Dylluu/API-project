@@ -1,0 +1,27 @@
+.spot-card {
+    min-width: 31%;
+    max-width: 40%;
+    height: 200px;
+    margin: 10px;
+    background-color: lightblue;
+}
+
+.spot-image {
+    width: 100%;
+    height: auto;
+}
+
+.spot-location {
+    font-weight: 450;
+}
+
+.spot-card-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+span {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+}
