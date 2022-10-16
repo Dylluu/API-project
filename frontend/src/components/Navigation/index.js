@@ -10,10 +10,10 @@ import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
 import logo from '../../assets/airbnbLogo.png';
 import SignupFormPage from '../SignupFormPage/SignupFormPage';
+import useModalContext from '../../context/ShowModalContext';
 
 function Navigation({ isLoaded }) {
-    const [showModal, setShowModal] = useState(false);
-    const [showSUModal, setShowSUModal] = useState(false);
+    const {showModal, setShowModal, showSUModal, setShowSUModal} = useModalContext();
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
     // const menuProfile = document.querySelector('.menu-user')
