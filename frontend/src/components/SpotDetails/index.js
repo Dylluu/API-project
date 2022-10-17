@@ -3,18 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSpot } from '../../store/spots';
 import { useParams } from 'react-router-dom'
 import './SpotDetails.css';
+import { getReviews } from '../../store/reviews';
 
 const SpotDetails = () => {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spots);
+    const reviews = useSelector(state => state.reviews);
+    const reviewsArray = Object.values(reviews);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         dispatch(getSpot(spotId))
+        dispatch(getReviews(spotId))
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 300)
+    setTimeout(() => setIsLoaded(true), 100)
 
     return (
         <div className='spot-details-container'>
@@ -45,7 +49,7 @@ const SpotDetails = () => {
                 </div>
             </div>
             <div>
-                <span className='spot-name'>{spot.name} hosted by {spot.Owner.firstName}</span>
+                {isLoaded && <span className='spot-name'>{spot.name} hosted by {spot.Owner.firstName}</span>}
             </div>
             <div className='spot-misc-info'>
                 <div className='spot-misc-1'>
@@ -53,7 +57,7 @@ const SpotDetails = () => {
                     <i class="fa-solid fa-crown" style={{ fontSize: '25px', marginTop: '0px', color: 'black' }}></i>
                     </div>
                     <div className='spot-misc-text'>
-                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>{spot.Owner.firstName} is a Superhost</span>
+                        {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>{spot.Owner.firstName} is a Superhost</span>}
                         <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300' }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
                     </div>
                 </div>
@@ -81,7 +85,9 @@ const SpotDetails = () => {
             </div>
             </div>
             <div className='spot-reviews'>
-
+                {isLoaded && reviewsArray.map((review) => (
+                    <div className='review-user-name'>{review.User.firstName}</div>
+                ))}
             </div>
         </div>
     )

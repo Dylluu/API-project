@@ -142,6 +142,10 @@
     border: solid 1px red;
 }
 
+/* .review-user-name {
+
+} */
+
 @media (max-width: 1300px) {
     .spot-details-container{
         min-width: 1000px;
