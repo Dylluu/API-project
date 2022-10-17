@@ -17,6 +17,7 @@ const SpotDetails = () => {
     setTimeout(() => setIsLoaded(true), 300)
 
     return (
+        <div className='page-wrapper'>
         <div className='spot-details-container'>
             <div className='spot-name'>
                 <span>{spot.name}</span>
@@ -38,6 +39,10 @@ const SpotDetails = () => {
             <div>
                 <span className='spot-name'>{spot.name} hosted by {spot.ownerId}</span>
             </div>
+            <div>
+                Spot Info
+            </div>
+        </div>
         </div>
     )
 }

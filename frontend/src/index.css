@@ -2,8 +2,11 @@
 body {
     display: flex;
     flex-direction: column;
+    border: solid 1px blue;
+    box-sizing: border-box;
 }
 
 #root {
     width: 100%;
+    box-sizing: border-box;
 }

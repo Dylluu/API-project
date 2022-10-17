@@ -2,28 +2,31 @@
     margin-top: 105px;
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    border: solid 1px purple;
+    min-width: 100%;
 }
 
 .spot-name {
     font-size: 22px;
     font-weight: 450;
-    margin-left: 5%;
     margin-bottom: 20px;
+    /* margin-left: 5%; */
+    border: solid 3px green;
 }
 
 .spot-details-images {
     display: flex;
     align-self: center;
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
-    height: 350px;
+    height: 400px;
     border-radius: 12px;
     margin-bottom: 50px;
+    border: solid 1px orange;
 }
 
 .img-1-container {
-    height: 350px;
+    height: 400px;
     width: 49.5%;
     overflow: hidden;
 }
@@ -37,20 +40,20 @@
 }
 
 .img-1 {
-    height: 350px;
+    height: 400px;
     background-color: lightgrey;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
 
 .img-2 {
-    height: 172px;
+    height: 195px;
     background-color: lightgray;
     width: 49%;
 }
 
 .img-3 {
-    height: 172px;
+    height: 195px;
     background-color: lightgray;
     margin-left: 2%;
     width: 49%;
@@ -58,17 +61,27 @@
 }
 
 .img-4 {
-    height: 172px;
+    height: 195px;
     background-color: lightgray;
     width: 49%;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .img-5 {
-    height: 172px;
+    height: 195px;
     background-color: lightgray;
     margin-left: 2%;
     width: 49%;
-    margin-top: 5px;
+    margin-top: 10px;
     border-bottom-right-radius: 12px;
+}
+
+.page-wrapper {
+    border: solid 1px red;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
