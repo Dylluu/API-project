@@ -16,7 +16,7 @@ function App() {
   }, [dispatch]);
 
   return isLoaded && (
-    < div >
+    < div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
     <Navigation isLoaded={isLoaded}/>
     <Switch>
     <Route exact path='/'>
