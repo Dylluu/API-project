@@ -17,6 +17,27 @@
     /* border: solid 3px green; */
 }
 
+.spot-info-under-name {
+    height: 20px;
+    /* border: solid 1px green; */
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.spot-info-under-name-text {
+    font-size: 15px;
+    margin-left: 4px;
+}
+
+.dot {
+    font-size: 22px;
+    color: grey;
+    margin-left: 6px;
+    margin-bottom: 13px;
+    margin-right: 2px;
+}
+
 .spot-details-images {
     display: flex;
     /* align-self: center; */
@@ -84,7 +105,7 @@
     height: 285px;
     border-top: solid 1px #BEBEBE;
     border-bottom: solid 1px #BEBEBE;
-    width: 60%;
+    width: 50%;
     margin-top: 30px;
 }
 
@@ -99,6 +120,21 @@
 .spot-misc-text {
     display: flex;
     flex-direction: column;
+}
+
+.spot-description {
+    width: 50%;
+    border-bottom: solid 1px #BEBEBE;
+    display: flex;
+}
+
+.spot-description-text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .spot-reviews {

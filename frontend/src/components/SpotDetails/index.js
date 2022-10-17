@@ -19,7 +19,16 @@ const SpotDetails = () => {
     return (
         <div className='spot-details-container'>
             <div className='spot-name'>
-                <span>{spot.name}</span>
+                <span style={{fontSize: '27px'}}>{spot.name}</span>
+                <div className='spot-info-under-name'>
+                <i class="fa-solid fa-star" style={{fontSize: '12px'}}></i>
+                <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                <span className='dot'>.</span>
+                <span style={{fontWeight: '250'}} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                <span className='dot'>.</span>
+                <i style={{fontSize: '14px', marginLeft: '6px'}} className="fa-solid fa-medal"></i>
+                <span style={{marginLeft: '8px', fontWeight: '250'}}className='spot-info-under-name-text'>Superhost</span>
+                </div>
             </div>
             <div className='spot-details-images'>
                 <div className='img-1-container'>
@@ -36,7 +45,7 @@ const SpotDetails = () => {
                 </div>
             </div>
             <div>
-                <span className='spot-name'>{spot.name} hosted by {spot.ownerId}</span>
+                <span className='spot-name'>{spot.name} hosted by {spot.Owner.firstName}</span>
             </div>
             <div className='spot-misc-info'>
                 <div className='spot-misc-1'>
@@ -44,7 +53,7 @@ const SpotDetails = () => {
                     <i class="fa-solid fa-crown" style={{ fontSize: '25px', marginTop: '0px', color: 'black' }}></i>
                     </div>
                     <div className='spot-misc-text'>
-                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>{spot.ownerId} is a Superhost</span>
+                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>{spot.Owner.firstName} is a Superhost</span>
                         <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300' }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
                     </div>
                 </div>
@@ -65,6 +74,11 @@ const SpotDetails = () => {
                         <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '18px' }}>Free cancellation</span>
                     </div>
                 </div>
+            </div>
+            <div className='spot-description'>
+            <div className='spot-description-text'>
+                <p>{spot.description}</p>
+            </div>
             </div>
             <div className='spot-reviews'>
 
