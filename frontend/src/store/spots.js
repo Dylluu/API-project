@@ -8,6 +8,15 @@ export const getSpots = () => async dispatch => {
     }
   };
 
+export const getSpot = (spotId) => async dispatch => {
+    const response = await fetch(`/api/spots/${spotId}`);
+
+    if (response.ok) {
+      const list = await response.json();
+      dispatch(loadSpotDetails(list));
+    }
+  };
+
 const LOAD_SPOTS = 'spots/LOAD';
 
 export const loadSpots = (spots) => {
@@ -17,11 +26,21 @@ export const loadSpots = (spots) => {
     }
 }
 
+const LOAD_SPOT_DETAILS = 'spotDetails/LOAD';
+
+export const loadSpotDetails = (spot) => {
+    return {
+        type: LOAD_SPOT_DETAILS,
+        spot
+    }
+}
+
 export default function spotsReducer(state = {}, action) {
-    const newState = {...state}
     switch (action.type) {
         case LOAD_SPOTS:
-            return {...newState, ...action.spots.Spots};
+            return {...action.spots.Spots};
+        case LOAD_SPOT_DETAILS:
+            return {...action.spot}
         default:
             return state;
     }

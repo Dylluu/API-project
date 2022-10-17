@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpots } from '../../store/spots';
-import './Spots.css'
+import './Spots.css';
 import SpotCard from '../SpotCard';
 
 const SpotsBrowser = () => {

@@ -6,8 +6,9 @@
     left: 0;
     width: 100vw;
     height: 80px;
-    border-bottom: solid 1px lightgray;
+    border-bottom: solid 1px #E8E8E8;
     background-color: white;
+    overflow: hidden;
 }
 
 .home-container {
@@ -45,8 +46,8 @@
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 65px;
+    position: fixed;
+    right: 60px;
     top: 40px;
     background-color: white;
     width: 150px;

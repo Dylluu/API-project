@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SpotsBrowser";
+import SpotDetails from "./components/SpotDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,14 @@ function App() {
   return isLoaded && (
     < div >
     <Navigation isLoaded={isLoaded}/>
+    <Switch>
+    <Route exact path='/'>
     <SpotsBrowser/>
+    </Route>
+    <Route path='/spots/:spotId'>
+      <SpotDetails/>
+    </Route>
+    </Switch>
 
     {/* {isLoaded && (
       // <Switch>
