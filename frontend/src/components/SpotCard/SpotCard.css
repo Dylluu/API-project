@@ -1,14 +1,12 @@
 .spot-card {
-    min-width: 31%;
-    max-width: 40%;
-    height: 200px;
+    max-width: 31%;
+    max-height: 300px;
     margin: 10px;
-    background-color: lightblue;
 }
 
 .spot-image {
     width: 100%;
-    height: auto;
+    border-radius: 12px;
 }
 
 .spot-location {
@@ -17,6 +15,7 @@
 
 .spot-card-text {
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     font-weight: 300;
 }

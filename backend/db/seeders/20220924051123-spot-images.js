@@ -14,7 +14,7 @@ module.exports = {
    await queryInterface.bulkInsert('SpotImages', [
     {
       spotId: 1,
-      url: 'Spot 1 Image 1 (preview)',
+      url: 'https://a0.muscache.com/im/pictures/e7e72c42-3268-4e06-992b-bb75b6aa0a00.jpg?im_w=960',
       preview: true
     },
     {
@@ -24,7 +24,7 @@ module.exports = {
     },
     {
       spotId: 2,
-      url: 'Spot 2 Image 1 (preview)',
+      url: 'https://a0.muscache.com/im/pictures/97c4c7ce-3ded-445e-b2f8-9ded10ae5be0.jpg?im_w=960',
       preview: true
     },
     {
@@ -39,7 +39,7 @@ module.exports = {
     },
     {
       spotId: 3,
-      url: 'Spot 3 Image 1 (preview)',
+      url: 'https://a0.muscache.com/im/pictures/monet/Luxury-570973165437649140/original/5b3872b7-fc85-4e67-bd3b-dc69e298dae3?im_w=960',
       preview: true
     },
     {

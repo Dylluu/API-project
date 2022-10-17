@@ -27,7 +27,7 @@ module.exports = {
    {
     ownerId: 2,
     address: '518 W. Figueroa St.',
-    city: 'Santa Barbara',
+    city: 'San Fransisco',
     state: 'California',
     country: 'USA',
     lat: 3.15,
@@ -39,7 +39,7 @@ module.exports = {
    {
     ownerId: 3,
     address: '517 W. Figueroa St. 2',
-    city: 'Santa Barbara',
+    city: 'Los Angeles',
     state: 'California',
     country: 'USA',
     lat: 3.16,
