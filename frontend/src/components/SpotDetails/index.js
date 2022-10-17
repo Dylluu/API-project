@@ -12,13 +12,18 @@ const SpotDetails = () => {
     const reviews = useSelector(state => state.reviews);
     const reviewsArray = Object.values(reviews);
     const [isLoaded, setIsLoaded] = useState(false);
+    const months = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
+    const dateArray = (date) => {
+        const newDate = date.split('-')
+        return `${months[newDate[1].toString()]} ${newDate[0]}`
+    }
 
     useEffect(() => {
         dispatch(getSpot(spotId))
         dispatch(getReviews(spotId))
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 100)
+    setTimeout(() => setIsLoaded(true), 200)
 
     return (
         <div className='spot-details-container'>
@@ -85,8 +90,27 @@ const SpotDetails = () => {
             </div>
             </div>
             <div className='spot-reviews'>
+                <div className='review-header'>
+                <i class="fa-solid fa-star" style={{fontSize: '15px'}}></i>
+                <span style={{fontSize: '23px', marginLeft: '10px'}} className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                <span className='dot-2'>.</span>
+                <span style={{fontWeight: '350', fontSize: '23px'}} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                </div>
                 {isLoaded && reviewsArray.map((review) => (
-                    <div className='review-user-name'>{review.User.firstName}</div>
+                    <div className='each-review'>
+                    <div className='each-review-top'>
+                    <div className='profile-img-wrapper'>
+                    <i className="fa-regular fa-circle-user" style={{fontSize: '45px', color: 'grey'}}></i>
+                    </div>
+                    <div className='review-top-text'>
+                    <span style={{fontWeight: '600', marginLeft: '10px'}} className='review-user-name-date'>{review.User.firstName}</span>
+                    <span style={{marginLeft: '10px', fontWeight: '300', color: 'gray'}}>{dateArray(review.createdAt)}</span>
+                    </div>
+                    </div>
+                    <div className='each-review-bottom'>
+                    <p>{review.review}</p>
+                    </div>
+                    </div>
                 ))}
             </div>
         </div>

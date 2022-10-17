@@ -72,13 +72,13 @@
 }
 
 .img-2 {
-    height: 198px;
+    height: 197px;
     background-color: lightgray;
     width: 49.5%;
 }
 
 .img-3 {
-    height: 198px;
+    height: 197px;
     background-color: lightgray;
     margin-left: 1%;
     width: 49.5%;
@@ -139,12 +139,51 @@
 
 .spot-reviews {
     height: 500px;
-    border: solid 1px red;
+    /* border: solid 1px red; */
 }
 
-/* .review-user-name {
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
 
-} */
+.dot-2 {
+    font-size: 27px;
+    color: grey;
+    margin-left: 6px;
+    margin-bottom: 13px;
+    margin-right: 2px;
+}
+
+.each-review {
+    /* border: solid 3px green; */
+    margin-top: 20px;
+}
+
+.each-review-top {
+    display: flex;
+    flex-direction: row;
+    /* border: solid 1px blue; */
+}
+
+.review-top-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-user-name-date {
+    height: 20px;
+    /* border: solid 1px blue; */
+}
+
+.each-review-bottom {
+    /* border: solid 2px pink; */
+    font-size: 17px;
+    font-weight: 300;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
 
 @media (max-width: 1300px) {
     .spot-details-container{
