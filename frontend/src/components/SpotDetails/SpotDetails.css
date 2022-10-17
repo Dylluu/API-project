@@ -133,7 +133,7 @@
     margin-bottom: 15px;
     width: 100%;
     font-weight: 300;
-    font-size: 17px;
+    font-size: 16px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -180,7 +180,7 @@
 
 .each-review-bottom {
     /* border: solid 2px pink; */
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 300;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }

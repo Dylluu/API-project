@@ -59,28 +59,28 @@ const SpotDetails = () => {
             <div className='spot-misc-info'>
                 <div className='spot-misc-1'>
                     <div className='icon-div'>
-                    <i class="fa-solid fa-crown" style={{ fontSize: '25px', marginTop: '0px', color: 'black' }}></i>
+                    <i class="fa-solid fa-crown" style={{ fontSize: '23px', marginTop: '0px', color: 'black' }}></i>
                     </div>
                     <div className='spot-misc-text'>
-                        {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>{spot.Owner.firstName} is a Superhost</span>}
-                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300' }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
+                        {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>{spot.Owner.firstName} is a Superhost</span>}
+                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px'  }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
                     </div>
                 </div>
                 <div className='spot-misc-1'>
                     <div className='icon-div'>
-                        <i className="fa-solid fa-location-dot" style={{ fontSize: '25px', marginTop: '0px', color: 'black', marginLeft: '5px'}}></i>
+                        <i className="fa-solid fa-location-dot" style={{ fontSize: '23px', marginTop: '0px', color: 'black', marginLeft: '5px'}}></i>
                     </div>
                     <div className='spot-misc-text' style={{marginLeft: '4px'}}>
-                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '18px' }}>Great Location</span>
-                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300' }}>100% of recent guests gave the location a 5-star rating.</span>
+                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>Great Location</span>
+                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px' }}>100% of recent guests gave the location a 5-star rating.</span>
                     </div>
                 </div>
                 <div className='spot-misc-1' style={{height: '40px', marginTop: '20px'}}>
                     <div className='icon-div'>
-                        <i className="fa-regular fa-calendar" style={{ fontSize: '25px', marginTop: '0px', marginLeft: '5px' }}></i>
+                        <i className="fa-regular fa-calendar" style={{ fontSize: '23px', marginTop: '0px', marginLeft: '5px' }}></i>
                     </div>
                     <div className='spot-misc-text'>
-                        <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '18px' }}>Free cancellation</span>
+                        <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '16px' }}>Free cancellation</span>
                     </div>
                 </div>
             </div>
