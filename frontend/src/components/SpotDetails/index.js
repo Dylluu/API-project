@@ -4,17 +4,19 @@ import { getSpot } from '../../store/spots';
 import { useParams } from 'react-router-dom'
 import './SpotDetails.css';
 import { getReviews } from '../../store/reviews';
+import useModalContext from '../../context/ShowModalContext';
+import ReviewForm from '../ReviewForm';
+import { Modal } from '../../context/Modal';
 
 const SpotDetails = () => {
+    const {showReviewModal, setShowReviewModal} = useModalContext();
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spots);
-    const user = useSelector(state => state.session.user);
     const reviews = useSelector(state => state.reviews);
+    const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [numStars, setNumStars] = useState(0);
-    const [reviewText, setReviewText] = useState('');
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
     const dateArray = (date) => {
         const newDate = date.split('-')
@@ -108,28 +110,21 @@ const SpotDetails = () => {
             </div>
             </div>
             <div className='spot-details-middle-right'>
-                <div className='review-form-wrapper'>
-                <form>
-                    <div>
-                        <input
-                        type='text'
-                        value={reviewText}
-                        onChange={(e) => setReviewText(e.target.value)}
-                        required
-                        placeholder='Write review here'
-                        className='review-text-input'
-                        />
-                    </div>
-                </form>
-                </div>
             </div>
             </div>
             <div className='spot-reviews'>
                 <div className='review-header'>
+                    <div className='review-header-left'>
                     <i className="fa-solid fa-star" style={{ fontSize: '15px' }}></i>
                     <span style={{ fontSize: '21px', marginLeft: '10px' }} className='spot-info-under-name-text'>{spot.avgStarRating}</span>
                     <span className='dot-2'>.</span>
                     <span style={{ fontWeight: '350', fontSize: '21px' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                    </div>
+                    {isLoaded && user && spot.ownerId !== user.id &&
+                        <div className='link-to-review-form' onClick={() => setShowReviewModal(true)}>
+                            <span>Write a review</span>
+                        </div>
+                    }
                 </div>
                 {isLoaded && reviewsArray.length && reviewsArray.map((review) => (
                     <div key={review.id} className='each-review'>
@@ -148,6 +143,11 @@ const SpotDetails = () => {
                     </div>
                 ))}
             </div>
+            {showReviewModal && (
+                    <Modal onClose={() => setShowReviewModal(false)}>
+                        <ReviewForm />
+                    </Modal>
+                )}
         </div>
     )
 }

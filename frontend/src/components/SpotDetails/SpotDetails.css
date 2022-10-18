@@ -109,21 +109,14 @@
 }
 
 .spot-details-middle-left {
-    min-width: 50%;
+    min-width: 55%;
 }
 
 .spot-details-middle-right {
     display: flex;
-    border: solid 1px purple;
+    /* border: solid 1px purple; */
     width: 100%;
     justify-content: center;
-}
-
-.review-form-wrapper {
-    display: flex;
-    justify-content: center;
-    border: solid 1px red;
-    min-width: 80%;
 }
 
 .spot-misc-info {
@@ -171,12 +164,30 @@
 
 .review-header {
     display: flex;
+    box-sizing: border-box;
     align-items: center;
     margin-bottom: 35px;
     margin-top: 30px;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.review-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.link-to-review-form {
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .dot-2 {
+    display: flex;
     font-size: 27px;
     color: grey;
     margin-left: 6px;
