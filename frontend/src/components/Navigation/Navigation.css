@@ -35,7 +35,7 @@
 }
 
 .menu-user:hover {
-    box-shadow: 0 1px 5px lightgray;
+    box-shadow: 0 2px 5px lightgray;
 }
 
 .fa-bars, .fa-user {
