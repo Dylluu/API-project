@@ -30,7 +30,7 @@ const SpotDetails = () => {
             <div className='spot-name'>
                 <span style={{fontSize: '27px'}}>{spot.name}</span>
                 <div className='spot-info-under-name'>
-                <i class="fa-solid fa-star" style={{fontSize: '12px'}}></i>
+                <i className="fa-solid fa-star" style={{fontSize: '12px'}}></i>
                 <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
                 <span className='dot'>.</span>
                 <span style={{fontWeight: '250'}} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
@@ -59,7 +59,7 @@ const SpotDetails = () => {
             <div className='spot-misc-info'>
                 <div className='spot-misc-1'>
                     <div className='icon-div'>
-                    <i class="fa-solid fa-crown" style={{ fontSize: '23px', marginTop: '0px', color: 'black' }}></i>
+                    <i className="fa-solid fa-crown" style={{ fontSize: '23px', marginTop: '0px', color: 'black' }}></i>
                     </div>
                     <div className='spot-misc-text'>
                         {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>{spot.Owner.firstName} is a Superhost</span>}
@@ -91,19 +91,19 @@ const SpotDetails = () => {
             </div>
             <div className='spot-reviews'>
                 <div className='review-header'>
-                <i class="fa-solid fa-star" style={{fontSize: '15px'}}></i>
+                <i className="fa-solid fa-star" style={{fontSize: '15px'}}></i>
                 <span style={{fontSize: '23px', marginLeft: '10px'}} className='spot-info-under-name-text'>{spot.avgStarRating}</span>
                 <span className='dot-2'>.</span>
                 <span style={{fontWeight: '350', fontSize: '23px'}} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                 </div>
-                {isLoaded && reviewsArray.map((review) => (
-                    <div className='each-review'>
+                {isLoaded && reviewsArray.length && reviewsArray.map((review) => (
+                    <div key={review.id} className='each-review'>
                     <div className='each-review-top'>
                     <div className='profile-img-wrapper'>
-                    <i className="fa-regular fa-circle-user" style={{fontSize: '45px', color: 'grey'}}></i>
+                    <i className="fa-regular fa-circle-user" style={{fontSize: '35px', color: 'grey'}}></i>
                     </div>
                     <div className='review-top-text'>
-                    <span style={{fontWeight: '600', marginLeft: '10px'}} className='review-user-name-date'>{review.User.firstName}</span>
+                    <span style={{fontWeight: '600', marginLeft: '10px', marginTop: '-2px'}} className='review-user-name-date'>{review.User.firstName}</span>
                     <span style={{marginLeft: '10px', fontWeight: '300', color: 'gray'}}>{dateArray(review.createdAt)}</span>
                     </div>
                     </div>
