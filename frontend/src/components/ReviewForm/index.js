@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useModalContext from '../../context/ShowModalContext';
@@ -13,14 +13,16 @@ function ReviewForm() {
     const user = useSelector(state => state.session.user);
     const spotId = useSelector(state => state.spots.id);
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const review = {review: reviewText, stars: numStars}
-        dispatch(postReviewThunk(spotId, review))
+        await dispatch(postReviewThunk(spotId, review))
         .then(() => setShowReviewModal(false))
-        .then((getReviews(spotId)))
+
+        await dispatch(getReviews(spotId))
     }
 
     return (
