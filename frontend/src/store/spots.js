@@ -36,12 +36,33 @@ export const loadSpotDetails = (spot) => {
     }
 }
 
+export const addSpotThunk = (spot) => async() => {
+    return await csrfFetch(`/api/spots`, {
+        method: 'post',
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(spot)
+      }
+      )
+}
+
+// const ADD_SPOT = 'spot/ADD';
+
+// export const addSpot = (spot) => {
+//     return {
+//         type: ADD_SPOT,
+//         spot
+//     }
+// }
+
 export default function spotsReducer(state = {}, action) {
+    const newState = {...state}
     switch (action.type) {
         case LOAD_SPOTS:
             return {...action.spots.Spots};
         case LOAD_SPOT_DETAILS:
-            return {...action.spot}
+            return {...action.spot};
         default:
             return state;
     }
