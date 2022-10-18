@@ -13,6 +13,7 @@ const SpotDetails = () => {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spots);
+    console.log(spot)
     const reviews = useSelector(state => state.reviews);
     const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);
@@ -50,24 +51,29 @@ const SpotDetails = () => {
                     {isLoaded && spot.SpotImages[0] &&
                         <img className='img-1' alt='img1' src={spot.SpotImages[0].url} />
                     }
+                    {isLoaded && !spot.SpotImages[0] && <div className='img-1'></div>}
                 </div>
                 <div className='rest-images-container'>
                     {!isLoaded && <div className='img-2'></div>}
                     {isLoaded && spot.SpotImages[1] &&
                         <img className='img-2' alt='img2' src={spot.SpotImages[1].url} />
                     }
+                    {isLoaded && !spot.SpotImages[1] && <div className='img-2'></div>}
                     {!isLoaded && <div className='img-3'></div>}
                     {isLoaded && spot.SpotImages[2] &&
                         <img className='img-3' alt='img3' src={spot.SpotImages[2].url} />
                     }
+                    {isLoaded && !spot.SpotImages[2] && <div className='img-3'></div>}
                     {!isLoaded && <div className='img-4'></div>}
                     {isLoaded && spot.SpotImages[3] &&
                         <img className='img-4' alt='img4' src={spot.SpotImages[3].url} />
                     }
+                    {isLoaded && !spot.SpotImages[3] && <div className='img-4'></div>}
                     {!isLoaded && <div className='img-5'></div>}
                     {isLoaded && spot.SpotImages[4] &&
                         <img className='img-5' alt='img5' src={spot.SpotImages[4].url} />
                     }
+                    {isLoaded && !spot.SpotImages[4] && <div className='img-5'></div>}
                 </div>
             </div>
             <div className='spot-details-middle-section'>
