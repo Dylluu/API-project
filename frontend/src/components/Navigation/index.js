@@ -81,6 +81,11 @@ function Navigation({ isLoaded }) {
                     <img alt='logo' className='logo' src={logo} />
                 </NavLink>
             </div>
+            {sessionUser && <div className='host-spot-div'>
+                <NavLink to='/host-spot'>
+                    <span>Host a new spot</span>
+                </NavLink>
+            </div>}
             {isLoaded && sessionLinks}
         </div>
     );

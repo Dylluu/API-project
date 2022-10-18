@@ -16,6 +16,22 @@
     margin-left: 75px
 }
 
+.host-spot-div {
+    position: absolute;
+    right: 180px;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: -3px;
+    font-weight: 500;
+    /* border: solid 1px red; */
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.host-spot-div:hover {
+    background-color: #F5F5F5;
+}
+
 .logo {
     height: 30px;
     filter: saturate(3);

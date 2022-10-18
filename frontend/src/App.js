@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails";
+import CreateSpotForm from "./components/CreateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,13 +18,17 @@ function App() {
 
   return isLoaded && (
     < div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-    <Navigation isLoaded={isLoaded}/>
     <Switch>
     <Route exact path='/'>
+    <Navigation isLoaded={isLoaded}/>
     <SpotsBrowser/>
     </Route>
     <Route path='/spots/:spotId'>
+    <Navigation isLoaded={isLoaded}/>
       <SpotDetails/>
+    </Route>
+    <Route path='/host-spot'>
+      <CreateSpotForm />
     </Route>
     </Switch>
 
