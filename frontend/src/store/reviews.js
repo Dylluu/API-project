@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 export const getReviews = (spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/spots//${spotId}/reviews`);
+    const response = await fetch(`/api/spots//${spotId}/reviews`);
 
     if (response.ok) {
       const list = await response.json();

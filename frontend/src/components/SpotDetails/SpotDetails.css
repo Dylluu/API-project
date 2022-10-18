@@ -114,9 +114,16 @@
 
 .spot-details-middle-right {
     display: flex;
-    position: relative;
     border: solid 1px purple;
     width: 100%;
+    justify-content: center;
+}
+
+.review-form-wrapper {
+    display: flex;
+    justify-content: center;
+    border: solid 1px red;
+    min-width: 80%;
 }
 
 .spot-misc-info {
