@@ -1,0 +1,42 @@
+.create-spot-page-wrapper {
+    /* border: solid 1px red; */
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.create-spot-left {
+    /* border: solid 2px orange; */
+    width: 45%;
+}
+
+.gradient {
+    transform: rotate(270deg);
+    width: 100%;
+}
+
+.create-spot-right {
+    /* border: solid 3px blue; */
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-spot-form-wrapper {
+    height: 600px;
+    width: 500px;
+    border: solid 1px red;
+    display: flex;
+    justify-content: center;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
