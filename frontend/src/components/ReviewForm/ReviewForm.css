@@ -1,3 +1,68 @@
 .review-form-wrapper {
-    height: 500px;
+    height: 600px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.review-top-bar {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    height: 65px;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.how-was-stay {
+    font-weight: 625
+}
+
+.star-rating-div, .how-was-your-experience-div {
+    display: flex;
+    height: 50px;
+    text-indent: 30px;
+    align-items: center;
+}
+
+.star-rating-text, .how-was-your-experience-text {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.review-text-div {
+    display: flex;
+    justify-content: center;
+}
+
+.review-text-input {
+    overflow: auto;
+    border-radius: 10px;
+    padding-top: 8px;
+    text-indent: 8px;
+    resize: none;
+    display: flex;
+    min-width: 87%;
+    height: 230px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.review-submit-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.review-submit-button {
+    color: white;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    width: 438px;
+    height: 50px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-size: 180% 180%;
+    background-position: 50%;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%)
 }
