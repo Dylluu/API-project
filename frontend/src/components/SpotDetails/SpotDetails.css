@@ -103,11 +103,27 @@
     border-bottom-right-radius: 12px;
 }
 
+.spot-details-middle-section{
+    display: flex;
+    width: 100%;
+}
+
+.spot-details-middle-left {
+    min-width: 50%;
+}
+
+.spot-details-middle-right {
+    display: flex;
+    position: relative;
+    border: solid 1px purple;
+    width: 100%;
+}
+
 .spot-misc-info {
     height: 285px;
     border-top: solid 1px #BEBEBE;
     border-bottom: solid 1px #BEBEBE;
-    width: 50%;
+    width: 100%;
     margin-top: 30px;
 }
 
@@ -122,10 +138,11 @@
 .spot-misc-text {
     display: flex;
     flex-direction: column;
+    line-height: 1.25;
 }
 
 .spot-description {
-    width: 50%;
+    width: 100%;
     border-bottom: solid 1px #BEBEBE;
     display: flex;
 }
@@ -136,6 +153,7 @@
     width: 100%;
     font-weight: 300;
     font-size: 16px;
+    line-height: 1.25;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -184,6 +202,7 @@
     /* border: solid 2px pink; */
     font-size: 16px;
     font-weight: 300;
+    line-height: 1.25;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
