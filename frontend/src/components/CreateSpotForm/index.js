@@ -4,6 +4,7 @@ import './CreateSpotForm.css'
 import gradient from '../../assets/gradient.png';
 import { addSpotThunk, getSpots } from '../../store/spots';
 import {useHistory} from 'react-router-dom';
+import { addImagesThunk } from '../../store/spots';
 
 function CreateSpotForm() {
     const history = useHistory();
@@ -17,19 +18,34 @@ function CreateSpotForm() {
     const [description, setDescription] = useState('');
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
-    const [image1URL, setImage1URL] = useState('');
-    const [image2URL, setImage2URL] = useState('');
-    const [image3URL, setImage3URL] = useState('');
-    const [image4URL, setImage4URL] = useState('');
-    const [image5URL, setImage5URL] = useState('');
+    const [image1URL, setImage1URL] = useState(null);
+    const [image2URL, setImage2URL] = useState(null);
+    const [image3URL, setImage3URL] = useState(null);
+    const [image4URL, setImage4URL] = useState(null);
+    const [image5URL, setImage5URL] = useState(null);
+    const imageArray = [image2URL, image3URL, image4URL, image5URL]
 
     const handleSubmit = async(e) => {
+        function handleOtherImages(imageArray) {
+            for(let image of imageArray){
+                if(image){
+                    const newImage = {url: image, preview: false}
+                    dispatch(addImagesThunk(newSpot.id, newImage))
+                }
+            }
+        }
+
         e.preventDefault();
 
         const spot = {address, city, state, country, lat, lng, name, description, price}
 
+        const image = {url: image1URL, preview: true}
+
         const newSpot = await dispatch(addSpotThunk(spot))
-        await dispatch(getSpots)
+        // await dispatch(getSpots)
+        await dispatch(addImagesThunk(newSpot.id, image))
+
+        await handleOtherImages(imageArray)
 
         await history.push(`/spots/${newSpot.id}`)
     }

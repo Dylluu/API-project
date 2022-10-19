@@ -13,7 +13,6 @@ const SpotDetails = () => {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spots);
-    console.log(spot)
     const reviews = useSelector(state => state.reviews);
     const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);

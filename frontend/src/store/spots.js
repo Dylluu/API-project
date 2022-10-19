@@ -50,6 +50,20 @@ export const addSpotThunk = (spot) => async() => {
     return actualNewSpot
 }
 
+export const addImagesThunk = (spotId, image) => async() => {
+    const newImage = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: 'post',
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(image)
+      }
+      )
+
+    const actualNewImage = await newImage.json();
+    return actualNewImage
+}
+
 // const ADD_SPOT = 'spot/ADD';
 
 // export const addSpot = (spot) => {
