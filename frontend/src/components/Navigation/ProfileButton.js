@@ -39,8 +39,10 @@ function ProfileButton({ user }) {
                     </div>
                 </NavLink>
       <div onClick={openMenu} className='menu-user'>
-      <i className="fa-solid fa-bars"></i>
-      <i className="fa-solid fa-user"></i>
+      <i style={{paddingRight: '5px'}} className="fa-solid fa-bars"></i>
+      <div className='user-icon-div' style={{marginRight: '2px'}}>
+      <i style={{color: 'white'}} className="fa-solid fa-user"></i>
+      </div>
       </div>
       </div>
       {showMenu && (
