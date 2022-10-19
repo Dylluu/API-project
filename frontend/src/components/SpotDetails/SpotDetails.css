@@ -19,6 +19,12 @@
     /* border: solid 3px green; */
 }
 
+.under-name-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .spot-info-under-name {
     font-weight: 350;
     height: 20px;
@@ -36,11 +42,14 @@
 }
 
 .dot {
-    font-size: 22px;
+    font-size: 15px;
     color: grey;
-    margin-left: 6px;
-    margin-bottom: 13px;
-    margin-right: 2px;
+    margin-left: 2px;
+    /* margin-bottom: 13px; */
+    /* margin-right: 2px; */
+    /* border: solid 1px green; */
+    display: flex;
+
 }
 
 .update-delete-buttons {
