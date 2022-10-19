@@ -33,7 +33,7 @@ module.exports = {
     lat: 3.15,
     lng: 3.15,
     name: 'Ocean Front Condo',
-    description: "Enjoy your morning coffee on your private ocean front balcony or from the comfort of living room couch. Our ocean front retreat is an end unit (next to stairway- skip elevator lines) with ocean views including large heated pool and tennis court. Conveniently located 88th Street within walking distance of many SF's favorites.",
+    description: "Enjoy your morning coffee on your private ocean ",
     price: 1000.00
    },
    {
