@@ -156,7 +156,9 @@ body, html {
 }
 
 .text-area {
-    height: 100px;
+    padding-top: 8px;
+    text-indent: 8px;
+    height: 150px;
     min-width: 300px;
     border-radius: 7px;
     margin-top: 5px;

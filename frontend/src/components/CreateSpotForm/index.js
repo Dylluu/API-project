@@ -18,11 +18,11 @@ function CreateSpotForm() {
     const [description, setDescription] = useState('');
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
-    const [image1URL, setImage1URL] = useState(null);
-    const [image2URL, setImage2URL] = useState(null);
-    const [image3URL, setImage3URL] = useState(null);
-    const [image4URL, setImage4URL] = useState(null);
-    const [image5URL, setImage5URL] = useState(null);
+    const [image1URL, setImage1URL] = useState('');
+    const [image2URL, setImage2URL] = useState('');
+    const [image3URL, setImage3URL] = useState('');
+    const [image4URL, setImage4URL] = useState('');
+    const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
 
 
