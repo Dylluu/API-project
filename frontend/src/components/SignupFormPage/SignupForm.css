@@ -17,6 +17,24 @@
     border-bottom:1px solid lightgray;
 }
 
+.signup-mark-div {
+    /* border: solid 2px red; */
+    left: 5%;
+    margin-bottom: 3px;
+    position: absolute;
+    border-radius: 75%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.signup-mark-div:hover {
+    background-color: #F5F5F5;
+}
+
 .welcome {
     display: flex;
     align-items: center;

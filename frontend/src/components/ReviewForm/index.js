@@ -28,6 +28,9 @@ function ReviewForm() {
         <div className='review-form-wrapper'>
             <form className='review-form-class' onSubmit={(e) => handleSubmit(e)}>
                 <div className='review-top-bar'>
+                <div className='review-mark-div' onClick={() => setShowReviewModal(false)}>
+        <i className="fa-solid fa-xmark" style={{fontSize: '20px'}}/>
+        </div>
                     <span className='how-was-stay'>Tell Us About Your Stay</span>
                 </div>
                 <div className='star-rating-div'>

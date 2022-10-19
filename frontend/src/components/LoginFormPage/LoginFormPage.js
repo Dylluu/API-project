@@ -31,7 +31,9 @@ function LoginFormPage() {
   return (
     <div className='container'>
         <div className="top-bar">
-                {/* <span className="x">X</span> */}
+          <div className='mark-div' onClick={() => setShowModal(false)}>
+        <i className="fa-solid fa-xmark" style={{fontSize: '20px'}}/>
+        </div>
                 <span className="log-in">Log In</span>
         </div>
         <div className='welcome'>

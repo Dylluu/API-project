@@ -36,7 +36,9 @@ function SignupFormPage() {
   return (
     <div className='su-container'>
       <div className="top-bar">
-        {/* <span className="x">X</span> */}
+      <div className='signup-mark-div' onClick={() => setShowSUModal(false)}>
+        <i className="fa-solid fa-xmark" style={{fontSize: '20px'}}/>
+        </div>
         <span className="sign-up">Sign Up</span>
       </div>
       <div className='welcome'>
