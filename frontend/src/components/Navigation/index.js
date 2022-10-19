@@ -46,8 +46,12 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <div onClick={openMenu} className='menu-user'>
-                    <i className="fa-solid fa-bars"></i>
-                    <i className="fa-solid fa-user"></i>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: '2px'}}>
+                    <i style={{paddingRight: '5px'}} className="fa-solid fa-bars"></i>
+                    <div className='user-icon-div'>
+                    <i style={{color: 'white'}} className="fa-solid fa-user"></i>
+                    </div>
+                    </div>
                 </div>
                 {showMenu && (
                     <div className='profile-dropdown'>
@@ -76,6 +80,7 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className='nav-container'>
+            <div className='inner-nav-div'>
             <div className='home-container'>
                 <NavLink exact to="/">
                     <img alt='logo' className='logo' src={logo} />
@@ -89,6 +94,7 @@ function Navigation({ isLoaded }) {
                 </NavLink>
             }
             {isLoaded && sessionLinks}
+            </div>
         </div>
     );
 }
