@@ -25,6 +25,10 @@
     flex-direction: column;
 }
 
+.actual-spot-form-wrapper {
+    position: absolute;
+}
+
 .create-spot-form-wrapper {
     height: 600px;
     width: 70%;
@@ -58,10 +62,20 @@ body, html {
     box-sizing: border-box;
 }
 
-input, textarea {
-    min-width: 200px;
+.input {
+    min-width: 300px;
     border-radius: 7px;
-    height: 30px;
+    height: 40px;
+    margin-top: 5px;
+    border: 1px solid #BEBEBE;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-area {
+    height: 100px;
+    min-width: 300px;
+    border-radius: 7px;
     margin-top: 5px;
     border: 1px solid #BEBEBE;
     font-size: 15px;

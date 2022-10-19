@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './CreateSpotForm.css'
 import gradient from '../../assets/gradient.png';
 import { addSpotThunk, getSpots } from '../../store/spots';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { addImagesThunk } from '../../store/spots';
 
 function CreateSpotForm() {
@@ -25,11 +25,11 @@ function CreateSpotForm() {
     const [image5URL, setImage5URL] = useState(null);
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         function handleOtherImages(imageArray) {
-            for(let image of imageArray){
-                if(image){
-                    const newImage = {url: image, preview: false}
+            for (let image of imageArray) {
+                if (image) {
+                    const newImage = { url: image, preview: false }
                     dispatch(addImagesThunk(newSpot.id, newImage))
                 }
             }
@@ -37,9 +37,9 @@ function CreateSpotForm() {
 
         e.preventDefault();
 
-        const spot = {address, city, state, country, lat, lng, name, description, price}
+        const spot = { address, city, state, country, lat, lng, name, description, price }
 
-        const image = {url: image1URL, preview: true}
+        const image = { url: image1URL, preview: true }
 
         const newSpot = await dispatch(addSpotThunk(spot))
         // await dispatch(getSpots)
@@ -52,114 +52,123 @@ function CreateSpotForm() {
 
     return (
         <div className='create-spot-page-wrapper'>
-                <img alt='gradient' className='create-spot-left' src={gradient}/>
+            <img alt='gradient' className='create-spot-left' src={gradient} />
             <div className='create-spot-right'>
                 <div className='create-spot-form-wrapper'>
+                    <div className='actual-spot-form-wrapper'>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div>
-                        <input
-                        type='text'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        placeholder='Name'
-                        />
+                            <input
+                                type='text'
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                placeholder='Name'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <input
-                        type='text'
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                        placeholder='City'
-                        />
+                            <input
+                                type='text'
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                                required
+                                placeholder='City'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <input
-                        type='text'
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        required
-                        placeholder='State'
-                        />
+                            <input
+                                type='text'
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                                required
+                                placeholder='State'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <input
-                        type='text'
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        required
-                        placeholder='Country'
-                        />
+                            <input
+                                type='text'
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                                required
+                                placeholder='Country'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <input
-                        type='text'
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                        placeholder='Address'
-                        />
+                            <input
+                                type='text'
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                required
+                                placeholder='Address'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <input
-                        type='number'
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                        placeholder='Price'
-                        />
+                            <input
+                                type='number'
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                                placeholder='Price'
+                                className='input'
+                            />
                         </div>
                         <div>
-                        <textarea
-                        type='text'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                        placeholder='Description'
-                        />
+                            <textarea
+                                type='text'
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                                placeholder='Description'
+                                className='text-area'
+                            />
                         </div>
                         <div className='add-images-div'>
                             <input
-                            value={image1URL}
-                            type='text'
-                            required
-                            placeholder='Image 1 URL (required)'
-                            onChange={(e) => setImage1URL(e.target.value)}
-                             />
-                             <input
-                            value={image2URL}
-                            type='text'
-                            placeholder='Image 2 URL'
-                            onChange={(e) => setImage2URL(e.target.value)}
-                             />
-                             <input
-                            value={image3URL}
-                            type='text'
-                            placeholder='Image 3 URL'
-                            onChange={(e) => setImage3URL(e.target.value)}
-                             />
-                             <input
-                            value={image4URL}
-                            type='text'
-                            placeholder='Image 4 URL'
-                            onChange={(e) => setImage4URL(e.target.value)}
-                             />
-                             <input
-                            value={image5URL}
-                            type='text'
-                            placeholder='Image 5 URL'
-                            onChange={(e) => setImage5URL(e.target.value)}
-                             />
-                        <div>
-                            <button>Submit</button>
-                        </div>
+                                value={image1URL}
+                                type='text'
+                                required
+                                placeholder='Image 1 URL (required)'
+                                onChange={(e) => setImage1URL(e.target.value)}
+                            />
+                            <input
+                                value={image2URL}
+                                type='text'
+                                placeholder='Image 2 URL'
+                                onChange={(e) => setImage2URL(e.target.value)}
+                            />
+                            <input
+                                value={image3URL}
+                                type='text'
+                                placeholder='Image 3 URL'
+                                onChange={(e) => setImage3URL(e.target.value)}
+                            />
+                            <input
+                                value={image4URL}
+                                type='text'
+                                placeholder='Image 4 URL'
+                                onChange={(e) => setImage4URL(e.target.value)}
+                            />
+                            <input
+                                value={image5URL}
+                                type='text'
+                                placeholder='Image 5 URL'
+                                onChange={(e) => setImage5URL(e.target.value)}
+                            />
+                            <div>
+                                <button>Submit</button>
+                            </div>
                         </div>
                     </form>
+                    </div>
                 </div>
                 <div className='create-spot-nav-div'>
-                NavBar
-            </div>
+                    NavBar
+                </div>
             </div>
         </div>
     )
