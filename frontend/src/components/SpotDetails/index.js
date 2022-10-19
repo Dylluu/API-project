@@ -7,6 +7,7 @@ import { getReviews } from '../../store/reviews';
 import useModalContext from '../../context/ShowModalContext';
 import ReviewForm from '../ReviewForm';
 import { Modal } from '../../context/Modal';
+import UpdateSpotForm from '../UpdateSpotForm';
 
 const SpotDetails = () => {
     const {showReviewModal, setShowReviewModal} = useModalContext();

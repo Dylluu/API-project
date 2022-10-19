@@ -1,21 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './CreateSpotForm.css'
+import './UpdateSpotForm.css';
 import gradient from '../../assets/gradient.png';
 import { addSpotThunk, getSpots } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
 import { addImagesThunk } from '../../store/spots';
+import {useParams} from 'react-router-dom';
+import { getSpot } from '../../store/spots';
+import { editSpotThunk } from '../../store/spots';
 
-function CreateSpotForm() {
-    const history = useHistory();
+function UpdateSpotForm() {
     const dispatch = useDispatch();
-    const [name, setName] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [country, setCountry] = useState('');
-    const [address, setAddress] = useState('');
-    const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
+    const {spotId} = useParams();
+    useEffect(() => {
+        const spotDetails = dispatch(getSpot(spotId))
+        console.log(spotDetails)
+    },[dispatch])
+    const spot = useSelector(state => state.spots);
+    console.log('THIS IS SPOT', spot)
+    console.log('SPOT IMAGEEEEEEEE', spot)
+    const history = useHistory();
+    // const dispatch = useDispatch();
+    const [name, setName] = useState(spot.name);
+    const [city, setCity] = useState(spot.city);
+    const [state, setState] = useState(spot.state);
+    const [country, setCountry] = useState(spot.country);
+    const [address, setAddress] = useState(spot.address);
+    const [price, setPrice] = useState(spot.price);
+    const [description, setDescription] = useState(spot.description);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
     const [image1URL, setImage1URL] = useState('');
@@ -70,14 +82,14 @@ function CreateSpotForm() {
     }
 
     const handleSubmit = async (e) => {
-        function handleOtherImages(imageArray) {
-            for (let image of imageArray) {
-                if (image) {
-                    const newImage = { url: image, preview: false }
-                    dispatch(addImagesThunk(newSpot.id, newImage))
-                }
-            }
-        }
+        // function handleOtherImages(imageArray) {
+        //     for (let image of imageArray) {
+        //         if (image) {
+        //             const newImage = { url: image, preview: false }
+        //             dispatch(addImagesThunk(newSpot.id, newImage))
+        //         }
+        //     }
+        // }
 
         const nextButton = document.getElementsByClassName('next-button');
         const backButton = document.getElementsByClassName('back-button');
@@ -91,11 +103,11 @@ function CreateSpotForm() {
 
         const image = { url: image1URL, preview: true }
 
-        const newSpot = await dispatch(addSpotThunk(spot))
+        const newSpot = await dispatch(editSpotThunk(spot, spotId))
         // await dispatch(getSpots)
-        await dispatch(addImagesThunk(newSpot.id, image))
+        // await dispatch(addImagesThunk(newSpot.id, image))
 
-        await handleOtherImages(imageArray)
+        // await handleOtherImages(imageArray)
 
         await history.push(`/spots/${newSpot.id}`)
     }
@@ -182,7 +194,6 @@ function CreateSpotForm() {
                         <input
                             value={image1URL}
                             type='text'
-                            required
                             placeholder='Image 1 URL (required)'
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
@@ -239,4 +250,4 @@ function CreateSpotForm() {
     )
 }
 
-export default CreateSpotForm;
+export default UpdateSpotForm;
