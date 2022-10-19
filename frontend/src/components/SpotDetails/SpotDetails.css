@@ -102,19 +102,20 @@
 .img-1 {
     height: 400px;
     min-width: 80%;
+    min-width: 600px;
     background-color: lightgrey;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
 
 .img-2 {
-    height: 197px;
+    height: 198px;
     background-color: lightgray;
     width: 49.5%;
 }
 
 .img-3 {
-    height: 197px;
+    height: 198px;
     background-color: lightgray;
     margin-left: 1%;
     width: 49.5%;

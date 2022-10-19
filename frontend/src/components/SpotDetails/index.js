@@ -19,6 +19,7 @@ const SpotDetails = () => {
     const reviews = useSelector(state => state.reviews);
     const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);
+    const reviewIdsArray = reviewsArray.map(review => review.userId)
     const [isLoaded, setIsLoaded] = useState(false);
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
     const dateArray = (date) => {
@@ -151,7 +152,7 @@ const SpotDetails = () => {
                     <span className='dot-2'>.</span>
                     <span style={{ fontWeight: '350', fontSize: '21px' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     </div>
-                    {isLoaded && user && spot.ownerId !== user.id &&
+                    {isLoaded && user && spot.ownerId !== user.id && !reviewIdsArray.includes(user.id) &&
                         <div className='link-to-review-form' onClick={() => setShowReviewModal(true)}>
                             <span>Write a review</span>
                         </div>
