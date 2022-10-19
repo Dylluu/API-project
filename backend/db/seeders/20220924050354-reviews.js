@@ -15,7 +15,7 @@ module.exports = {
     {
       spotId: 1,
       userId: 1,
-      review: 'Such a unique concept! Staying in a treehouse is one to talk about. Although our adventure was short and sweet - it was a perfect amount of time. I would only recommend staying here for 1-2 days. The bed and couch could use an upgrade but worth going to for some quiet and relaxation time.',
+      review: 'Such a unique concept! Staying in a treehouse is one to talk about.',
       stars: 4
     },
     {
@@ -33,7 +33,7 @@ module.exports = {
     {
       spotId: 3,
       userId: 3,
-      review: 'This home is an absolute dream! Eric was so communicative and left such detailed instructions it truly felt like our home away from home. From the welcome goodies to the bathroom amenities there is no detail left untouched. Thank you thank you thank you, what a lovely and relaxing trip.',
+      review: 'This home is an absolute dream! Eric was so communicative and left.',
       stars: 5
     },
     {
