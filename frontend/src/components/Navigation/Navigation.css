@@ -16,6 +16,22 @@
     margin-left: 75px
 }
 
+.host-spot-div {
+    position: absolute;
+    right: 180px;
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: -3px;
+    font-weight: 500;
+    /* border: solid 1px red; */
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.host-spot-div:hover {
+    background-color: #F5F5F5;
+}
+
 .logo {
     height: 30px;
     filter: saturate(3);
@@ -34,13 +50,17 @@
     cursor: pointer;
 }
 
-.menu-user:hover {
-    box-shadow: 0 1px 5px lightgray;
+.menu-user:hover{
+    box-shadow: 0 2px 5px lightgray;
 }
 
 .fa-bars, .fa-user {
     margin: 9px;
     color: gray;
+}
+
+.fa-bars {
+    font-size: 13px;
 }
 
 .profile-dropdown {

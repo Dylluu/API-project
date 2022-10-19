@@ -20,8 +20,8 @@ module.exports = {
     country: 'USA',
     lat: 3.14,
     lng: 3.14,
-    name: 'West Fig',
-    description: '5 bedroom loft',
+    name: 'Countryside Treehouse',
+    description: 'Explore the countryside at this popular 40-acre sanctuary that has become a favorite among Farms in Santa Barbara!',
     price: 1000.00
    },
    {
@@ -32,8 +32,8 @@ module.exports = {
     country: 'USA',
     lat: 3.15,
     lng: 3.15,
-    name: 'West Fig 2',
-    description: '5 bedroom loft',
+    name: 'Ocean Front Condo',
+    description: "Enjoy your morning coffee on your private ocean front balcony or from the comfort of living room couch. Our ocean front retreat is an end unit (next to stairway- skip elevator lines) with ocean views including large heated pool and tennis court. Conveniently located 88th Street within walking distance of many SF's favorites.",
     price: 1000.00
    },
    {
@@ -44,8 +44,8 @@ module.exports = {
     country: 'USA',
     lat: 3.16,
     lng: 3.16,
-    name: 'West Fig 3',
-    description: '5 bedroom loft',
+    name: 'Beachfront Mansion',
+    description: 'Entertain or unwind in paradise at Samujana Twenty-One. This six-bedroom Los Angeles vacation rental, part of the exclusive Samujana estate, has outdoor living areas designed for parties and dinners, a large garden and panoramic ocean views.',
     price: 1000.00
    }
   ])

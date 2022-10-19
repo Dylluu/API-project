@@ -1,0 +1,122 @@
+.review-form-wrapper {
+    height: 600px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.review-top-bar {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    height: 65px;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.how-was-stay {
+    font-weight: 625
+}
+
+.star-rating-div, .how-was-your-experience-div {
+    display: flex;
+    height: 50px;
+    text-indent: 30px;
+    align-items: center;
+}
+
+.star-rating-text, .how-was-your-experience-text {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.review-text-div {
+    display: flex;
+    justify-content: center;
+}
+
+.review-text-input {
+    overflow: auto;
+    border-radius: 10px;
+    padding-top: 8px;
+    text-indent: 8px;
+    resize: none;
+    display: flex;
+    min-width: 87%;
+    height: 230px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.review-submit-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.review-submit-button {
+    color: white;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    width: 438px;
+    height: 50px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-size: 180% 180%;
+    background-position: 50%;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%)
+}
+
+.txt-center {
+    text-align: center;
+  }
+  .hide {
+    display: none;
+  }
+
+  .clear {
+    float: none;
+    clear: both;
+  }
+
+  .rating-wrapper {
+    display: flex;
+    height: 25px;
+    /* border: solid 1px red; */
+    margin-left: 30px;
+  }
+
+  .rating {
+      display: flex;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      text-align: center;
+      /* border: solid 1px blue; */
+  }
+
+  .rating > label {
+      float: right;
+      display: inline;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      width: 1.1em;
+      cursor: pointer;
+      color: #000;
+  }
+
+  .rating > label:hover,
+  .rating > label:hover ~ label,
+  .rating > input.radio-btn:checked ~ label {
+      color: transparent;
+  }
+
+  .rating > label:hover:before,
+  .rating > label:hover ~ label:before,
+  .rating > input.radio-btn:checked ~ label:before,
+  .rating > input.radio-btn:checked ~ label:before {
+      content: "\2605";
+      position: absolute;
+      left: 0;
+      color: #FFD700;
+  }
