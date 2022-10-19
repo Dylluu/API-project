@@ -54,6 +54,7 @@ const SpotDetails = () => {
             <div className='spot-name'>
                 <span style={{ fontSize: '27px' }}>{spot.name}</span>
                 <div className='spot-info-under-name'>
+                    <div className='under-name-wrapper'>
                     <i className="fa-solid fa-star" style={{ fontSize: '12px' }}></i>
                     <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
                     <span className='dot'>.</span>
@@ -61,10 +62,12 @@ const SpotDetails = () => {
                     <span className='dot'>.</span>
                     {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
                     <span style={{ marginLeft: '5px', fontWeight: '250' }} className='spot-info-under-name-text'>{spot.city}, {spot.state}, {spot.country}</span>
+                    </div>
                     {isLoaded && !!user && spot.Owner.id === user.id && <div className='update-delete-buttons'>
-                        <span onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
-                        <span onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
+                        <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
+                        <span className='up-del-actual-buttons' onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
                     </div>}
+
                 </div>
             </div>
             <div className='spot-details-images'>

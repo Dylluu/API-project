@@ -20,16 +20,19 @@
 }
 
 .spot-info-under-name {
+    font-weight: 350;
     height: 20px;
-    /* border: solid 1px green; */
+    /* border: solid 1px red; */
     margin-top: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .spot-info-under-name-text {
     font-size: 15px;
     margin-left: 4px;
+    /* border: solid 1px blue; */
 }
 
 .dot {
@@ -45,11 +48,21 @@
     text-decoration: underline;
     align-self: center;
     display: flex;
-    position: absolute;
-    right: 8%;
-    width: 100px;
+    width: 135px;
     justify-content: space-between;
     /* border: solid 2px red; */
+}
+
+.up-del-actual-buttons {
+    /* background-color: blue; */
+    padding: 11px;
+    display:flex;
+    align-items: center;
+    border-radius: 7px;
+}
+
+.up-del-actual-buttons:hover {
+    background-color: #F8F8F8;
 }
 
 .spot-details-images {
