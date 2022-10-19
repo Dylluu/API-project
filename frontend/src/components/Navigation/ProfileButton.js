@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { NavLink } from 'react-router-dom';
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,9 +32,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="host-and-menu-user">
+    <NavLink  className='host-spot-div' to='/host-spot'>
+                    <div>
+                    <span>Host a new spot</span>
+                    </div>
+                </NavLink>
       <div onClick={openMenu} className='menu-user'>
       <i className="fa-solid fa-bars"></i>
       <i className="fa-solid fa-user"></i>
+      </div>
       </div>
       {showMenu && (
         <div className="profile-dropdown" id='profile-dropdown-LO'>

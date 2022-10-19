@@ -1,0 +1,21 @@
+.host-spot-div {
+    /* position: absolute; */
+    right: 180px;
+    font-size: 14px;
+    font-weight: 500;
+    /* border: solid 1px red; */
+    padding: 8px;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+
+.host-spot-div:hover {
+    background-color: #F5F5F5;
+}
+
+.host-and-menu-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
