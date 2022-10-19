@@ -17,19 +17,36 @@
 }
 
 .create-spot-right {
-    /* border: solid 3px blue; */
+    border: solid 3px blue;
     width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .create-spot-form-wrapper {
     height: 600px;
-    width: 500px;
+    width: 70%;
     border: solid 1px red;
     display: flex;
     justify-content: center;
+}
+
+.add-images-div {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    border: solid 1px purple;
+}
+
+.create-spot-nav-div {
+    border: solid 1px blue;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 55%;
 }
 
 body, html {
@@ -39,4 +56,18 @@ body, html {
 
 * {
     box-sizing: border-box;
+}
+
+input, textarea {
+    min-width: 200px;
+    border-radius: 7px;
+    height: 30px;
+    margin-top: 5px;
+    border: 1px solid #BEBEBE;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+textarea {
+    resize: none;
 }

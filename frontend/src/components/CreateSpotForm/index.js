@@ -17,17 +17,21 @@ function CreateSpotForm() {
     const [description, setDescription] = useState('');
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [image1URL, setImage1URL] = useState('');
+    const [image2URL, setImage2URL] = useState('');
+    const [image3URL, setImage3URL] = useState('');
+    const [image4URL, setImage4URL] = useState('');
+    const [image5URL, setImage5URL] = useState('');
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         const spot = {address, city, state, country, lat, lng, name, description, price}
 
-        await dispatch(addSpotThunk(spot))
-
+        const newSpot = await dispatch(addSpotThunk(spot))
         await dispatch(getSpots)
 
-        await history.push('/')
+        await history.push(`/spots/${newSpot.id}`)
     }
 
     return (
@@ -99,11 +103,47 @@ function CreateSpotForm() {
                         placeholder='Description'
                         />
                         </div>
+                        <div className='add-images-div'>
+                            <input
+                            value={image1URL}
+                            type='text'
+                            required
+                            placeholder='Image 1 URL (required)'
+                            onChange={(e) => setImage1URL(e.target.value)}
+                             />
+                             <input
+                            value={image2URL}
+                            type='text'
+                            placeholder='Image 2 URL'
+                            onChange={(e) => setImage2URL(e.target.value)}
+                             />
+                             <input
+                            value={image3URL}
+                            type='text'
+                            placeholder='Image 3 URL'
+                            onChange={(e) => setImage3URL(e.target.value)}
+                             />
+                             <input
+                            value={image4URL}
+                            type='text'
+                            placeholder='Image 4 URL'
+                            onChange={(e) => setImage4URL(e.target.value)}
+                             />
+                             <input
+                            value={image5URL}
+                            type='text'
+                            placeholder='Image 5 URL'
+                            onChange={(e) => setImage5URL(e.target.value)}
+                             />
                         <div>
                             <button>Submit</button>
                         </div>
+                        </div>
                     </form>
                 </div>
+                <div className='create-spot-nav-div'>
+                NavBar
+            </div>
             </div>
         </div>
     )

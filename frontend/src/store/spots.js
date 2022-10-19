@@ -37,7 +37,7 @@ export const loadSpotDetails = (spot) => {
 }
 
 export const addSpotThunk = (spot) => async() => {
-    return await csrfFetch(`/api/spots`, {
+    const newSpot = await csrfFetch(`/api/spots`, {
         method: 'post',
         headers: {
         "Content-Type": "application/json",
@@ -45,6 +45,9 @@ export const addSpotThunk = (spot) => async() => {
         body: JSON.stringify(spot)
       }
       )
+
+    const actualNewSpot = await newSpot.json();
+    return actualNewSpot
 }
 
 // const ADD_SPOT = 'spot/ADD';
