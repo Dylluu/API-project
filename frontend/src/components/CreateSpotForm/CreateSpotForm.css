@@ -17,7 +17,7 @@
 }
 
 .create-spot-right {
-    border: solid 3px blue;
+    /* border: solid 3px blue; */
     width: 55%;
     display: flex;
     align-items: center;
@@ -25,32 +25,101 @@
     flex-direction: column;
 }
 
-.actual-spot-form-wrapper {
-    position: absolute;
-}
-
 .create-spot-form-wrapper {
     height: 600px;
     width: 70%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .add-images-div {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
-    border: solid 1px purple;
+    /* border: solid 1px purple; */
+    z-index: -1;
 }
 
 .create-spot-nav-div {
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    height: 80px;
+    height: 90px;
     width: 55%;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.nav-bar-status {
+    /* border: solid 2px green; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 4px;
+}
+
+.nav-bar-first {
+    background-color: black;
+    width: 50%;
+    height: 100%;
+}
+
+.nav-bar-second {
+    background-color: #E8E8E8;
+    width: 50%;
+    height: 100%;
+}
+
+.nav-bar-buttons {
+    /* border: solid 1px red; */
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button {
+    display: none;
+    height: 10px;
+    text-decoration: underline;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 450;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.next-button {
+    cursor: pointer;
+    right: 10%;
+    border: none;
+    height: 45px;
+    width: 90px;
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    font-size: 17;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.create-spot-submit {
+    color: white;
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 25px;
+    border-color: transparent;
+    border-radius: 8px;
+    background-size: 180% 180%;
+    background-position: 50%;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%)
 }
 
 body, html {

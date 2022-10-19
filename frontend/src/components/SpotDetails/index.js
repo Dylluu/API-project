@@ -28,7 +28,7 @@ const SpotDetails = () => {
         dispatch(getReviews(spotId))
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 200)
+    setTimeout(() => setIsLoaded(true), 300)
 
     return (
         <div className='spot-details-container'>

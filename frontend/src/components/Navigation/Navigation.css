@@ -50,7 +50,7 @@
     cursor: pointer;
 }
 
-.menu-user:hover {
+.menu-user:hover{
     box-shadow: 0 2px 5px lightgray;
 }
 
