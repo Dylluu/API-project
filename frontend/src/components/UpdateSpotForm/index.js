@@ -17,17 +17,33 @@ function UpdateSpotForm() {
         console.log(spotDetails)
     },[dispatch])
     const spot = useSelector(state => state.spots);
-    console.log('THIS IS SPOT', spot)
-    console.log('SPOT IMAGEEEEEEEE', spot)
+
+    useEffect(() => {
+        setName(spot.name);
+        setCity(spot.city);
+        setState(spot.state);
+        setCountry(spot.country);
+        setAddress(spot.address);
+        setPrice(spot.price);
+        setDescription(spot.description);
+        if(spot.SpotImages){
+        if(spot.SpotImages[0]) setImage1URL(spot.SpotImages[0].url);
+        if(spot.SpotImages[1]) setImage2URL(spot.SpotImages[1].url);
+        if(spot.SpotImages[2]) setImage3URL(spot.SpotImages[2].url);
+        if(spot.SpotImages[3]) setImage4URL(spot.SpotImages[3].url);
+        if(spot.SpotImages[4]) setImage5URL(spot.SpotImages[4].url);
+        }
+    }, [spot])
+
     const history = useHistory();
     // const dispatch = useDispatch();
-    const [name, setName] = useState(spot.name);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [address, setAddress] = useState(spot.address);
-    const [price, setPrice] = useState(spot.price);
-    const [description, setDescription] = useState(spot.description);
+    const [name, setName] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [address, setAddress] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
     const [image1URL, setImage1URL] = useState('');

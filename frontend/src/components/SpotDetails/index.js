@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpot } from '../../store/spots';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import './SpotDetails.css';
 import { getReviews } from '../../store/reviews';
 import useModalContext from '../../context/ShowModalContext';
@@ -11,6 +11,7 @@ import UpdateSpotForm from '../UpdateSpotForm';
 import { deleteSpotThunk } from '../../store/spots';
 
 const SpotDetails = () => {
+    const history = useHistory();
     const {showReviewModal, setShowReviewModal} = useModalContext();
     const { spotId } = useParams();
     const dispatch = useDispatch();
@@ -30,7 +31,23 @@ const SpotDetails = () => {
         dispatch(getReviews(spotId))
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 300)
+    setTimeout(() => setIsLoaded(true), 400)
+
+    const handleDeleteClick = async(e) => {
+        e.preventDefault();
+
+        await dispatch(deleteSpotThunk(spotId))
+
+        await history.push('/')
+
+        return
+    }
+
+    const handleUpdateClick = async (e) => {
+        e.preventDefault();
+
+        history.push(`/update/${spotId}`)
+    }
 
     return (
         <div className='spot-details-container'>
@@ -42,8 +59,12 @@ const SpotDetails = () => {
                     <span className='dot'>.</span>
                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     <span className='dot'>.</span>
-                    <i style={{ fontSize: '14px', marginLeft: '6px' }} className="fa-solid fa-medal"></i>
+                    <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i>
                     <span style={{ marginLeft: '8px', fontWeight: '250' }} className='spot-info-under-name-text'>Superhost</span>
+                    {isLoaded && !!user && spot.Owner.id === user.id && <div className='update-delete-buttons'>
+                        <span onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
+                        <span onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
+                    </div>}
                 </div>
             </div>
             <div className='spot-details-images'>
@@ -133,7 +154,7 @@ const SpotDetails = () => {
                         </div>
                     }
                 </div>
-                {isLoaded && reviewsArray.length && reviewsArray.map((review) => (
+                {isLoaded && !!reviewsArray.length && reviewsArray.map((review) => (
                     <div key={review.id} className='each-review'>
                         <div className='each-review-top'>
                             <div className='profile-img-wrapper'>

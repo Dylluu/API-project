@@ -40,6 +40,18 @@
     margin-right: 2px;
 }
 
+.update-delete-buttons {
+    font-size: 14px;
+    text-decoration: underline;
+    align-self: center;
+    display: flex;
+    position: absolute;
+    right: 8%;
+    width: 100px;
+    justify-content: space-between;
+    /* border: solid 2px red; */
+}
+
 .spot-details-images {
     display: flex;
     /* align-self: center; */
