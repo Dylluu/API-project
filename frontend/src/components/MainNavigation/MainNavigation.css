@@ -1,0 +1,128 @@
+.navMain-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px;
+    border-bottom: solid 1px #E8E8E8;
+    background-color: white;
+    overflow: hidden;
+}
+
+.main-form-div-inner {
+    display: flex;
+    flex-direction: row;
+    /* border: solid 2px green; */
+    /* min-width: 1200px; */
+    margin-left: 10%;
+    margin-right: 10%;
+    /* max-width: 1200px; */
+    min-width: 90vw;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 30px;
+    filter: saturate(3);
+}
+
+.menu-user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 40px;
+    border: solid 1px lightgray;
+    border-radius: 25px;
+    cursor: pointer;
+    /* border: solid 1px red; */
+}
+
+.menu-user:hover{
+    box-shadow: 0 2px 5px lightgray;
+}
+
+.fa-bars, .fa-user {
+    margin-left: 9px;
+    margin-right: 9px;
+    color: #585858;
+}
+
+.user-icon-div {
+    /* border: solid 1px blue; */
+    border-radius: 75%;
+    height: 27px;
+    width: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #585858;
+}
+
+.fa-bars {
+    font-size: 15px;
+    /* margin-top: 9px; */
+}
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 75px;
+    top: 40px;
+    background-color: white;
+    width: 150px;
+    height: 90px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px lightgray;
+}
+
+.profile-dropdown-text-divs {
+   font-size: 14px;
+   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+   height: 33px;
+   color: grey;
+   text-indent: 15px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+}
+
+#login-div {
+    margin-top: 12px;
+}
+
+.profile-dropdown-text-divs:hover {
+    background-color: #F8F8F8;
+}
+
+#profile-dropdown-LO {
+    height: 33px;
+}
+
+#logout-div:hover {
+    border-radius: 12px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+/* @media (max-width: 1400px) {
+    .main-form-div-inner{
+        min-width: 93vw;
+    }
+} */
+
+/*
+@media (max-width: 1100px) {
+    .main-form-div-inner{
+        min-width: 700px;
+    }
+} */

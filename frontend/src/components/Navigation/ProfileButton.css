@@ -4,13 +4,13 @@
     font-size: 14px;
     font-weight: 500;
     /* border: solid 1px red; */
-    padding: 8px;
+    padding: 12px;
     border-radius: 20px;
     margin-right: 20px;
 }
 
 .host-spot-div:hover {
-    background-color: #F5F5F5;
+    background-color: #F8F8F8;
 }
 
 .host-and-menu-user {

@@ -9,6 +9,7 @@ import SpotsBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails";
 import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotForm from "./components/UpdateSpotForm";
+import MainNavigation from "./components/MainNavigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
     < div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
     <Switch>
     <Route exact path='/'>
-    <Navigation isLoaded={isLoaded}/>
+    <MainNavigation isLoaded={isLoaded}/>
     <SpotsBrowser/>
     </Route>
     <Route path='/spots/:spotId'>

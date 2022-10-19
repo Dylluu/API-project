@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import './Navigation.css';
+import ProfileButton from '../Navigation/ProfileButton';
+import './MainNavigation.css';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
@@ -10,7 +10,7 @@ import logo from '../../assets/airbnbLogo.png';
 import SignupFormPage from '../SignupFormPage/SignupFormPage';
 import useModalContext from '../../context/ShowModalContext';
 
-function Navigation({ isLoaded }) {
+function MainNavigation({ isLoaded }) {
     const {showModal, setShowModal, showSUModal, setShowSUModal} = useModalContext();
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
@@ -74,8 +74,8 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <div className='nav-container'>
-            <div className='inner-nav-div'>
+        <div className='navMain-container'>
+            <div className='main-form-div-inner'>
             <div className='home-container'>
                 <NavLink exact to="/">
                     <img alt='logo' className='logo' src={logo} />
@@ -87,4 +87,4 @@ function Navigation({ isLoaded }) {
     );
 }
 
-export default Navigation;
+export default MainNavigation;
