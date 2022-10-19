@@ -23,7 +23,6 @@ function CreateSpotForm() {
     const [image3URL, setImage3URL] = useState(null);
     const [image4URL, setImage4URL] = useState(null);
     const [image5URL, setImage5URL] = useState(null);
-    const [imagesVisible, setImagesVisible] = useState(false);
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
 
 
@@ -238,8 +237,12 @@ function CreateSpotForm() {
                     <div className='nav-bar-second'></div>
                     </div>
                     <div className='nav-bar-buttons'>
+                        <div className='nav-bar-left-half'>
                         <div className='back-button' onClick={() => handleBackClick()}>Back</div>
+                        </div>
+                        <div className='nav-bar-right-half'>
                         <button className='next-button' onClick={() => handleNextClick()}>Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
