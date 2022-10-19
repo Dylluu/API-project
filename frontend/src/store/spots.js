@@ -78,14 +78,11 @@ export const editSpotThunk = (spot, spotId) => async() => {
   return actualUpdatedSpot
 }
 
-// const ADD_SPOT = 'spot/ADD';
-
-// export const addSpot = (spot) => {
-//     return {
-//         type: ADD_SPOT,
-//         spot
-//     }
-// }
+export const deleteSpotThunk = (spotId) => async() => {
+  return await csrfFetch(`/api/spots/${spotId}`, {
+    method: 'delete'
+  })
+}
 
 export default function spotsReducer(state = {}, action) {
     const newState = {...state}
