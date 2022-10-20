@@ -181,7 +181,7 @@ const SpotDetails = () => {
                                 <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
                             </div>
                             </div>
-                            {review.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
+                            {!!user && review.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
                                 <span id={review.id} key={review.id}>Delete</span>
                             </div>}
                         </div>
