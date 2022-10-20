@@ -53,6 +53,7 @@ function UpdateSpotForm() {
     const [image4URL, setImage4URL] = useState('');
     const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
+    const [errors, setErrors] = useState({})
 
     function handleNextClick() {
         const imageForm = document.getElementsByClassName('add-images-div');

@@ -27,6 +27,16 @@
     /* filter: saturate(3); */
 }
 
+.tell-us-about-spot {
+    position: absolute;
+    top: 45%;
+    display: flex;
+    left: 40px;
+    width: 35%;
+    /* justify-content: center; */
+    z-index: 11;
+}
+
 .create-spot-right {
     /* border: solid 3px blue; */
     width: 56%;
@@ -34,6 +44,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .create-spot-form-wrapper {

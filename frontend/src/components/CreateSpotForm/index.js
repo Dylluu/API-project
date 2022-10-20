@@ -34,7 +34,7 @@ function CreateSpotForm() {
         const navStatusTwo = document.getElementsByClassName('nav-bar-second');
         const nextButton = document.getElementsByClassName('next-button');
         const backButton = document.getElementsByClassName('back-button');
-        navStatusOne[0].style.backgroundColor = '#E8E8E8'
+        // navStatusOne[0].style.backgroundColor = '#E8E8E8'
         navStatusTwo[0].style.backgroundColor = 'black';
         imageForm[0].style.display = 'flex';
         imageForm[0].style.zIndex = '0'
