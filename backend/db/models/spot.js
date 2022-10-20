@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Street address is required'
+        },
+        len: {
+          args: [1, 254],
+          msg: 'Address is required'
         }
       }
     },
@@ -45,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
+          msg: 'City is required'
+        },
+        len: {
+          args: [1, 254],
           msg: 'City is required'
         }
       }
@@ -55,6 +63,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'State is required'
+        },
+        len: {
+          args: [1, 254],
+          msg: 'State is required'
         }
       }
     },
@@ -63,6 +75,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
+          msg: 'Country is required'
+        },
+        len: {
+          args: [1, 254],
           msg: 'Country is required'
         }
       }
@@ -103,8 +119,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Name is required'
         },
         len: {
-          args: [1, 49],
-          msg: 'Name must be less than 50 characters'
+          args: [1, 50],
+          msg: 'Name must be between 1 and 50 characters'
         }
       }
     },
@@ -114,6 +130,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Description is required'
+        },
+        len: {
+          args: [1, 254],
+          msg: 'Description is required'
         }
       }
     },
@@ -122,6 +142,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
+          msg: 'Price per day is required'
+        },
+        len: {
+          args: [1, 254],
           msg: 'Price per day is required'
         },
         min: {

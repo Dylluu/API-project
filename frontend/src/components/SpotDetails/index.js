@@ -85,10 +85,10 @@ const SpotDetails = () => {
             <div className='spot-details-images'>
                 <div className='img-1-container'>
                     {!isLoaded && <div className='img-1'></div>}
-                    {isLoaded && spot.SpotImages[0] &&
+                    {isLoaded && spot.SpotImages[0].url &&
                         <img className='img-1' alt='img1' src={spot.SpotImages[0].url} />
                     }
-                    {isLoaded && !spot.SpotImages[0] && <div className='img-1'></div>}
+                    {isLoaded && !spot.SpotImages[0].url && <div className='img-1'></div>}
                 </div>
                 <div className='rest-images-container'>
                     {!isLoaded && <div className='img-2'></div>}

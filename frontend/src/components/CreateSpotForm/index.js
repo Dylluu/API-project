@@ -24,6 +24,7 @@ function CreateSpotForm() {
     const [image4URL, setImage4URL] = useState('');
     const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
+    const [errors, setErrors] = useState([])
 
     function handleNextClick() {
         const imageForm = document.getElementsByClassName('add-images-div');
@@ -43,6 +44,14 @@ function CreateSpotForm() {
         nextButton[0].style.zIndex = '-1';
         backButton[0].style.left = '10%'
         spotForm[0].style.zIndex = '-1';
+
+        setName(name)
+        setCity(city)
+        setState(state)
+        setCountry(country)
+        setAddress(address)
+        setPrice(price)
+        setDescription(description)
         return;
     }
 
@@ -66,6 +75,7 @@ function CreateSpotForm() {
         // nextButton[0].style.zIndex = '0';
         spotForm[0].style.zIndex = '0';
 
+        setErrors([])
         return;
     }
 
@@ -83,7 +93,7 @@ function CreateSpotForm() {
         const backButton = document.getElementsByClassName('back-button');
 
         nextButton[0].style.right = '10%'
-        backButton[0].style.zIndex = '-1'
+        // backButton[0].style.zIndex = '-1'
 
         e.preventDefault();
 
@@ -92,12 +102,23 @@ function CreateSpotForm() {
         const image = { url: image1URL, preview: true }
 
         const newSpot = await dispatch(addSpotThunk(spot))
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+
+                console.log(data.errors)
+            }
+
+            return handleBackClick();
+          });
         // await dispatch(getSpots)
+        if(newSpot) {
         await dispatch(addImagesThunk(newSpot.id, image))
 
         await handleOtherImages(imageArray)
 
         await history.push(`/spots/${newSpot.id}`)
+        }
     }
 
     return (
@@ -182,7 +203,6 @@ function CreateSpotForm() {
                         <input
                             value={image1URL}
                             type='text'
-                            required
                             placeholder='Image 1 URL (required)'
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
