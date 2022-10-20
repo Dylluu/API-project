@@ -53,68 +53,9 @@ function UpdateSpotForm() {
     const [image4URL, setImage4URL] = useState('');
     const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
-    const [errors, setErrors] = useState({})
-
-    function handleNextClick() {
-        const imageForm = document.getElementsByClassName('add-images-div');
-        const spotForm = document.getElementsByClassName('og-spot-form');
-        const navStatusOne = document.getElementsByClassName('nav-bar-first');
-        const navStatusTwo = document.getElementsByClassName('nav-bar-second');
-        const nextButton = document.getElementsByClassName('next-button');
-        const backButton = document.getElementsByClassName('back-button');
-        navStatusOne[0].style.backgroundColor = '#E8E8E8'
-        navStatusTwo[0].style.backgroundColor = 'black';
-        imageForm[0].style.display = 'flex';
-        imageForm[0].style.zIndex = '0'
-        spotForm[0].style.display = 'none';
-        backButton[0].style.display = 'flex';
-        // backButton[0].style.zIndex = '-1';
-        nextButton[0].style.display = 'none';
-        nextButton[0].style.zIndex = '-1';
-        backButton[0].style.left = '10%'
-        spotForm[0].style.zIndex = '-1';
-        return;
-    }
-
-    function handleBackClick() {
-        const imageForm = document.getElementsByClassName('add-images-div');
-        const spotForm = document.getElementsByClassName('og-spot-form');
-        const navStatusOne = document.getElementsByClassName('nav-bar-first');
-        const navStatusTwo = document.getElementsByClassName('nav-bar-second');
-        const nextButton = document.getElementsByClassName('next-button');
-        const backButton = document.getElementsByClassName('back-button');
-        navStatusOne[0].style.backgroundColor = 'black'
-        navStatusTwo[0].style.backgroundColor = '#E8E8E8';
-        imageForm[0].style.display = 'none';
-        imageForm[0].style.zIndex = '-1'
-        spotForm[0].style.display = 'block';
-        backButton[0].style.display = 'none';
-        nextButton[0].style.position = 'absolute';
-        nextButton[0].style.right = '10%';
-        nextButton[0].style.display = 'block';
-        nextButton[0].style.zIndex = '0'
-        // nextButton[0].style.zIndex = '0';
-        spotForm[0].style.zIndex = '0';
-
-        return;
-    }
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = async (e) => {
-        // function handleOtherImages(imageArray) {
-        //     for (let image of imageArray) {
-        //         if (image) {
-        //             const newImage = { url: image, preview: false }
-        //             dispatch(addImagesThunk(newSpot.id, newImage))
-        //         }
-        //     }
-        // }
-
-        const nextButton = document.getElementsByClassName('next-button');
-        const backButton = document.getElementsByClassName('back-button');
-
-        // nextButton[0].style.right = '10%'
-        // backButton[0].style.zIndex = '-1'
-
         e.preventDefault();
 
         const spot = { address, city, state, country, lat, lng, name, description, price }
@@ -122,12 +63,20 @@ function UpdateSpotForm() {
         // const image = { url: image1URL, preview: true }
 
         const newSpot = await dispatch(editSpotThunk(spot, spotId))
+        .catch(async(res) => {
+            const data = await res.json();
+            if(data && data.errors){
+                setErrors(data.errors);
+                console.log('LOGGING', errors)
+            }
+        })
         // await dispatch(getSpots)
         // await dispatch(addImagesThunk(newSpot.id, image))
 
         // await handleOtherImages(imageArray)
-
-        await history.push(`/spots/${newSpot.id}`)
+        if(newSpot){
+        await history.push(`/spots/${newSpot.id}`);
+        }
     }
 
     const handleRefresh = async (e) => {
@@ -160,6 +109,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.name && <div className='create-errors'>
+                            {errors.name}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -170,6 +122,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.city && <div className='create-errors'>
+                            {errors.city}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -180,6 +135,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.state && <div className='create-errors'>
+                            {errors.state}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -190,6 +148,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.country && <div className='create-errors'>
+                            {errors.country}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -200,6 +161,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.address && <div className='create-errors'>
+                            {errors.address}
+                        </div>}
                         <div>
                             <input
                                 type='number'
@@ -210,6 +174,9 @@ function UpdateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.price && <div className='create-errors'>
+                            {errors.price}
+                        </div>}
                         <div>
                             <textarea
                                 type='text'
@@ -220,7 +187,11 @@ function UpdateSpotForm() {
                                 className='text-area'
                             />
                         </div>
-
+                        {errors && errors.description && <div className='create-errors'
+                        style={{marginTop: '0px'}}
+                        >
+                            {errors.description}
+                        </div>}
                     </form>
                     {/* <div className='add-images-div'>
                         <input
