@@ -21,17 +21,15 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (password === confirmPassword) {
+    if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
         .then(() => setShowSUModal(false))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
-          console.log(data)
-          if (password !== confirmPassword) errors.push('Confirm Password field must be the same as the Password field')
         });
-    // }
+    }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
@@ -47,9 +45,6 @@ function SignupFormPage() {
         <span>Welcome To Airbenbe</span>
       </div>
       <form onSubmit={handleSubmit}>
-        <ul>
-          {/* {errors?.map((error, idx) => <li key={idx}>{error}</li>)} */}
-        </ul>
         <div>
           <input
             type="text"
@@ -60,7 +55,6 @@ function SignupFormPage() {
             className="su-input"
           />
         </div>
-        {errors[0] && <div style={{top: '200px'}} className="su-err-div">{errors[0]}</div>}
         <div>
           <input
             type="text"
@@ -71,7 +65,6 @@ function SignupFormPage() {
             className="su-input"
           />
         </div>
-        {errors[1] && <div style={{top: '270px'}} className="su-err-div">{errors[1]}</div>}
         <div>
         <input
           type="text"
@@ -102,7 +95,6 @@ function SignupFormPage() {
             className="su-input"
           />
           </div>
-          {errors[2] && <div style={{top: '480px'}} className="su-err-div">{errors[2]}</div>}
           <div>
           <input
             type="password"
@@ -111,8 +103,12 @@ function SignupFormPage() {
             required
             placeholder="Confirm Password"
             className="su-input"
+            style={{marginBottom: '2px'}}
           />
           </div>
+          <ul className="ul-errors">
+          {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
         <div>
         <button className='signup' type="submit">Sign Up</button>
         </div>
