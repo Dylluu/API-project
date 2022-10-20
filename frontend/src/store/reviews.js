@@ -20,6 +20,12 @@ export const postReviewThunk = (spotId, review) => async () => {
       )
 }
 
+export const deleteReviewThunk = (reviewId) => async() => {
+    return await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'delete'
+    })
+}
+
 const LOAD_REVIEWS = 'reviews/LOAD';
 
 export const loadReviews = (reviews) => {

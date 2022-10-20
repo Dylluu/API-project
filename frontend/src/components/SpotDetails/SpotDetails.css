@@ -250,16 +250,43 @@
     display: flex;
     flex-direction: row;
     /* border: solid 1px blue; */
+    justify-content: space-between;
+}
+
+.each-rev-top-left {
+    display: flex;
+    flex-direction: row;
+    /* border: solid 2px red; */
 }
 
 .review-top-text {
     display: flex;
     flex-direction: column;
+    /* border: solid 2px green; */
 }
 
 .review-user-name-date {
     height: 20px;
     /* border: solid 1px blue; */
+}
+
+.delete-review-button {
+    display: flex;
+    /* background-color: aqua; */
+    padding: 13px;
+    height: 25px;
+    align-items: center;
+    font-size: 14px;
+    text-decoration: underline;
+    border-radius: 7px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-weight: 350;
+    cursor: pointer;
+}
+
+.delete-review-button:hover {
+    background-color: #F8F8F8;
 }
 
 .each-review-bottom {

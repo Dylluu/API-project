@@ -9,6 +9,7 @@ import ReviewForm from '../ReviewForm';
 import { Modal } from '../../context/Modal';
 import UpdateSpotForm from '../UpdateSpotForm';
 import { deleteSpotThunk } from '../../store/spots';
+import { deleteReviewThunk } from '../../store/reviews';
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -19,7 +20,7 @@ const SpotDetails = () => {
     const reviews = useSelector(state => state.reviews);
     const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);
-    const reviewIdsArray = reviewsArray.map(review => review.userId)
+    const reviewIdsArray = reviewsArray.map(review => review.userId);
     const [isLoaded, setIsLoaded] = useState(false);
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
     const dateArray = (date) => {
@@ -48,6 +49,16 @@ const SpotDetails = () => {
         e.preventDefault();
 
         history.push(`/update/${spotId}`)
+    }
+
+    const handleDeleteReview = async (e) => {
+        e.preventDefault();
+
+        const reviewId = parseInt(e.target.__reactFiber$orsjnkulznc.key);
+
+        await dispatch(deleteReviewThunk(reviewId));
+
+        await dispatch(getReviews(spotId));
     }
 
     return (
@@ -161,6 +172,7 @@ const SpotDetails = () => {
                 {isLoaded && !!reviewsArray.length && reviewsArray.map((review) => (
                     <div key={review.id} className='each-review'>
                         <div className='each-review-top'>
+                            <div className='each-rev-top-left'>
                             <div className='profile-img-wrapper'>
                                 <i className="fa-regular fa-circle-user" style={{ fontSize: '35px', color: 'grey' }}></i>
                             </div>
@@ -168,6 +180,10 @@ const SpotDetails = () => {
                                 <span style={{ fontWeight: '600', marginLeft: '10px', marginTop: '-2px' }} className='review-user-name-date'>{review.User.firstName}</span>
                                 <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
                             </div>
+                            </div>
+                            {review.userId === user.id && <div  key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
+                                <span key={review.id}>Delete</span>
+                            </div>}
                         </div>
                         <div className='each-review-bottom'>
                             <p>{review.review}</p>
