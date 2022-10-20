@@ -54,7 +54,7 @@ const SpotDetails = () => {
     const handleDeleteReview = async (e) => {
         e.preventDefault();
 
-        const reviewId = parseInt(e.target.__reactFiber$orsjnkulznc.key);
+        const reviewId = parseInt(e.target.id);
 
         await dispatch(deleteReviewThunk(reviewId));
 
@@ -181,8 +181,8 @@ const SpotDetails = () => {
                                 <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
                             </div>
                             </div>
-                            {review.userId === user.id && <div  key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
-                                <span key={review.id}>Delete</span>
+                            {review.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
+                                <span id={review.id} key={review.id}>Delete</span>
                             </div>}
                         </div>
                         <div className='each-review-bottom'>
