@@ -103,7 +103,7 @@ function SignupFormPage() {
             required
             placeholder="Confirm Password"
             className="su-input"
-            style={{marginBottom: '2px'}}
+            style={{marginBottom: '0px'}}
           />
           </div>
           <ul className="ul-errors">
