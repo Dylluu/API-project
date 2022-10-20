@@ -47,8 +47,7 @@ function Navigation({ isLoaded }) {
                     <i style={{color: 'white'}} className="fa-solid fa-user"></i>
                     </div>
                     </div>
-                </div>
-                {showMenu && (
+                    {showMenu && (
                     <div className='profile-dropdown'>
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
@@ -59,6 +58,8 @@ function Navigation({ isLoaded }) {
                     </div>
                 )
                 }
+                </div>
+
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <LoginFormPage />

@@ -100,15 +100,16 @@
 
 .profile-dropdown-text-divs:hover {
     background-color: #F8F8F8;
+    color: black;
 }
 
 #profile-dropdown-LO {
     height: 33px;
 }
 
-#logout-div:hover {
+/* #logout-div:hover {
     border-radius: 12px;
-}
+} */
 
 a:link {
     text-decoration: none;
