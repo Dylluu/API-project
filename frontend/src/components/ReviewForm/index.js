@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import useModalContext from '../../context/ShowModalContext';
 import { postReviewThunk } from '../../store/reviews';
 import { getReviews } from '../../store/reviews';
+import { getSpot } from '../../store/spots';
 import './ReviewForm.css';
 
 function ReviewForm() {
@@ -22,6 +23,7 @@ function ReviewForm() {
         .then(() => setShowReviewModal(false))
 
         await dispatch(getReviews(spotId))
+        await dispatch(getSpot(spotId))
     }
 
     return (

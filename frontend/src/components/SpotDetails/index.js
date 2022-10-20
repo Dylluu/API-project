@@ -59,6 +59,8 @@ const SpotDetails = () => {
         await dispatch(deleteReviewThunk(reviewId));
 
         await dispatch(getReviews(spotId));
+
+        await dispatch(getSpot(spotId));
     }
 
     return (
