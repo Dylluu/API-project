@@ -28,6 +28,13 @@ function LoginFormPage() {
       });
   }
 
+  const handleDemoButton = (e) => {
+    e.preventDefault();
+
+    return dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+      .then(() => setShowModal(false))
+  }
+
   return (
     <div className='container'>
         <div className="top-bar">
@@ -66,6 +73,15 @@ function LoginFormPage() {
         </div>
         <div>
         <button className='login' type="submit">Continue</button>
+        </div>
+        <div className='or'>
+            <div className='or-sides'>
+            </div>
+            <span style={{fontSize: '12px', color: 'gray', fontWeight: '250'}}>or</span>
+            <div className='or-sides'></div>
+        </div>
+        <div className='cont-as-demo'>
+          <button className='demo-butt' onClick={(e) => handleDemoButton(e)}>Continue as demo user</button>
         </div>
         </form>
     </div>

@@ -59,7 +59,6 @@ function Navigation({ isLoaded }) {
                 )
                 }
                 </div>
-
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <LoginFormPage />

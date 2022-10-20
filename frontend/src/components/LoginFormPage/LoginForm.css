@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    height: 450px;
+    height: 525px;
     width: 500px;
 }
 
@@ -75,14 +75,49 @@
     color: white;
     font-size: 15px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-    margin-top: 80px;
+    position: absolute;
+    top: 300px;
     width: 430px;
     height: 50px;
     border-color: transparent;
     border-radius: 10px;
     background-size: 180% 180%;
     background-position: 50%;
-    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%)
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    cursor: pointer;
+}
+
+.or {
+    /* border: solid 2px blue; */
+    position: absolute;
+    top: 385px;
+    display: flex;
+    flex-direction: row;
+    width: 430px;
+    left: 35px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.or-sides {
+    /* border: solid 2px red; */
+    height: 1px;
+    width: 45%;
+    background-color: #E8E8E8;
+}
+
+.demo-butt {
+    position: absolute;
+    top: 430px;
+    height: 50px;
+    width: 430px;
+    border-radius: 10px;
+    background-color: white;
+    border: solid 2px black;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    cursor: pointer;
 }
 
 input {
