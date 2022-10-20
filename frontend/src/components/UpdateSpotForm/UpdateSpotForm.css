@@ -8,7 +8,8 @@
 
 .create-spot-left {
     /* border: solid 2px orange; */
-    width: 45%;
+    width: 44%;
+    z-index: 10;
 }
 
 .gradient {
@@ -16,9 +17,19 @@
     width: 100%;
 }
 
+.vector {
+    height: 40px;
+    position: absolute;
+    z-index: 11;
+    top: 40px;
+    left: 40px;
+    cursor: pointer;
+    /* filter: saturate(3); */
+}
+
 .create-spot-right {
     /* border: solid 3px blue; */
-    width: 55%;
+    width: 56%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +59,7 @@
     position: fixed;
     bottom: 0;
     height: 90px;
-    width: 55%;
+    width: 56vw;
     align-items: center;
     flex-direction: column;
     background-color: white;
@@ -93,6 +104,7 @@
     flex-direction: row;
     /* justify-content: space-between; */
     align-items: center;
+    justify-content: center;
 }
 
 .back-button {
@@ -146,10 +158,10 @@ body, html {
 }
 
 .input {
-    min-width: 300px;
+    min-width: 360px;
     border-radius: 7px;
     height: 40px;
-    margin-top: 5px;
+    margin-top: 20px;
     border: 1px solid #BEBEBE;
     font-size: 15px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -157,11 +169,11 @@ body, html {
 
 .text-area {
     padding-top: 8px;
-    padding-left: 8px;
+    padding: 8px;
     height: 150px;
-    min-width: 300px;
+    min-width: 360px;
     border-radius: 7px;
-    margin-top: 5px;
+    margin-top: 20px;
     border: 1px solid #BEBEBE;
     font-size: 15px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;

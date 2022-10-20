@@ -8,6 +8,7 @@ import { addImagesThunk } from '../../store/spots';
 import {useParams} from 'react-router-dom';
 import { getSpot } from '../../store/spots';
 import { editSpotThunk } from '../../store/spots';
+import vector from '../../assets/airbnbVector.png';
 
 function UpdateSpotForm() {
     const dispatch = useDispatch();
@@ -110,14 +111,14 @@ function UpdateSpotForm() {
         const nextButton = document.getElementsByClassName('next-button');
         const backButton = document.getElementsByClassName('back-button');
 
-        nextButton[0].style.right = '10%'
-        backButton[0].style.zIndex = '-1'
+        // nextButton[0].style.right = '10%'
+        // backButton[0].style.zIndex = '-1'
 
         e.preventDefault();
 
         const spot = { address, city, state, country, lat, lng, name, description, price }
 
-        const image = { url: image1URL, preview: true }
+        // const image = { url: image1URL, preview: true }
 
         const newSpot = await dispatch(editSpotThunk(spot, spotId))
         // await dispatch(getSpots)
@@ -128,8 +129,22 @@ function UpdateSpotForm() {
         await history.push(`/spots/${newSpot.id}`)
     }
 
+    const handleRefresh = async (e) => {
+        e.preventDefault();
+
+        await history.push('/')
+    }
+
     return (
         <div className='create-spot-page-wrapper'>
+            <div className='white-logo-home' onClick={(e) => handleRefresh(e)}>
+                <img alt='vector' src={vector} className='vector'/>
+            </div>
+            <div className='tell-us-about-spot'>
+                <span
+                style={{color: 'white', fontSize: '40px', fontWeight: '400'}}
+                >Need to make some changes?</span>
+            </div>
             <img alt='gradient' className='create-spot-left' src={gradient} />
             <div className='create-spot-right'>
                 <div className='create-spot-form-wrapper'>
@@ -206,7 +221,7 @@ function UpdateSpotForm() {
                         </div>
 
                     </form>
-                    <div className='add-images-div'>
+                    {/* <div className='add-images-div'>
                         <input
                             value={image1URL}
                             type='text'
@@ -245,19 +260,25 @@ function UpdateSpotForm() {
                         <div>
                             <button className='create-spot-submit' onClick={(e) => handleSubmit(e)}>Submit</button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='create-spot-nav-div'>
                     <div className='nav-bar-status'>
                         <div className='nav-bar-first'></div>
-                        <div className='nav-bar-second'></div>
+                        <div className='nav-bar-second'
+                        style={{backgroundColor: 'black'}}
+                        ></div>
                     </div>
                     <div className='nav-bar-buttons'>
                         <div className='nav-bar-left-half'>
-                            <div className='back-button' onClick={() => handleBackClick()}>Back</div>
+                            {/* <div className='back-button' onClick={() => handleBackClick()}>Back</div> */}
                         </div>
                         <div className='nav-bar-right-half'>
-                            <button className='next-button' onClick={() => handleNextClick()}>Next</button>
+                        <div>
+                            <button className='create-spot-submit'
+                            style={{width: '90px', height: '45px', zIndex: '11', position: 'absolute', right: '10%', bottom: '23%'}}
+                            onClick={(e) => handleSubmit(e)}>Confirm</button>
+                        </div>
                         </div>
                     </div>
                 </div>

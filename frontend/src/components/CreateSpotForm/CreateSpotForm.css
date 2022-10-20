@@ -17,6 +17,26 @@
     width: 100%;
 }
 
+.vector {
+    height: 40px;
+    position: absolute;
+    z-index: 11;
+    top: 40px;
+    left: 40px;
+    cursor: pointer;
+    /* filter: saturate(3); */
+}
+
+.tell-us-about-spot {
+    position: absolute;
+    top: 45%;
+    display: flex;
+    left: 40px;
+    width: 40%;
+    /* justify-content: center; */
+    z-index: 11;
+}
+
 .create-spot-right {
     /* border: solid 3px blue; */
     width: 56%;
@@ -160,7 +180,7 @@ body, html {
 .text-area {
     padding-top: 8px;
     font-weight: 300;
-    padding-left: 8px;
+    padding: 8px;
     height: 150px;
     min-width: 360px;
     border-radius: 7px;

@@ -5,6 +5,7 @@ import gradient from '../../assets/gradient.png';
 import { addSpotThunk, getSpots } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
 import { addImagesThunk } from '../../store/spots';
+import vector from '../../assets/airbnbVector.png';
 
 function CreateSpotForm() {
     const history = useHistory();
@@ -120,9 +121,22 @@ function CreateSpotForm() {
         }
     }
 
-    console.log('NEXTLOG', errors)
+    const handleRefresh = async (e) => {
+        e.preventDefault();
+
+        await history.push('/')
+    }
+
     return (
         <div className='create-spot-page-wrapper'>
+            <div className='white-logo-home' onClick={(e) => handleRefresh(e)}>
+                <img alt='vector' src={vector} className='vector'/>
+            </div>
+            <div className='tell-us-about-spot'>
+                <span
+                style={{color: 'white', fontSize: '40px', fontWeight: '400'}}
+                >Tell us about your spot!</span>
+            </div>
             <img alt='gradient' className='create-spot-left' src={gradient} />
             <div className='create-spot-right'>
                 <div className='create-spot-form-wrapper'>
@@ -258,7 +272,9 @@ function CreateSpotForm() {
                             className='input'
                         />
                         <div>
-                            <button className='create-spot-submit' onClick={(e) => handleSubmit(e)}>Submit</button>
+                            <button
+                            style={{width: '360px'}}
+                            className='create-spot-submit' onClick={(e) => handleSubmit(e)}>Submit</button>
                         </div>
                     </div>
                 </div>
