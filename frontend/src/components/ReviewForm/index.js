@@ -8,22 +8,33 @@ import { getSpot } from '../../store/spots';
 import './ReviewForm.css';
 
 function ReviewForm() {
-    const [numStars, setNumStars] = useState(5);
+    const [numStars, setNumStars] = useState(0);
     const [reviewText, setReviewText] = useState('');
     const {setShowReviewModal} = useModalContext();
     // const user = useSelector(state => state.session.user);
     const spotId = useSelector(state => state.spots.id);
     const dispatch = useDispatch();
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         const review = {review: reviewText, stars: numStars}
-        await dispatch(postReviewThunk(spotId, review))
-        .then(() => setShowReviewModal(false))
+        const submittedReview = await dispatch(postReviewThunk(spotId, review))
+        .catch(async (res) => {
+            const data = await res.json();
+            if(data && data.errors) {
+                setError(data.errors)
+                console.log('LOGGING', data.errors)
+            }
+        })
+
+        if(submittedReview){
+        await setShowReviewModal(false)
 
         await dispatch(getReviews(spotId))
         await dispatch(getSpot(spotId))
+        }
     }
 
     return (
@@ -52,6 +63,7 @@ function ReviewForm() {
             <label htmlFor="star1" >☆</label>
             <div className="clear"></div>
         </div>
+        {error.stars && <div className='rev-error'>{error.stars}</div>}
         </div>
                 <div className='how-was-your-experience-div'>
                             <span className='how-was-your-experience-text'>How was your experience?</span>

@@ -140,3 +140,12 @@
       left: 0;
       color: #FFD700;
   }
+
+  .rev-error{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    color: red;
+    position: absolute;
+    left: 30px;
+    top: 138px;
+  }
