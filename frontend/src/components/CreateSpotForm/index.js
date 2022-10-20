@@ -26,6 +26,7 @@ function CreateSpotForm() {
     const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
     const [errors, setErrors] = useState({})
+    const [imageError, setImageError] = useState('');
 
     function handleNextClick() {
         const imageForm = document.getElementsByClassName('add-images-div');
@@ -46,6 +47,7 @@ function CreateSpotForm() {
         backButton[0].style.left = '10%'
         spotForm[0].style.zIndex = '-1';
 
+        if(image1URL.length) setImageError('')
         setName(name)
         setCity(city)
         setState(state)
@@ -80,6 +82,11 @@ function CreateSpotForm() {
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        if(image1URL === '') {
+            // alert('Preview image is required')
+            return setImageError('Preview image is required')
+        }
         function handleOtherImages(imageArray) {
             for (let image of imageArray) {
                 if (image) {
@@ -94,8 +101,6 @@ function CreateSpotForm() {
 
         nextButton[0].style.right = '10%'
         // backButton[0].style.zIndex = '-1'
-
-        e.preventDefault();
 
         const spot = { address, city, state, country, lat, lng, name, description, price }
 
@@ -126,6 +131,8 @@ function CreateSpotForm() {
 
         await history.push('/')
     }
+
+    console.log(imageError)
 
     return (
         <div className='create-spot-page-wrapper'>
@@ -243,6 +250,7 @@ function CreateSpotForm() {
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
                         />
+                        {!!imageError.length && <div className='create-errors' style={{top: '58px'}}>{imageError}</div>}
                         <input
                             value={image2URL}
                             type='text'
