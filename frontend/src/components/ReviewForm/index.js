@@ -50,7 +50,31 @@ function ReviewForm() {
                     <span className='star-rating-text'>Star Rating</span>
                 </div>
                 <div className='rating-wrapper'>
-                <div className="rating">
+                <div className='select-wrapper'>
+                <select className='sel'
+                placeholder='Rating'
+                onChange={(e) => setNumStars(e.target.value)}
+                >
+                <option value={0} disabled selected>Rating</option>
+                <option
+                value={5}
+                onChange={() => setNumStars(5)}
+                >5</option>
+                <option
+                value={4}
+                onChange={() => setNumStars(4)}>4</option>
+                <option
+                value={3}
+                onChange={() => setNumStars(3)}>3</option>
+                <option
+                value={2}
+                onChange={() => setNumStars(2)}>2</option>
+                <option
+                value={1}
+                onChange={() => setNumStars(1)}>1</option>
+                </select>
+                </div>
+                {/* <div className="rating">
             <input id="star5" name="star" type="radio" value={5} className="radio-btn hide" onChange={() => setNumStars(5)}/>
             <label htmlFor="star5" >☆</label>
             <input id="star4" name="star" type="radio" value={4} className="radio-btn hide"  onChange={() => setNumStars(4)}/>
@@ -62,10 +86,12 @@ function ReviewForm() {
             <input id="star1" name="star" type="radio" value={1} className="radio-btn hide"  onChange={() => setNumStars(1)}/>
             <label htmlFor="star1" >☆</label>
             <div className="clear"></div>
+        </div> */}
+        {error.stars && <div className='rev-error'>Rating is required</div>}
         </div>
-        {error.stars && <div className='rev-error'>{error.stars}</div>}
-        </div>
-                <div className='how-was-your-experience-div'>
+                <div className='how-was-your-experience-div'
+                style={{marginTop: '5px'}}
+                >
                             <span className='how-was-your-experience-text'>How was your experience?</span>
                         </div>
                     <div className='review-text-div'>
@@ -74,7 +100,7 @@ function ReviewForm() {
                         value={reviewText}
                         onChange={(e) => setReviewText(e.target.value)}
                         required
-                        placeholder='Write review here'
+                        placeholder='Write your review here'
                         className='review-text-input'
                         />
                     </div>
