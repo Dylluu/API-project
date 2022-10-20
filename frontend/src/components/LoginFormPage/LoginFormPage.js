@@ -11,7 +11,7 @@ function LoginFormPage() {
   const {setShowModal} = useModalContext();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   // if (sessionUser) return (
   //   <Redirect to="/" />
@@ -48,7 +48,7 @@ function LoginFormPage() {
         </div>
         <form onSubmit={handleSubmit}>
         <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
         </ul>
         <div>
             <input
@@ -71,6 +71,10 @@ function LoginFormPage() {
             placeholder='Password'
             />
         </div>
+        {errors[0] &&
+        <div className='error-div'>
+          {errors[0]}
+        </div>}
         <div>
         <button className='login' type="submit">Continue</button>
         </div>

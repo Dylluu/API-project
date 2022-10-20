@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    height: 710px;
+    height: 690px;
     width: 550px;
 }
 
@@ -74,4 +74,12 @@
     background-size: 180% 180%;
     background-position: 50%;
     background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%)
+}
+
+.su-err-div {
+    position: absolute;
+    left: 40px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    color: red;
 }
