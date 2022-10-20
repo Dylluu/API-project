@@ -24,7 +24,7 @@ function CreateSpotForm() {
     const [image4URL, setImage4URL] = useState('');
     const [image5URL, setImage5URL] = useState('');
     const imageArray = [image2URL, image3URL, image4URL, image5URL]
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState({})
 
     function handleNextClick() {
         const imageForm = document.getElementsByClassName('add-images-div');
@@ -75,7 +75,6 @@ function CreateSpotForm() {
         // nextButton[0].style.zIndex = '0';
         spotForm[0].style.zIndex = '0';
 
-        setErrors([])
         return;
     }
 
@@ -105,8 +104,8 @@ function CreateSpotForm() {
         .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) {
-
-                console.log(data.errors)
+                setErrors(data.errors)
+                // console.log('LOGGING', errors)
             }
 
             return handleBackClick();
@@ -121,6 +120,7 @@ function CreateSpotForm() {
         }
     }
 
+    console.log('NEXTLOG', errors)
     return (
         <div className='create-spot-page-wrapper'>
             <img alt='gradient' className='create-spot-left' src={gradient} />
@@ -137,6 +137,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.name && <div className='create-errors'>
+                            {errors.name}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -147,6 +150,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.city && <div className='create-errors'>
+                            {errors.city}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -157,6 +163,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.state && <div className='create-errors'>
+                            {errors.state}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -167,6 +176,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.country && <div className='create-errors'>
+                            {errors.country}
+                        </div>}
                         <div>
                             <input
                                 type='text'
@@ -177,6 +189,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.address && <div className='create-errors'>
+                            {errors.address}
+                        </div>}
                         <div>
                             <input
                                 type='number'
@@ -187,6 +202,9 @@ function CreateSpotForm() {
                                 className='input'
                             />
                         </div>
+                        {errors && errors.price && <div className='create-errors'>
+                            {errors.price}
+                        </div>}
                         <div>
                             <textarea
                                 type='text'
@@ -197,13 +215,17 @@ function CreateSpotForm() {
                                 className='text-area'
                             />
                         </div>
-
+                        {errors && errors.description && <div className='create-errors'
+                        style={{marginTop: '0px'}}
+                        >
+                            {errors.description}
+                        </div>}
                     </form>
                     <div className='add-images-div'>
                         <input
                             value={image1URL}
                             type='text'
-                            placeholder='Image 1 URL (required)'
+                            placeholder='Preview Image URL'
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
                         />
