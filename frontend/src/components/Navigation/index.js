@@ -77,7 +77,9 @@ function Navigation({ isLoaded }) {
         <div className='nav-container'>
             <div className='inner-nav-div'>
             <div className='home-container'>
-                <NavLink exact to="/">
+                <NavLink exact to="/"
+                style={{display: 'flex'}}
+                >
                     <img alt='logo' className='logo' src={logo} />
                 </NavLink>
             </div>

@@ -77,7 +77,9 @@ function MainNavigation({ isLoaded }) {
         <div className='navMain-container'>
             <div className='main-form-div-inner'>
             <div className='home-container'>
-                <NavLink exact to="/">
+                <NavLink exact to="/"
+                style={{display: 'flex'}}
+                >
                     <img alt='logo' className='logo' src={logo} />
                 </NavLink>
             </div>
