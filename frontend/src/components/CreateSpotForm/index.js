@@ -132,7 +132,7 @@ function CreateSpotForm() {
         await history.push('/')
     }
 
-    console.log(imageError)
+    // console.log(imageError)
 
     return (
         <div className='create-spot-page-wrapper'>

@@ -25,7 +25,7 @@ function ReviewForm() {
             const data = await res.json();
             if(data && data.errors) {
                 setError(data.errors)
-                console.log('LOGGING', data.errors)
+                // console.log('LOGGING', data.errors)
             }
         })
 
