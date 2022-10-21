@@ -28,7 +28,7 @@
 .spot-info-under-name {
     font-weight: 350;
     height: 20px;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
 .spot-info-under-name-text {
     font-size: 15px;
     margin-left: 4px;
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
 }
 
 .dot {
