@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Review text is required'
+        },
+        len: {
+          args: [1, 254],
+          msg: 'Description must be between 1 and 255 characters'
         }
       }
     },

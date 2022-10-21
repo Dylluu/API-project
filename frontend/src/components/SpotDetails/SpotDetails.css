@@ -28,7 +28,7 @@
 .spot-info-under-name {
     font-weight: 350;
     height: 20px;
-    /* border: solid 1px red; */
+    border: solid 1px red;
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
 .spot-info-under-name-text {
     font-size: 15px;
     margin-left: 4px;
-    /* border: solid 1px blue; */
+    border: solid 1px blue;
 }
 
 .dot {
@@ -106,12 +106,14 @@
     background-color: lightgrey;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
+    object-fit: cover;
 }
 
 .img-2 {
     height: 197px;
     background-color: lightgray;
     width: 49.5%;
+    object-fit: cover;
 }
 
 .img-3 {
@@ -120,6 +122,7 @@
     margin-left: 1%;
     width: 49.5%;
     border-top-right-radius: 12px;
+    object-fit: cover;
 }
 
 .img-4 {
@@ -127,6 +130,7 @@
     background-color: lightgray;
     width: 49.5%;
     margin-top: 6px;
+    object-fit: cover;
 }
 
 .img-5 {
@@ -136,6 +140,7 @@
     width: 49.5%;
     margin-top: 6px;
     border-bottom-right-radius: 12px;
+    object-fit: cover;
 }
 
 .spot-details-middle-section{
@@ -340,6 +345,7 @@
 
 .each-review {
     /* border: solid 3px green; */
+    overflow-wrap: break-word;
     margin-top: 30px;
 }
 

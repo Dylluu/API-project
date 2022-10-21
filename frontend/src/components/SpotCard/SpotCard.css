@@ -17,11 +17,15 @@
     min-height: 230px;
     max-height: 300px; */
     border-radius: 12px;
+    object-fit: cover;
 }
 
 .spot-location {
     font-weight: 450;
     /* border: solid 1px red; */
+    overflow: hidden;
+    max-width: 225px;
+    max-height: 20px;
 }
 
 .spot-top-text {

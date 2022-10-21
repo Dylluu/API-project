@@ -99,11 +99,14 @@ function ReviewForm() {
                         id='review-text'
                         value={reviewText}
                         onChange={(e) => setReviewText(e.target.value)}
-                        required
+                        // required
                         placeholder='Write your review here'
                         className='review-text-input'
                         />
                     </div>
+                    {error.review && <div
+                    style={{marginTop: '5px', marginLeft: '35px'}}
+                    className='rev-error'>{error.review}</div>}
                     <div className='review-submit-div'>
                         <button className='review-submit-button'>Submit</button>
                     </div>

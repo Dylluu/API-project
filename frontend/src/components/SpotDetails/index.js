@@ -80,7 +80,8 @@ const SpotDetails = () => {
                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     <span className='dot'>∙</span>
                     {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
-                    <span style={{ marginLeft: '4px', fontWeight: '250' }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
+                    <span style={{ marginLeft: '4px', fontWeight: '250',
+                maxWidth: '500px', maxHeight: '20px', overflow: 'hidden' }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
                     </div>
                     {isLoaded && !!user && spot?.Owner?.id === user?.id && <div className='update-delete-buttons'>
                         <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
