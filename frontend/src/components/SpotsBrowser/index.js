@@ -8,13 +8,16 @@ const SpotsBrowser = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots);
     const spotsArray = Object.values(spots)
+    const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
 
+    setTimeout(() => setIsLoaded(true), 300)
+
     return (
         <div className='spots-container'>
-            {spotsArray.map(spot => (
+            {isLoaded && spotsArray.map(spot => (
                 <SpotCard key={spot.id} spot={spot}/>
             ))}
         </div>

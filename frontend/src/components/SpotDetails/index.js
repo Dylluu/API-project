@@ -75,9 +75,9 @@ const SpotDetails = () => {
                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     <span className='dot'>∙</span>
                     {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
-                    <span style={{ marginLeft: '4px', fontWeight: '250' }} className='spot-info-under-name-text'>{spot.city}, {spot.state}, {spot.country}</span>
+                    <span style={{ marginLeft: '4px', fontWeight: '250' }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
                     </div>
-                    {isLoaded && !!user && spot.Owner.id === user.id && <div className='update-delete-buttons'>
+                    {isLoaded && !!user && spot?.Owner.id === user?.id && <div className='update-delete-buttons'>
                         <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
                         <span className='up-del-actual-buttons' onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
                     </div>}
@@ -87,32 +87,32 @@ const SpotDetails = () => {
             <div className='spot-details-images'>
                 <div className='img-1-container'>
                     {!isLoaded && <div className='img-1'></div>}
-                    {isLoaded && spot.SpotImages && spot.SpotImages[0] &&
+                    {isLoaded && spot?.SpotImages && spot?.SpotImages[0] &&
                         <img className='img-1' alt='img1' src={spot.SpotImages[0].url} />
                     }
-                    {isLoaded && !spot.SpotImages[0] && <div className='img-1'></div>}
+                    {isLoaded && !spot?.SpotImages[0] && <div className='img-1'></div>}
                 </div>
                 <div className='rest-images-container'>
                     {!isLoaded && <div className='img-2'></div>}
-                    {isLoaded && spot.SpotImages && spot.SpotImages[1] &&
+                    {isLoaded && spot?.SpotImages && spot?.SpotImages[1] &&
                         <img className='img-2' alt='img2' src={spot.SpotImages[1].url} />
                     }
-                    {isLoaded && !spot.SpotImages[1] && <div className='img-2'></div>}
+                    {isLoaded && !spot?.SpotImages[1] && <div className='img-2'></div>}
                     {!isLoaded && <div className='img-3'></div>}
-                    {isLoaded && spot.SpotImages && spot.SpotImages[2] &&
+                    {isLoaded && spot?.SpotImages && spot?.SpotImages[2] &&
                         <img className='img-3' alt='img3' src={spot.SpotImages[2].url} />
                     }
-                    {isLoaded && !spot.SpotImages[2] && <div className='img-3'></div>}
+                    {isLoaded && !spot?.SpotImages[2] && <div className='img-3'></div>}
                     {!isLoaded && <div className='img-4'></div>}
-                    {isLoaded && spot.SpotImages && spot.SpotImages[3] &&
+                    {isLoaded && spot?.SpotImages && spot?.SpotImages[3] &&
                         <img className='img-4' alt='img4' src={spot.SpotImages[3].url} />
                     }
-                    {isLoaded && !spot.SpotImages[3] && <div className='img-4'></div>}
+                    {isLoaded && !spot?.SpotImages[3] && <div className='img-4'></div>}
                     {!isLoaded && <div className='img-5'></div>}
-                    {isLoaded && spot.SpotImages && spot.SpotImages[4] &&
+                    {isLoaded && spot?.SpotImages && spot?.SpotImages[4] &&
                         <img className='img-5' alt='img5' src={spot.SpotImages[4].url} />
                     }
-                    {isLoaded && !spot.SpotImages[4] && <div className='img-5'></div>}
+                    {isLoaded && !spot?.SpotImages[4] && <div className='img-5'></div>}
                 </div>
             </div>
             <div className='spot-details-middle-section'>
@@ -165,7 +165,7 @@ const SpotDetails = () => {
                     <span className='dot-2'>.</span>
                     <span style={{ fontWeight: '350', fontSize: '21px' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     </div>
-                    {isLoaded && user && spot.ownerId !== user.id && !reviewIdsArray.includes(user.id) &&
+                    {isLoaded && user && spot?.ownerId !== user.id && !reviewIdsArray.includes(user.id) &&
                         <div className='link-to-review-form' onClick={() => setShowReviewModal(true)}>
                             <span>Write a review</span>
                         </div>
@@ -183,7 +183,7 @@ const SpotDetails = () => {
                                 <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
                             </div>
                             </div>
-                            {!!user && review.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
+                            {!!user && review?.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
                                 <span id={review.id} key={review.id}>Delete</span>
                             </div>}
                         </div>
