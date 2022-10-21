@@ -47,7 +47,7 @@ function CreateSpotForm() {
         backButton[0].style.left = '10%'
         spotForm[0].style.zIndex = '-1';
 
-        if(image1URL.length) setImageError('')
+        if (image1URL.length) setImageError('')
         setName(name)
         setCity(city)
         setState(state)
@@ -83,7 +83,7 @@ function CreateSpotForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(image1URL === '') {
+        if (image1URL === '') {
             // alert('Preview image is required')
             return setImageError('Preview image is required')
         }
@@ -107,22 +107,22 @@ function CreateSpotForm() {
         const image = { url: image1URL, preview: true }
 
         const newSpot = await dispatch(addSpotThunk(spot))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors)
-                // console.log('LOGGING', errors)
-            }
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                    // console.log('LOGGING', errors)
+                }
 
-            return handleBackClick();
-          });
+                return handleBackClick();
+            });
         // await dispatch(getSpots)
-        if(newSpot) {
-        await dispatch(addImagesThunk(newSpot.id, image))
+        if (newSpot) {
+            await dispatch(addImagesThunk(newSpot.id, image))
 
-        await handleOtherImages(imageArray)
+            await handleOtherImages(imageArray)
 
-        await history.push(`/spots/${newSpot.id}`)
+            await history.push(`/spots/${newSpot.id}`)
         }
     }
 
@@ -137,11 +137,11 @@ function CreateSpotForm() {
     return (
         <div className='create-spot-page-wrapper'>
             <div className='white-logo-home' onClick={(e) => handleRefresh(e)}>
-                <img alt='vector' src={vector} className='vector'/>
+                <img alt='vector' src={vector} className='vector' />
             </div>
             <div className='tell-us-about-spot'>
                 <span
-                style={{color: 'white', fontSize: '40px', fontWeight: '400'}}
+                    style={{ color: 'white', fontSize: '40px', fontWeight: '400' }}
                 >Tell us about your spot!</span>
             </div>
             <img alt='gradient' className='create-spot-left' src={gradient} />
@@ -237,7 +237,7 @@ function CreateSpotForm() {
                             />
                         </div>
                         {errors && errors.description && <div className='create-errors'
-                        style={{marginTop: '0px'}}
+                            style={{ marginTop: '0px' }}
                         >
                             {errors.description}
                         </div>}
@@ -250,7 +250,7 @@ function CreateSpotForm() {
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
                         />
-                        {!!imageError.length && <div className='create-errors' style={{top: '58px'}}>{imageError}</div>}
+                        {!!imageError.length && <div className='create-errors' style={{ top: '58px' }}>{imageError}</div>}
                         <input
                             value={image2URL}
                             type='text'
@@ -281,8 +281,8 @@ function CreateSpotForm() {
                         />
                         <div>
                             <button
-                            style={{width: '360px'}}
-                            className='create-spot-submit' onClick={(e) => handleSubmit(e)}>Submit</button>
+                                style={{ width: '360px' }}
+                                className='create-spot-submit' onClick={(e) => handleSubmit(e)}>Submit</button>
                         </div>
                     </div>
                 </div>
