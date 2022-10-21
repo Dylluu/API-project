@@ -6,7 +6,7 @@ import './MainNavigation.css';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
-import logo from '../../assets/aALogo.svg';
+import logo from '../../assets/airLogo.png';
 import SignupFormPage from '../SignupFormPage/SignupFormPage';
 import useModalContext from '../../context/ShowModalContext';
 

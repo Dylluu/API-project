@@ -80,7 +80,7 @@ const SpotDetails = () => {
                     {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
                     <span style={{ marginLeft: '4px', fontWeight: '250' }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
                     </div>
-                    {isLoaded && !!user && spot?.Owner.id === user?.id && <div className='update-delete-buttons'>
+                    {isLoaded && !!user && spot?.Owner?.id === user?.id && <div className='update-delete-buttons'>
                         <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
                         <span className='up-del-actual-buttons' onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
                     </div>}
@@ -159,7 +159,7 @@ const SpotDetails = () => {
                 alt='airCover' src={airCover}
                 />
                 <div className='spot-description-text'
-                style={{marginTop: '0px'}}
+                style={{marginTop: '5px'}}
                 >
                     <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
                 </div>
