@@ -6,7 +6,7 @@ import './MainNavigation.css';
 import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginFormPage from '../LoginFormPage/LoginFormPage';
-import logo from '../../assets/airbnbLogo.png';
+import logo from '../../assets/aALogo.svg';
 import SignupFormPage from '../SignupFormPage/SignupFormPage';
 import useModalContext from '../../context/ShowModalContext';
 

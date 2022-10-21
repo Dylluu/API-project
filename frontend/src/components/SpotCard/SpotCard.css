@@ -20,6 +20,14 @@
 
 .spot-location {
     font-weight: 450;
+    /* border: solid 1px red; */
+}
+
+.spot-top-text {
+    display: flex;
+    /* border: solid 1px green; */
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .spot-card-text {
@@ -27,6 +35,26 @@
     margin-top: 10px;
     flex-direction: column;
     font-weight: 300;
+    /* border: solid 1px blue; */
+}
+
+.card-stars {
+    /* border: solid 1px pink; */
+    display: flex;
+    flex-direction: row;
+}
+
+.star-div {
+    margin-right: 3px;
+    /* border: solid 1px red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spacing-div {
+    height: 3px;
+    /* border: solid 1px green; */
 }
 
 span {
