@@ -282,6 +282,13 @@
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
+#airCover {
+    /* border: solid 1px red; */
+    height: 28px;
+    width: 130px;
+    margin-top: 30px;
+}
+
 .spot-reviews {
     min-height: 500px;
     margin-bottom: 30px;

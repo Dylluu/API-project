@@ -10,6 +10,7 @@ import { Modal } from '../../context/Modal';
 import UpdateSpotForm from '../UpdateSpotForm';
 import { deleteSpotThunk } from '../../store/spots';
 import { deleteReviewThunk } from '../../store/reviews';
+import airCover from '../../assets/airCover.webp'
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -148,6 +149,19 @@ const SpotDetails = () => {
                     <div className='spot-misc-text'>
                         <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '16px' }}>Free cancellation</span>
                     </div>
+                </div>
+            </div>
+            <div className='spot-description'
+            style={{flexDirection: 'column'}}
+            >
+                <img
+                id='airCover'
+                alt='airCover' src={airCover}
+                />
+                <div className='spot-description-text'
+                style={{marginTop: '0px'}}
+                >
+                    <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
                 </div>
             </div>
             <div className='spot-description'>
