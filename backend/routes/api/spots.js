@@ -253,7 +253,7 @@ router.get('/:spotId', async(req, res) => {
         const fixedRating = numRating.toFixed(1)
 
         if(isNaN(fixedRating)){
-            spot.avgStarRating = 'No ratings available'
+            spot.avgStarRating = 'New'
         } else{spot.avgStarRating = parseFloat(fixedRating)}
 
         spot.numReviews = reviewCount
@@ -349,7 +349,7 @@ router.get('/', validateQueries, async(req, res, next) => {
         const fixedRating = numRating.toFixed(1)
 
         if(isNaN(fixedRating)){
-            spots[i].avgRating = 'No reviews available'
+            spots[i].avgRating = 'New'
         } else {
             spots[i].avgRating = parseFloat(fixedRating)
         }

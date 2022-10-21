@@ -144,7 +144,7 @@
 }
 
 .spot-details-middle-left {
-    min-width: 55%;
+    min-width: 60%;
     /* border: solid 1px green; */
 }
 
@@ -152,7 +152,91 @@
     display: flex;
     /* border: solid 1px purple; */
     width: 100%;
+    justify-content: flex-end;
+}
+
+.price-form {
+    width: 87%;
+    height: 285px;
+    border: solid 1px #C8C8C8;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    padding-top: 20px;
+    border-radius: 11px;
+    box-shadow: 0px 6px 16px lightgray;
+}
+
+.inner-price-form {
+    height: 95%;
+    width: 87%;
+    /* border: solid 1px blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.first-pf {
+    height: 10%;
+    width: 100%;
+    /* border: solid 1px green; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ppn {
+    /* border: solid 1px orange; */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.left-ppn {
+    /* border: solid 1px aqua; */
+    margin-right: 3px;
+}
+
+.repeated-stars {
+    /* border: solid 1px green; */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.second-pf {
+    width: 100%;
+    margin-top: 15px;
+    height: 1px;
+    /* border: solid 1px green; */
+    display: flex;
+    align-self: center;
+    background-color: #C8C8C8;
+}
+
+.third-pf {
+    width: 100%;
+    display: flex;
+    /* border: solid 1px green; */
+    margin-top: 20px;
+    height: 120px;
+}
+
+.seven-nights {
+    display: flex;
+    flex-direction: row;
+    font-weight: 250;
+    width: 100%;
+    justify-content: space-between;
+    /* border: solid 1px lightcoral; */
+    margin-bottom: 20px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-weight: 450;
 }
 
 .spot-misc-info {
@@ -196,7 +280,8 @@
 }
 
 .spot-reviews {
-    height: 500px;
+    min-height: 500px;
+    margin-bottom: 30px;
     /* border: solid 1px red; */
 }
 

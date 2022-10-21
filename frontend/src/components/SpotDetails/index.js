@@ -27,6 +27,8 @@ const SpotDetails = () => {
         const newDate = date.split('-')
         return `${months[newDate[1].toString()]} ${newDate[0]}`
     }
+    const totalPrice = ((spot.price * 7) + (spot.price/5) + (spot.price/4))
+    console.log(totalPrice)
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -155,6 +157,66 @@ const SpotDetails = () => {
             </div>
             </div>
             <div className='spot-details-middle-right'>
+                <div className='price-form'>
+                    <div className='inner-price-form'>
+                    <div className='first-pf'>
+                        {isLoaded &&
+                        <div className='ppn'>
+                        <div className='left-ppn'>
+                        <span
+                        style={{fontSize: '23px', fontWeight: '500'}}
+                        >${spot.price}</span>
+                        </div>
+                        <div className='right-ppn'>
+                        <span
+                        style={{fontWeight: '300', marginBottom: '2px'}}
+                        >night</span>
+                        </div>
+                        </div>
+                        }
+                        {isLoaded && <div className='repeated-stars'>
+                        <i className="fa-solid fa-star" style={{ fontSize: '12px', marginBottom: '3px' }}></i>
+                    <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                    <span className='dot'>∙</span>
+                    <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                        </div>}
+                    </div>
+                    <div className='second-pf'>
+                    </div>
+                    <div className='third-pf'>
+                    {isLoaded &&
+                        <div style={{width: '100%'}}>
+                            <div className='seven-nights'>
+                                <span
+                                style={{textDecoration: 'underline'}}
+                                >${spot.price} x 7 nights</span>
+                                <span>${spot.price * 7}</span>
+                            </div>
+                            <div className='seven-nights'>
+                                <span
+                                style={{textDecoration: 'underline'}}
+                                >Cleaning fee</span>
+                                <span>${(spot.price/5).toFixed(0)}</span>
+                            </div>
+                            <div className='seven-nights'>
+                                <span
+                                style={{textDecoration: 'underline'}}
+                                >Service fee</span>
+                                <span>${(spot.price/4).toFixed(0)}</span>
+                            </div>
+                        </div>}
+                    </div>
+                    <div className='second-pf'
+                    style={{marginTop: '5px'}}
+                    ></div>
+                    {isLoaded &&
+                    <div className='total'>
+                        <span>Total before taxes</span>
+                        <span>${totalPrice.toFixed(0)}</span>
+                    </div>
+                    }
+                    </div>
+                </div>
             </div>
             </div>
             <div className='spot-reviews'>
