@@ -71,6 +71,48 @@ module.exports = {
       userId: 1,
       review: 'The place was great! Even better than the pictures, just a little pricey.',
       stars: 4
+    },
+    {
+      spotId: 4,
+      userId: 5,
+      review: 'Super nice and accommodating place! Very well kept :)',
+      stars: 5
+    },
+    {
+      spotId: 4,
+      userId: 2,
+      review: 'Cool place for a vacation, but a bit cold.',
+      stars: 4
+    },
+    {
+      spotId: 5,
+      userId: 3,
+      review: 'What a beautiful area in the fall. We had a lovely drive to our great accommodations.',
+      stars: 5
+    },
+    {
+      spotId: 6,
+      userId: 4,
+      review: 'Amazing concept! I got lost and could not find the house at one point though.',
+      stars: 4
+    },
+    {
+      spotId: 6,
+      userId: 3,
+      review: 'Had a great time!',
+      stars: 5
+    },
+    {
+      spotId: 7,
+      userId: 4,
+      review: 'Best airbnb I have seen',
+      stars: 5
+    },
+    {
+      spotId: 8,
+      userId: 5,
+      review: 'Pools are super cool!',
+      stars: 5
     }
    ])
   },
