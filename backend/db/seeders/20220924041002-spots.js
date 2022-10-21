@@ -45,7 +45,7 @@ module.exports = {
     lat: 3.16,
     lng: 3.16,
     name: 'Beachfront Mansion',
-    description: 'Entertain or unwind in paradise at Samujana Twenty-One. This six-bedroom Los Angeles vacation rental, part of the exclusive Samujana estate, has outdoor living areas designed for parties and dinners, a large garden and panoramic ocean views.',
+    description: 'Entertain or unwind in paradise at Samujana Twenty-One. This six-bedroom Los Angeles vacation rental, part of the exclusive Samujana estate, has outdoor living areas designed for parties and dinners.',
     price: 920.00
    },
    {
@@ -57,7 +57,7 @@ module.exports = {
     lat: 3.16,
     lng: 3.16,
     name: 'Holiday Valley Condo',
-    description: 'Renovated condo with 1 private bedroom (queen), loft (full, twin over full bunk, twin sofa bed) & full bath. Beautiful galley kitchen w/ stainless appliances, hickory cabinets, quartz countertops.',
+    description: 'Renovated condo with 1 private bedroom (queen), loft (full, twin over full bunk, twin sofa bed) & full bath.',
     price: 259.00
    },
    {
@@ -69,7 +69,7 @@ module.exports = {
     lat: 3.16,
     lng: 3.16,
     name: 'The Pond House',
-    description: 'A modern, private cabin secluded within a private 19 acres, just 90 miles away from New York City !  This stunning home was designed by Sundial Studios Architecture & Design, and was featured both within Dwell Magazine (google: wabi sabi weekend cabin) and the NY Times (google: haiku of a home).',
+    description: 'A modern, private cabin secluded within a private 19 acres, just 90 miles away from New York City !  This stunning home was designed by Sundial Studios Architecture & Design, and was featured within Dwell Magazine.',
     price: 520.00
    },
    {
@@ -93,7 +93,7 @@ module.exports = {
     lat: 3.16,
     lng: 3.16,
     name: 'Modern Luxury Home',
-    description: "Relax in a luxurious 3-story Malibu getaway with spectacular ocean & mountain views. Our newly-built mid-century modern 4 bedroom, 3.5 bath home is nestled in the peaceful Santa Monica mountains just minutes from Southern California's most famous beaches.",
+    description: "Relax in a luxurious 3-story Malibu getaway with spectacular ocean & mountain views.",
     price: 1495.00
    },
    {
