@@ -28,7 +28,7 @@ const SpotDetails = () => {
         return `${months[newDate[1].toString()]} ${newDate[0]}`
     }
     const totalPrice = ((spot.price * 7) + (spot.price/5) + (spot.price/4))
-    console.log(totalPrice)
+    // console.log(totalPrice)
 
     useEffect(() => {
         dispatch(getSpot(spotId))
