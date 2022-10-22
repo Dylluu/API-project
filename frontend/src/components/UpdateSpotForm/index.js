@@ -67,7 +67,7 @@ function UpdateSpotForm() {
             const data = await res.json();
             if(data && data.errors){
                 setErrors(data.errors);
-                console.log('LOGGING', errors)
+                // console.log('LOGGING', errors)
             }
         })
         // await dispatch(getSpots)
