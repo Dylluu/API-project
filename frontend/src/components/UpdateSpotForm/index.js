@@ -15,7 +15,7 @@ function UpdateSpotForm() {
     const {spotId} = useParams();
     useEffect(() => {
         const spotDetails = dispatch(getSpot(spotId))
-        console.log(spotDetails)
+        // console.log(spotDetails)
     },[dispatch])
     const spot = useSelector(state => state.spots);
 

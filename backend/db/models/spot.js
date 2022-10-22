@@ -133,7 +133,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         len: {
           args: [1, 254],
-          msg: 'Description is required'
+          msg: 'Description must be between 1 and 255 characters'
         }
       }
     },
