@@ -68,6 +68,8 @@ const SpotDetails = () => {
 
     if(!Object.values(spot).length) return null;
 
+    if(!spot.SpotImages) return null;
+
     return (
         <div className='spot-details-container'>
             <div className='spot-name'>
