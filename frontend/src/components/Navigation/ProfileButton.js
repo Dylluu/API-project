@@ -44,7 +44,6 @@ function ProfileButton({ user }) {
       <i style={{color: 'white'}} className="fa-solid fa-user"></i>
       </div>
       </div>
-      </div>
       {showMenu && (
         <div className="profile-dropdown" id='profile-dropdown-LO' style={{height: '100px', justifyContent: 'center'}}>
           <div className="user-info">
@@ -54,6 +53,7 @@ function ProfileButton({ user }) {
             <div id='logout-div' className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
         </div>
       )}
+      </div>
     </>
   );
 }

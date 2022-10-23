@@ -47,9 +47,10 @@ function MainNavigation({ isLoaded }) {
                     <i style={{color: 'white'}} className="fa-solid fa-user"></i>
                     </div>
                     </div>
-                </div>
                 {showMenu && (
-                    <div className='profile-dropdown'>
+                    <div className='profile-dropdown'
+                    style={{marginRight: '5rem'}}
+                    >
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
                         </div>
@@ -59,6 +60,7 @@ function MainNavigation({ isLoaded }) {
                     </div>
                 )
                 }
+                </div>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <LoginFormPage />

@@ -48,7 +48,9 @@ function Navigation({ isLoaded }) {
                     </div>
                     </div>
                     {showMenu && (
-                    <div className='profile-dropdown'>
+                    <div className='profile-dropdown'
+                    style={{marginRight: '5rem'}}
+                    >
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
                         </div>
