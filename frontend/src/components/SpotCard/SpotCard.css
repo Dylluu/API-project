@@ -1,8 +1,10 @@
 .spot-card {
-    width: 275px;
+    width: 100%;
     min-height: 300px;
+    /* min-height: 300px; */
     /* max-height: 300px; */
     /* margin: 10px; */
+    /* border: solid 1px blue; */
 }
 
 .spot-image {
@@ -10,8 +12,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    min-height: 245px;
-    max-height: 245px;
+    min-height: 260px;
+    /* max-height: 245px; */
     /* height: 80%; */
     /* max-width: 100%;
     min-height: 230px;
