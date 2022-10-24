@@ -39,8 +39,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Street address is required'
         },
         len: {
-          args: [1, 254],
-          msg: 'Address is required'
+          args: [1, 50],
+          msg: 'Address must be between 1 and 50 characters'
         }
       }
     },
@@ -52,8 +52,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'City is required'
         },
         len: {
-          args: [1, 254],
-          msg: 'City is required'
+          args: [1, 20],
+          msg: 'City must be between 1 and 20 characters'
         }
       }
     },
@@ -65,8 +65,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'State is required'
         },
         len: {
-          args: [1, 254],
-          msg: 'State is required'
+          args: [1, 20],
+          msg: 'State must be between 1 and 20 characters'
         }
       }
     },
@@ -78,8 +78,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Country is required'
         },
         len: {
-          args: [1, 254],
-          msg: 'Country is required'
+          args: [1, 20],
+          msg: 'Country must be between 1 and 20 characters'
         }
       }
     },
@@ -119,8 +119,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Name is required'
         },
         len: {
-          args: [1, 50],
-          msg: 'Name must be between 1 and 50 characters'
+          args: [1, 30],
+          msg: 'Name must be between 1 and 30 characters'
         }
       }
     },
@@ -151,6 +151,10 @@ module.exports = (sequelize, DataTypes) => {
         min: {
           args: [1],
           msg: "Price per day cannot be lower than 1"
+        },
+        max: {
+          args: [9999],
+          msg: "Price per day cannot be higher than 9,999"
         }
       }
     }
