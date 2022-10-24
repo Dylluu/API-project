@@ -50,7 +50,9 @@ function ProfileButton({ user }) {
             <div className="user-info-text" style={{fontWeight: '200', height:'25px'}}>{user.firstName} {user.lastName}</div>
             <div className="user-info-text" style={{fontWeight: '200', height:'25px'}}>{user.username}</div>
             </div>
-            <div id='logout-div' className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
+            <div id='logout-div'
+            style={{borderRadius: '5px'}}
+            className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
         </div>
       )}
       </div>
