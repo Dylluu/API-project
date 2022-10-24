@@ -2,7 +2,7 @@
 
 ***
 
-Airbenbe is a clone inspired by [AirBnB](https://www.airbnb.com/).
+Airbenbe is a clone inspired by [AirBnB](https://www.airbnb.com/). It is a fullstack project utilizing an Express backend, and a React/Redux frontend.
 
 Visit [airbenbe](https://airbenbe.herokuapp.com/) to check it out!
 
@@ -30,6 +30,11 @@ Visit [airbenbe](https://airbenbe.herokuapp.com/) to check it out!
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
+## What's Next
+
+Features To-Do:
+- Bookings (Full CRUD)
+- Add Review Image
 
 ## Getting Started
 
