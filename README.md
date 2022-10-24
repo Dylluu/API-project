@@ -38,7 +38,7 @@ Features To-Do:
 
 ## Getting Started
 
-To view this application locally, clone the repository, and open up two terminals. cd into the backend folder in the first terminal, and run npm start. Then, cd into the frontend folder, and run npm start.
+To view this application locally, clone the repository and open up two terminals. cd into the backend folder in the first terminal, and run npm start. Then, cd into the frontend folder in the second terminal and run npm start. The application should start on port 3000 of the localhost.
 
 ## Features Preview
 
