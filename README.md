@@ -39,3 +39,29 @@ Features To-Do:
 ## Getting Started
 
 To view this application locally, clone the repository, and open up two terminals. cd into the backend folder in the first terminal, and run npm start. Then, cd into the frontend folder, and run npm start.
+
+## Features Preview
+
+### Spots
+
+Create a Spot
+- Submit the following form to create a spot listing
+- Spots can be deleted
+
+![image](./assets/createSpot.png)
+
+View your Spot
+- Checkout each spot page
+
+![image](./assets/eachSpot.png)
+
+Update a Spot
+- Make changes to your existing spots with the update spot form
+
+![image](./assets/updateSpot.png)
+
+Submit a Review
+- Submit a review for a spot using the following form
+- Reviews can be deleted
+
+![image](./assets/reviewForm.png)
