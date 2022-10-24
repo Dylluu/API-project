@@ -65,3 +65,7 @@ Submit a Review
 - Reviews can be deleted
 
 ![image](./assets/reviewForm.png)
+
+## Contact
+
+LinkedIn: https://www.linkedin.com/in/dylan-luu-0a869b1b8/
