@@ -75,7 +75,8 @@ function SignupFormPage() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           // required
-          placeholder="First Name"
+          maxLength='30'
+          placeholder="First Name (Must be between 1 and 30 characters)"
           className="su-input"
         />
         </div>
@@ -85,7 +86,8 @@ function SignupFormPage() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           // required
-          placeholder="Last Name"
+          maxLength='30'
+          placeholder="Last Name (Must be between 1 and 30 characters)"
           className="su-input"
         />
         </div>
