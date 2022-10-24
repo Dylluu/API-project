@@ -79,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "User with that email already exists"
         },
         validate: {
-          len: [3, 256],
+          len: [6, 40],
           isEmail: true
         }
       },

@@ -51,7 +51,9 @@ function SignupFormPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Email"
+            minLength='6'
+            maxLength='40'
+            placeholder="Email (Must be between 6 and 40 characters)"
             className="su-input"
           />
         </div>
@@ -61,7 +63,9 @@ function SignupFormPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            placeholder="Username (Must be at least 4 characters)"
+            maxLength='30'
+            minLength='4'
+            placeholder="Username (Must be between 4 and 30 characters)"
             className="su-input"
           />
         </div>
@@ -70,7 +74,7 @@ function SignupFormPage() {
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          required
+          // required
           placeholder="First Name"
           className="su-input"
         />
@@ -80,7 +84,7 @@ function SignupFormPage() {
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          required
+          // required
           placeholder="Last Name"
           className="su-input"
         />

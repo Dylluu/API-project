@@ -47,8 +47,8 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div className="profile-dropdown" id='profile-dropdown-LO' style={{height: '100px', justifyContent: 'center'}}>
           <div className="user-info">
-            <div className="user-info-text" style={{fontWeight: '200', height:'25px'}}>{user.firstName} {user.lastName}</div>
-            <div className="user-info-text" style={{fontWeight: '200', height:'25px'}}>{user.username}</div>
+            <div className="user-info-text" style={{fontWeight: '200', height:'25px', overflow: 'hidden'}}>{user.firstName} {user.lastName}</div>
+            <div className="user-info-text" style={{fontWeight: '200', height:'25px', overflow: 'hidden'}}>{user.username}</div>
             </div>
             <div id='logout-div'
             style={{borderRadius: '5px'}}
