@@ -249,6 +249,7 @@ function CreateSpotForm() {
                             placeholder='Preview Image URL'
                             onChange={(e) => setImage1URL(e.target.value)}
                             className='input'
+                            maxLength='255'
                         />
                         {!!imageError.length && <div className='create-errors' style={{ top: '58px' }}>{imageError}</div>}
                         <input
@@ -257,6 +258,7 @@ function CreateSpotForm() {
                             placeholder='Image 2 URL'
                             onChange={(e) => setImage2URL(e.target.value)}
                             className='input'
+                            maxLength='255'
                         />
                         <input
                             value={image3URL}
@@ -264,6 +266,7 @@ function CreateSpotForm() {
                             placeholder='Image 3 URL'
                             onChange={(e) => setImage3URL(e.target.value)}
                             className='input'
+                            maxLength='255'
                         />
                         <input
                             value={image4URL}
@@ -271,6 +274,7 @@ function CreateSpotForm() {
                             placeholder='Image 4 URL'
                             onChange={(e) => setImage4URL(e.target.value)}
                             className='input'
+                            maxLength='255'
                         />
                         <input
                             value={image5URL}
@@ -278,6 +282,7 @@ function CreateSpotForm() {
                             placeholder='Image 5 URL'
                             onChange={(e) => setImage5URL(e.target.value)}
                             className='input'
+                            maxLength='255'
                         />
                         <div>
                             <button
