@@ -11,17 +11,33 @@ const SpotsBrowser = () => {
     const spots = useSelector(state => state.spots);
     const spotsArray = Object.values(spots)
     const [isLoaded, setIsLoaded] = useState(false);
+    const [count, setCount] = useState(0);
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
+
+    useEffect(() => {
+        let counter = count;
+        const interval = setInterval(() => {
+          if (counter >= spotsArray.length) {
+            clearInterval(interval);
+          } else {
+            setCount(count => count + 1);
+            counter++; // local variable that this closure will see
+          }
+        }, 35);
+        return () => clearInterval(interval);
+      }, [spotsArray]);
+
+      const spotsArrayList = spotsArray.slice(0, count).map(spot => (
+        <SpotCard key={spot.id} spot={spot}/>
+    ))
 
     setTimeout(() => setIsLoaded(true), 100)
 
     return (
         <div className='spots-container'>
-            {isLoaded && spotsArray.map(spot => (
-                <SpotCard key={spot.id} spot={spot}/>
-            ))}
+            {isLoaded && spotsArrayList}
             <div className='bott-bar'>
                 <div className='bott-inner'>
                     <div className='bott-left'>
