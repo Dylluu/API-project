@@ -11,6 +11,8 @@ import UpdateSpotForm from '../UpdateSpotForm';
 import { deleteSpotThunk } from '../../store/spots';
 import { deleteReviewThunk } from '../../store/reviews';
 import airCover from '../../assets/airCover.webp'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -36,7 +38,7 @@ const SpotDetails = () => {
         dispatch(getReviews(spotId))
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 400)
+    setTimeout(() => setIsLoaded(true), 600)
 
     const handleDeleteClick = async(e) => {
         e.preventDefault();
@@ -94,29 +96,36 @@ const SpotDetails = () => {
             </div>
             <div className='spot-details-images'>
                 <div className='img-1-container'>
-                    {!isLoaded && <div className='img-1'></div>}
+                    {!isLoaded && <Skeleton
+                    style={{height: '400px', minWidth: '80%', borderTopLeftRadius: '12px', borderBottomLeftRadius: '12px'}}
+                    />}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[0] &&
                         <img className='img-1' alt='img1' src={spot?.SpotImages[0].url} />
                     }
                     {isLoaded && !spot?.SpotImages[0] && <div className='img-1'></div>}
                 </div>
                 <div className='rest-images-container'>
-                    {!isLoaded && <div className='img-2'></div>}
+                    {!isLoaded && <div className='img-2'><Skeleton height='100%'
+                    /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[1] &&
                         <img className='img-2' alt='img2' src={spot?.SpotImages[1].url} />
                     }
                     {isLoaded && !spot?.SpotImages[1] && <div className='img-2'></div>}
-                    {!isLoaded && <div className='img-3'></div>}
+                    {!isLoaded && <div className='img-3'><Skeleton height='100%'
+                    style={{borderTopRightRadius: '12px'}}
+                    /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[2] &&
                         <img className='img-3' alt='img3' src={spot?.SpotImages[2].url} />
                     }
                     {isLoaded && !spot?.SpotImages[2] && <div className='img-3'></div>}
-                    {!isLoaded && <div className='img-4'></div>}
+                    {!isLoaded && <div className='img-4'><Skeleton height='100%'/></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[3] &&
                         <img className='img-4' alt='img4' src={spot?.SpotImages[3].url} />
                     }
                     {isLoaded && !spot?.SpotImages[3] && <div className='img-4'></div>}
-                    {!isLoaded && <div className='img-5'></div>}
+                    {!isLoaded && <div className='img-5'><Skeleton height='100%'
+                    style={{borderBottomRightRadius: '12px'}}
+                    /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[4] &&
                         <img className='img-5' alt='img5' src={spot?.SpotImages[4].url} />
                     }

@@ -111,14 +111,14 @@
 
 .img-2 {
     height: 197px;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     width: 49.5%;
     object-fit: cover;
 }
 
 .img-3 {
     height: 197px;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     margin-left: 1%;
     width: 49.5%;
     border-top-right-radius: 12px;
@@ -127,7 +127,7 @@
 
 .img-4 {
     height: 197px;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     width: 49.5%;
     margin-top: 6px;
     object-fit: cover;
@@ -135,7 +135,7 @@
 
 .img-5 {
     height: 197px;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     margin-left: 1%;
     width: 49.5%;
     margin-top: 6px;

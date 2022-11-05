@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSpots } from '../../store/spots';
 import './Spots.css';
 import SpotCard from '../SpotCard';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const SpotsBrowser = () => {
     const dispatch = useDispatch();
@@ -13,7 +15,7 @@ const SpotsBrowser = () => {
         dispatch(getSpots())
     }, [dispatch])
 
-    setTimeout(() => setIsLoaded(true), 300)
+    setTimeout(() => setIsLoaded(true), 100)
 
     return (
         <div className='spots-container'>
