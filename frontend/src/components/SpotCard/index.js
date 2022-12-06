@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const SpotCard = ({spot}) => {
     const [isLoaded, setIsLoaded] = useState(false)
-    setTimeout(() => setIsLoaded(true), 600)
+    setTimeout(() => setIsLoaded(true), 450)
 
     return (
         <NavLink className='spot-card' to={`/spots/${spot.id}`}>
