@@ -209,7 +209,24 @@ const SpotDetails = () => {
                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                         </div>}
                     </div>
-                    <div className='second-pf'>
+                    <div className='reservation-dates'>
+                        <div className='check-in-check-out'>
+                            <div className='check-in-date'>
+                                <div className='check-in-date-inner'>
+                                <span id='check-in'>CHECK-IN</span>
+                                <span id='check-in-mdy'>1/4/2023</span>
+                                </div>
+                            </div>
+                            <div className='check-out-date'>
+                            <div className='check-in-date-inner'>
+                                <span id='check-in'>CHECKOUT</span>
+                                <span id='check-in-mdy'>1/4/2023</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id='reserve-button'>
+                            <span id='reserve-button-text'>Reserve</span>
+                        </div>
                     </div>
                     <div className='third-pf'>
                     {isLoaded &&

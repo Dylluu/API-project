@@ -10,13 +10,14 @@
     border-bottom: solid 1px #E8E8E8;
     background-color: white;
     overflow: hidden;
+    z-index: 3;
 }
 
 .inner-nav-div {
     display: flex;
     flex-direction: row;
     /* border: solid 2px green; */
-    min-width: 1200px;
+    min-width: 1140px;
     margin-left: 10%;
     margin-right: 10%;
     max-width: 1200px;
