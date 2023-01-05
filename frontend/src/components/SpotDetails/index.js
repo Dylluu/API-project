@@ -13,6 +13,8 @@ import { deleteReviewThunk } from '../../store/reviews';
 import airCover from '../../assets/airCover.webp'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+// import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -25,6 +27,7 @@ const SpotDetails = () => {
     const reviewsArray = Object.values(reviews);
     const reviewIdsArray = reviewsArray.map(review => review.userId);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [calendarOpen, setCalendarOpen] = useState(false);
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
     const dateArray = (date) => {
         const newDate = date.split('-')
@@ -37,6 +40,17 @@ const SpotDetails = () => {
         dispatch(getSpot(spotId))
         dispatch(getReviews(spotId))
     }, [dispatch])
+
+    useEffect(() => {
+        const yearPrevArrow = document.getElementsByClassName('react-calendar__navigation__prev2-button')[0]
+        const yearNextArrow = document.getElementsByClassName('react-calendar__navigation__next2-button')[0]
+        if(yearPrevArrow) {
+            yearPrevArrow.classList.add('invisible-arrow')
+        }
+        if(yearNextArrow) {
+            yearNextArrow.classList.add('invisible-arrow')
+        }
+    }, [calendarOpen])
 
     setTimeout(() => setIsLoaded(true), 600)
 
@@ -66,6 +80,13 @@ const SpotDetails = () => {
         await dispatch(getReviews(spotId));
 
         await dispatch(getSpot(spotId));
+    }
+
+    function handleReserveClick() {
+        setCalendarOpen(true);
+        document.addEventListener('click', () => {
+            setCalendarOpen(false);
+        })
     }
 
     if(!Object.values(spot).length) return null;
@@ -209,8 +230,16 @@ const SpotDetails = () => {
                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                         </div>}
                     </div>
-                    <div className='reservation-dates'>
-                        <div className='check-in-check-out'>
+                    {isLoaded && <div className='reservation-dates'>
+                        <div className='check-in-check-out'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setCalendarOpen(true)
+                            document.addEventListener('click', () => {
+                                setCalendarOpen(false)
+                            })
+                        }}
+                        >
                             <div className='check-in-date'>
                                 <div className='check-in-date-inner'>
                                 <span id='check-in'>CHECK-IN</span>
@@ -223,11 +252,50 @@ const SpotDetails = () => {
                                 <span id='check-in-mdy'>1/4/2023</span>
                                 </div>
                             </div>
+                            {calendarOpen && (
+                            <div className='calendar-container'>
+                            <div className='calendar-wrapper'>
+                                <div className='date-range-top-info'>
+                                    <div className='date-range-top-info-left'>
+                                        <span id='date-range-top-info-nights'>7 nights</span>
+                                        <span id='date-range-top-info-range'>Feb 16, 2023 - Feb 23, 2023</span>
+                                    </div>
+                                    <div id='datepicker-checkin-checkout'>
+                                    <div className='check-in-date' id='datepicker-checkin'>
+                                <div className='check-in-date-inner'>
+                                <span id='check-in'>CHECK-IN</span>
+                                <span id='check-in-mdy'>1/4/2023</span>
+                                </div>
+                            </div>
+                            <div className='check-out-date'>
+                            <div className='check-in-date-inner'>
+                                <span id='check-in'>CHECKOUT</span>
+                                <span id='check-in-mdy'>1/4/2023</span>
+                                </div>
+                            </div>
+                                    </div>
+                                </div>
+                            <DateRangePicker
+                            calendarClassName='daterangepicker'
+                            onClick={(e) => e.stopPropagation()}
+                            rangeDivider={false}
+						    showDoubleView={true}
+						    monthPlaceholder={'mm'}
+						    yearPlaceholder={'yyyy'}
+						    dayPlaceholder={'dd'}
+						    showNeighboringMonth={false}
+                            isOpen={true}
+                            closeCalendar={false}
+
+                            />
+                            </div>
+                            </div>
+                            )}
                         </div>
                         <div id='reserve-button'>
                             <span id='reserve-button-text'>Reserve</span>
                         </div>
-                    </div>
+                    </div>}
                     <div className='third-pf'>
                     {isLoaded &&
                         <div style={{width: '100%'}}>
