@@ -28,13 +28,18 @@ const SpotDetails = () => {
     const reviewIdsArray = reviewsArray.map(review => review.userId);
     const [isLoaded, setIsLoaded] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
+    const [startDate, setStartDate] = useState('Add date');
+    const [endDate, setEndDate] = useState('Add date');
+    const [selectedDates, setSelectedDates] = useState('');
+    const [numNights, setNumNights] = useState('Select dates');
+    const [numNightsPrice, setNumNightsPrice] = useState(1);
+    const [travelDates, setTravelDates] = useState('Add travel dates for exact pricing');
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
     const dateArray = (date) => {
         const newDate = date.split('-')
         return `${months[newDate[1].toString()]} ${newDate[0]}`
     }
-    const totalPrice = ((spot.price * 7) + (spot.price/5) + (spot.price/4))
-    // console.log(totalPrice)
+    const totalPrice = ((spot.price * numNightsPrice) + (spot.price/5) + (spot.price/4))
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -44,13 +49,41 @@ const SpotDetails = () => {
     useEffect(() => {
         const yearPrevArrow = document.getElementsByClassName('react-calendar__navigation__prev2-button')[0]
         const yearNextArrow = document.getElementsByClassName('react-calendar__navigation__next2-button')[0]
+        const monthPrevArrow = document.getElementsByClassName('react-calendar__navigation__prev-button')[0]
+        const monthNextArrow = document.getElementsByClassName('react-calendar__navigation__next-button')[0]
+        const calendarNavigationLabel = document.getElementsByClassName('react-calendar__navigation__label')[0]
         if(yearPrevArrow) {
             yearPrevArrow.classList.add('invisible-arrow')
         }
         if(yearNextArrow) {
             yearNextArrow.classList.add('invisible-arrow')
         }
+        if(monthPrevArrow) {
+            monthPrevArrow.setAttribute('id', 'month-arrows')
+        }
+        if(monthNextArrow) {
+            monthNextArrow.setAttribute('id', 'month-arrows')
+        }
+        if(calendarNavigationLabel) {
+            calendarNavigationLabel.style.backgroundColor = 'white'
+        }
     }, [calendarOpen])
+
+    useEffect(() => {
+        if(selectedDates[1]) {
+            setEndDate(selectedDates[1].toLocaleDateString())
+        }
+    }, [selectedDates])
+
+    useEffect(() => {
+        if(selectedDates) {
+            setTravelDates(`${startDate} - ${endDate}`)
+            const timeDifference = new Date(startDate).getTime() - new Date(endDate).getTime()
+            const dayDifference = Math.abs(timeDifference / (1000 * 3600 * 24))
+            setNumNights(`${dayDifference} ${dayDifference == 1 ? 'night' : 'nights'}`)
+            setNumNightsPrice(dayDifference)
+        }
+    }, [endDate])
 
     setTimeout(() => setIsLoaded(true), 600)
 
@@ -80,13 +113,6 @@ const SpotDetails = () => {
         await dispatch(getReviews(spotId));
 
         await dispatch(getSpot(spotId));
-    }
-
-    function handleReserveClick() {
-        setCalendarOpen(true);
-        document.addEventListener('click', () => {
-            setCalendarOpen(false);
-        })
     }
 
     if(!Object.values(spot).length) return null;
@@ -236,20 +262,20 @@ const SpotDetails = () => {
                             e.stopPropagation();
                             setCalendarOpen(true)
                             document.addEventListener('click', () => {
-                                setCalendarOpen(false)
+                                setCalendarOpen(false);
                             })
                         }}
                         >
                             <div className='check-in-date'>
                                 <div className='check-in-date-inner'>
                                 <span id='check-in'>CHECK-IN</span>
-                                <span id='check-in-mdy'>1/4/2023</span>
+                                <span id='check-in-mdy'>{startDate}</span>
                                 </div>
                             </div>
                             <div className='check-out-date'>
                             <div className='check-in-date-inner'>
                                 <span id='check-in'>CHECKOUT</span>
-                                <span id='check-in-mdy'>1/4/2023</span>
+                                <span id='check-in-mdy'>{endDate}</span>
                                 </div>
                             </div>
                             {calendarOpen && (
@@ -257,20 +283,20 @@ const SpotDetails = () => {
                             <div className='calendar-wrapper'>
                                 <div className='date-range-top-info'>
                                     <div className='date-range-top-info-left'>
-                                        <span id='date-range-top-info-nights'>7 nights</span>
-                                        <span id='date-range-top-info-range'>Feb 16, 2023 - Feb 23, 2023</span>
+                                        <span id='date-range-top-info-nights'>{numNights}</span>
+                                        <span id='date-range-top-info-range'>{travelDates}</span>
                                     </div>
                                     <div id='datepicker-checkin-checkout'>
                                     <div className='check-in-date' id='datepicker-checkin'>
                                 <div className='check-in-date-inner'>
                                 <span id='check-in'>CHECK-IN</span>
-                                <span id='check-in-mdy'>1/4/2023</span>
+                                <span id='check-in-mdy'>{startDate}</span>
                                 </div>
                             </div>
-                            <div className='check-out-date'>
+                            <div className='check-out-date' id='datepicker-checkout'>
                             <div className='check-in-date-inner'>
                                 <span id='check-in'>CHECKOUT</span>
-                                <span id='check-in-mdy'>1/4/2023</span>
+                                <span id='check-in-mdy'>{endDate}</span>
                                 </div>
                             </div>
                                     </div>
@@ -278,16 +304,43 @@ const SpotDetails = () => {
                             <DateRangePicker
                             calendarClassName='daterangepicker'
                             onClick={(e) => e.stopPropagation()}
+                            onChange={setSelectedDates}
+                            value={selectedDates}
                             rangeDivider={false}
 						    showDoubleView={true}
 						    monthPlaceholder={'mm'}
 						    yearPlaceholder={'yyyy'}
 						    dayPlaceholder={'dd'}
 						    showNeighboringMonth={false}
+                            showFixedNumberOfWeeks={false}
                             isOpen={true}
                             closeCalendar={false}
-
+                            calendarType={'US'}
+                            minDetail={'month'}
+                            onClickDay={(value) => {
+                                if(startDate == 'Add date') {
+                                    setStartDate(value.toLocaleDateString())
+                                }
+                            }}
                             />
+                            <div className='calendar-clear-and-close'>
+                                <span id='clear-dates'
+                                onClick={() => {
+                                    setStartDate('Add date')
+                                    setEndDate('Add date')
+                                    setNumNights('Select dates')
+                                    setNumNightsPrice(1)
+                                    setTravelDates('Add travel dates for exact pricing')
+                                    setSelectedDates('')
+                                }}
+                                >Clear dates</span>
+                                <span id='close-calendar'
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    setCalendarOpen(false)
+                                }}
+                                >Close</span>
+                            </div>
                             </div>
                             </div>
                             )}
@@ -302,8 +355,8 @@ const SpotDetails = () => {
                             <div className='seven-nights'>
                                 <span
                                 style={{textDecoration: 'underline'}}
-                                >${spot.price} x 7 nights</span>
-                                <span>${spot.price * 7}</span>
+                                >${spot.price} x {numNightsPrice} {numNightsPrice == 1 ? 'night' : 'nights'}</span>
+                                <span>${spot.price * numNightsPrice}</span>
                             </div>
                             <div className='seven-nights'>
                                 <span
