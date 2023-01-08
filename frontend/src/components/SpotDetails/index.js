@@ -18,7 +18,7 @@ import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyl
 
 const SpotDetails = () => {
     const history = useHistory();
-    const {showReviewModal, setShowReviewModal} = useModalContext();
+    const { showReviewModal, setShowReviewModal } = useModalContext();
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spots);
@@ -34,12 +34,18 @@ const SpotDetails = () => {
     const [numNights, setNumNights] = useState('Select dates');
     const [numNightsPrice, setNumNightsPrice] = useState(1);
     const [travelDates, setTravelDates] = useState('Add travel dates for exact pricing');
+    const [isConfirmation, setIsConfirmation] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
+
     const dateArray = (date) => {
         const newDate = date.split('-')
         return `${months[newDate[1].toString()]} ${newDate[0]}`
     }
-    const totalPrice = ((spot.price * numNightsPrice) + (spot.price/5) + (spot.price/4))
+
+    const totalPrice = ((spot.price * numNightsPrice) + (spot.price / 5) + (spot.price / 4))
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -52,42 +58,45 @@ const SpotDetails = () => {
         const monthPrevArrow = document.getElementsByClassName('react-calendar__navigation__prev-button')[0]
         const monthNextArrow = document.getElementsByClassName('react-calendar__navigation__next-button')[0]
         const calendarNavigationLabel = document.getElementsByClassName('react-calendar__navigation__label')[0]
-        if(yearPrevArrow) {
+        if (yearPrevArrow) {
             yearPrevArrow.classList.add('invisible-arrow')
         }
-        if(yearNextArrow) {
+        if (yearNextArrow) {
             yearNextArrow.classList.add('invisible-arrow')
         }
-        if(monthPrevArrow) {
+        if (monthPrevArrow) {
             monthPrevArrow.setAttribute('id', 'month-arrows')
         }
-        if(monthNextArrow) {
+        if (monthNextArrow) {
             monthNextArrow.setAttribute('id', 'month-arrows')
         }
-        if(calendarNavigationLabel) {
+        if (calendarNavigationLabel) {
             calendarNavigationLabel.style.backgroundColor = 'white'
+        }
+        if (endDate == 'Add date') {
+            handleClearDates()
         }
     }, [calendarOpen])
 
     useEffect(() => {
-        if(selectedDates[1]) {
+        if (selectedDates[1]) {
             setEndDate(selectedDates[1].toLocaleDateString())
         }
     }, [selectedDates])
 
     useEffect(() => {
-        if(selectedDates) {
+        if (selectedDates) {
             setTravelDates(`${startDate} - ${endDate}`)
             const timeDifference = new Date(startDate).getTime() - new Date(endDate).getTime()
             const dayDifference = Math.abs(timeDifference / (1000 * 3600 * 24))
-            setNumNights(`${dayDifference} ${dayDifference == 1 ? 'night' : 'nights'}`)
-            setNumNightsPrice(dayDifference)
+            setNumNights(`${Math.round(dayDifference)} ${dayDifference == 1 ? 'night' : 'nights'}`)
+            setNumNightsPrice(Math.round(dayDifference))
         }
     }, [endDate])
 
     setTimeout(() => setIsLoaded(true), 600)
 
-    const handleDeleteClick = async(e) => {
+    const handleDeleteClick = async (e) => {
         e.preventDefault();
 
         await dispatch(deleteSpotThunk(spotId))
@@ -115,28 +124,48 @@ const SpotDetails = () => {
         await dispatch(getSpot(spotId));
     }
 
-    if(!Object.values(spot).length) return null;
+    const handleClearDates = (e) => {
+        setStartDate('Add date')
+        setEndDate('Add date')
+        setNumNights('Select dates')
+        setNumNightsPrice(1)
+        setTravelDates('Add travel dates for exact pricing')
+        setSelectedDates('')
+    }
 
-    if(!spot.SpotImages) return null;
+    const handleOpenCalendar = (e) => {
+        setCalendarOpen(true)
+        document.addEventListener('click', () => {
+            setCalendarOpen(false);
+        })
+    }
 
-    return (
+    const today = new Date()
+
+    if (!Object.values(spot).length) return null;
+
+    if (!spot.SpotImages) return null;
+
+    if(!isConfirmation) return (
         <div className='spot-details-container'>
             <div className='spot-name'>
                 <span style={{ fontSize: '27px' }}>{spot.name}</span>
                 <div className='spot-info-under-name'>
                     <div className='under-name-wrapper'>
-                    <i className="fa-solid fa-star" style={{ fontSize: '12px' }}></i>
-                    <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
-                    <span className='dot'>∙</span>
-                    <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
-                    <span className='dot'>∙</span>
-                    {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
-                    <span style={{ marginLeft: '4px', fontWeight: '250',
-                maxWidth: '500px', maxHeight: '20px', overflow: 'hidden' }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
+                        <i className="fa-solid fa-star" style={{ fontSize: '12px' }}></i>
+                        <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                        <span className='dot'>∙</span>
+                        <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                        <span className='dot'>∙</span>
+                        {/* <i style={{ fontSize: '14px', marginLeft: '6px', marginTop: '.1cm' }} className="fa-solid fa-medal"></i> */}
+                        <span style={{
+                            marginLeft: '4px', fontWeight: '250',
+                            maxWidth: '500px', maxHeight: '20px', overflow: 'hidden'
+                        }} className='spot-info-under-name-text'>{spot?.city}, {spot?.state}, {spot?.country}</span>
                     </div>
                     {isLoaded && !!user && spot?.Owner?.id === user?.id && <div className='update-delete-buttons'>
-                        <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{cursor: 'pointer'}}>Update</span>
-                        <span className='up-del-actual-buttons' onClick={(e) => handleDeleteClick(e)} style={{cursor: 'pointer'}}>Delete</span>
+                        <span className='up-del-actual-buttons' onClick={(e) => handleUpdateClick(e)} style={{ cursor: 'pointer' }}>Update</span>
+                        <span className='up-del-actual-buttons' onClick={(e) => handleDeleteClick(e)} style={{ cursor: 'pointer' }}>Delete</span>
                     </div>}
 
                 </div>
@@ -144,7 +173,7 @@ const SpotDetails = () => {
             <div className='spot-details-images'>
                 <div className='img-1-container'>
                     {!isLoaded && <Skeleton
-                    style={{height: '400px', minWidth: '80%', borderTopLeftRadius: '12px', borderBottomLeftRadius: '12px'}}
+                        style={{ height: '400px', minWidth: '80%', borderTopLeftRadius: '12px', borderBottomLeftRadius: '12px' }}
                     />}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[0] &&
                         <img className='img-1' alt='img1' src={spot?.SpotImages[0].url} />
@@ -159,19 +188,19 @@ const SpotDetails = () => {
                     }
                     {isLoaded && !spot?.SpotImages[1] && <div className='img-2'></div>}
                     {!isLoaded && <div className='img-3'><Skeleton height='100%'
-                    style={{borderTopRightRadius: '12px'}}
+                        style={{ borderTopRightRadius: '12px' }}
                     /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[2] &&
                         <img className='img-3' alt='img3' src={spot?.SpotImages[2].url} />
                     }
                     {isLoaded && !spot?.SpotImages[2] && <div className='img-3'></div>}
-                    {!isLoaded && <div className='img-4'><Skeleton height='100%'/></div>}
+                    {!isLoaded && <div className='img-4'><Skeleton height='100%' /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[3] &&
                         <img className='img-4' alt='img4' src={spot?.SpotImages[3].url} />
                     }
                     {isLoaded && !spot?.SpotImages[3] && <div className='img-4'></div>}
                     {!isLoaded && <div className='img-5'><Skeleton height='100%'
-                    style={{borderBottomRightRadius: '12px'}}
+                        style={{ borderBottomRightRadius: '12px' }}
                     /></div>}
                     {isLoaded && spot?.SpotImages && spot?.SpotImages[4] &&
                         <img className='img-5' alt='img5' src={spot?.SpotImages[4].url} />
@@ -180,218 +209,233 @@ const SpotDetails = () => {
                 </div>
             </div>
             <div className='spot-details-middle-section'>
-            <div className='spot-details-middle-left'>
-            <div>
-                {isLoaded && <span className='spot-name'>{spot.name} hosted by {spot.Owner.firstName}</span>}
-            </div>
-            <div className='spot-misc-info'>
-                <div className='spot-misc-1'>
-                    <div className='icon-div'>
-                        <i className="fa-solid fa-crown" style={{ fontSize: '23px', marginTop: '0px', color: 'black' }}></i>
+                <div className='spot-details-middle-left'>
+                    <div>
+                        {isLoaded && <span className='spot-name'>{spot.name} hosted by {spot.Owner.firstName}</span>}
                     </div>
-                    <div className='spot-misc-text'>
-                        {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>{spot.Owner.firstName} is a Superhost</span>}
-                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px' }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
-                    </div>
-                </div>
-                <div className='spot-misc-1'>
-                    <div className='icon-div'>
-                        <i className="fa-solid fa-location-dot" style={{ fontSize: '23px', marginTop: '0px', color: 'black', marginLeft: '5px' }}></i>
-                    </div>
-                    <div className='spot-misc-text' style={{ marginLeft: '4px' }}>
-                        <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>Great Location</span>
-                        <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px' }}>100% of recent guests gave the location a 5-star rating.</span>
-                    </div>
-                </div>
-                <div className='spot-misc-1' style={{ height: '40px', marginTop: '20px' }}>
-                    <div className='icon-div'>
-                        <i className="fa-regular fa-calendar" style={{ fontSize: '23px', marginTop: '0px', marginLeft: '5px' }}></i>
-                    </div>
-                    <div className='spot-misc-text'>
-                        <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '16px' }}>Free cancellation</span>
-                    </div>
-                </div>
-            </div>
-            <div className='spot-description'
-            style={{flexDirection: 'column'}}
-            >
-                <img
-                id='airCover'
-                alt='airCover' src={airCover}
-                />
-                <div className='spot-description-text'
-                style={{marginTop: '5px'}}
-                >
-                    <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
-                </div>
-            </div>
-            <div className='spot-description'>
-                <div className='spot-description-text'>
-                    <p>{spot.description}</p>
-                </div>
-            </div>
-            </div>
-            <div className='spot-details-middle-right'>
-                <div className='price-form'>
-                    <div className='inner-price-form'>
-                    <div className='first-pf'>
-                        {isLoaded &&
-                        <div className='ppn'>
-                        <div className='left-ppn'>
-                        <span
-                        style={{fontSize: '23px', fontWeight: '500'}}
-                        >${spot.price}</span>
+                    <div className='spot-misc-info'>
+                        <div className='spot-misc-1'>
+                            <div className='icon-div'>
+                                <i className="fa-solid fa-crown" style={{ fontSize: '23px', marginTop: '0px', color: 'black' }}></i>
+                            </div>
+                            <div className='spot-misc-text'>
+                                {isLoaded && <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>{spot.Owner.firstName} is a Superhost</span>}
+                                <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px' }}>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
+                            </div>
                         </div>
-                        <div className='right-ppn'>
-                        <span
-                        style={{fontWeight: '300', marginBottom: '2px'}}
-                        >night</span>
+                        <div className='spot-misc-1'>
+                            <div className='icon-div'>
+                                <i className="fa-solid fa-location-dot" style={{ fontSize: '23px', marginTop: '0px', color: 'black', marginLeft: '5px' }}></i>
+                            </div>
+                            <div className='spot-misc-text' style={{ marginLeft: '4px' }}>
+                                <span style={{ marginLeft: '15px', fontWeight: '450', fontSize: '16px' }}>Great Location</span>
+                                <span style={{ marginLeft: '15px', marginTop: '5px', color: 'grey', fontWeight: '300', fontSize: '15px' }}>100% of recent guests gave the location a 5-star rating.</span>
+                            </div>
                         </div>
+                        <div className='spot-misc-1' style={{ height: '40px', marginTop: '20px' }}>
+                            <div className='icon-div'>
+                                <i className="fa-regular fa-calendar" style={{ fontSize: '23px', marginTop: '0px', marginLeft: '5px' }}></i>
+                            </div>
+                            <div className='spot-misc-text'>
+                                <span style={{ marginLeft: '16px', fontWeight: '450', fontSize: '16px' }}>Free cancellation</span>
+                            </div>
                         </div>
-                        }
-                        {isLoaded && <div className='repeated-stars'>
-                        <i className="fa-solid fa-star" style={{ fontSize: '12px', marginBottom: '3px' }}></i>
-                    <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
-                    <span className='dot'>∙</span>
-                    <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
-                        </div>}
                     </div>
-                    {isLoaded && <div className='reservation-dates'>
-                        <div className='check-in-check-out'
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setCalendarOpen(true)
-                            document.addEventListener('click', () => {
-                                setCalendarOpen(false);
-                            })
-                        }}
+                    <div className='spot-description'
+                        style={{ flexDirection: 'column' }}
+                    >
+                        <img
+                            id='airCover'
+                            alt='airCover' src={airCover}
+                        />
+                        <div className='spot-description-text'
+                            style={{ marginTop: '5px' }}
                         >
-                            <div className='check-in-date'>
-                                <div className='check-in-date-inner'>
-                                <span id='check-in'>CHECK-IN</span>
-                                <span id='check-in-mdy'>{startDate}</span>
-                                </div>
-                            </div>
-                            <div className='check-out-date'>
-                            <div className='check-in-date-inner'>
-                                <span id='check-in'>CHECKOUT</span>
-                                <span id='check-in-mdy'>{endDate}</span>
-                                </div>
-                            </div>
-                            {calendarOpen && (
-                            <div className='calendar-container'>
-                            <div className='calendar-wrapper'>
-                                <div className='date-range-top-info'>
-                                    <div className='date-range-top-info-left'>
-                                        <span id='date-range-top-info-nights'>{numNights}</span>
-                                        <span id='date-range-top-info-range'>{travelDates}</span>
-                                    </div>
-                                    <div id='datepicker-checkin-checkout'>
-                                    <div className='check-in-date' id='datepicker-checkin'>
-                                <div className='check-in-date-inner'>
-                                <span id='check-in'>CHECK-IN</span>
-                                <span id='check-in-mdy'>{startDate}</span>
-                                </div>
-                            </div>
-                            <div className='check-out-date' id='datepicker-checkout'>
-                            <div className='check-in-date-inner'>
-                                <span id='check-in'>CHECKOUT</span>
-                                <span id='check-in-mdy'>{endDate}</span>
-                                </div>
-                            </div>
-                                    </div>
-                                </div>
-                            <DateRangePicker
-                            calendarClassName='daterangepicker'
-                            onClick={(e) => e.stopPropagation()}
-                            onChange={setSelectedDates}
-                            value={selectedDates}
-                            rangeDivider={false}
-						    showDoubleView={true}
-						    monthPlaceholder={'mm'}
-						    yearPlaceholder={'yyyy'}
-						    dayPlaceholder={'dd'}
-						    showNeighboringMonth={false}
-                            showFixedNumberOfWeeks={false}
-                            isOpen={true}
-                            closeCalendar={false}
-                            calendarType={'US'}
-                            minDetail={'month'}
-                            onClickDay={(value) => {
-                                if(startDate == 'Add date') {
-                                    setStartDate(value.toLocaleDateString())
-                                }
-                            }}
-                            />
-                            <div className='calendar-clear-and-close'>
-                                <span id='clear-dates'
-                                onClick={() => {
-                                    setStartDate('Add date')
-                                    setEndDate('Add date')
-                                    setNumNights('Select dates')
-                                    setNumNightsPrice(1)
-                                    setTravelDates('Add travel dates for exact pricing')
-                                    setSelectedDates('')
-                                }}
-                                >Clear dates</span>
-                                <span id='close-calendar'
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setCalendarOpen(false)
-                                }}
-                                >Close</span>
-                            </div>
-                            </div>
-                            </div>
-                            )}
+                            <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
                         </div>
-                        <div id='reserve-button'>
-                            <span id='reserve-button-text'>Reserve</span>
+                    </div>
+                    <div className='spot-description'>
+                        <div className='spot-description-text'>
+                            <p>{spot.description}</p>
                         </div>
-                    </div>}
-                    <div className='third-pf'>
-                    {isLoaded &&
-                        <div style={{width: '100%'}}>
-                            <div className='seven-nights'>
-                                <span
-                                style={{textDecoration: 'underline'}}
-                                >${spot.price} x {numNightsPrice} {numNightsPrice == 1 ? 'night' : 'nights'}</span>
-                                <span>${spot.price * numNightsPrice}</span>
-                            </div>
-                            <div className='seven-nights'>
-                                <span
-                                style={{textDecoration: 'underline'}}
-                                >Cleaning fee</span>
-                                <span>${(spot.price/5).toFixed(0)}</span>
-                            </div>
-                            <div className='seven-nights'>
-                                <span
-                                style={{textDecoration: 'underline'}}
-                                >Service fee</span>
-                                <span>${(spot.price/4).toFixed(0)}</span>
-                            </div>
-                        </div>}
-                    </div>
-                    <div className='second-pf'
-                    style={{marginTop: '5px'}}
-                    ></div>
-                    {isLoaded &&
-                    <div className='total'>
-                        <span>Total before taxes</span>
-                        <span>${totalPrice.toFixed(0)}</span>
-                    </div>
-                    }
                     </div>
                 </div>
-            </div>
+                <div className='spot-details-middle-right'>
+                    <div className='price-form'>
+                        <div className='inner-price-form'>
+                            <div className='first-pf'>
+                                {isLoaded &&
+                                    <div className='ppn'>
+                                        <div className='left-ppn'>
+                                            <span
+                                                style={{ fontSize: '23px', fontWeight: '500' }}
+                                            >${spot.price}</span>
+                                        </div>
+                                        <div className='right-ppn'>
+                                            <span
+                                                style={{ fontWeight: '300', marginBottom: '2px' }}
+                                            >night</span>
+                                        </div>
+                                    </div>
+                                }
+                                {isLoaded && <div className='repeated-stars'>
+                                    <i className="fa-solid fa-star" style={{ fontSize: '12px', marginBottom: '3px' }}></i>
+                                    <span className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                                    <span className='dot'>∙</span>
+                                    <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                                </div>}
+                            </div>
+                            {isLoaded && <div className='reservation-dates'>
+                                <div className='check-in-check-out'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleOpenCalendar();
+                                    }}
+                                >
+                                    <div className='check-in-date'>
+                                        <div className='check-in-date-inner'>
+                                            <span id='check-in'>CHECK-IN</span>
+                                            <span id='check-in-mdy'>{startDate}</span>
+                                        </div>
+                                    </div>
+                                    <div className='check-out-date'>
+                                        <div className='check-in-date-inner'>
+                                            <span id='check-in'>CHECKOUT</span>
+                                            <span id='check-in-mdy'>{endDate}</span>
+                                        </div>
+                                    </div>
+                                    {calendarOpen && (
+                                        <div className='calendar-container'>
+                                            <div className='calendar-wrapper'>
+                                                <div className='date-range-top-info'>
+                                                    <div className='date-range-top-info-left'>
+                                                        <span id='date-range-top-info-nights'>{numNights}</span>
+                                                        <span id='date-range-top-info-range'>{travelDates}</span>
+                                                    </div>
+                                                    <div id='datepicker-checkin-checkout'>
+                                                        <div className='check-in-date' id='datepicker-checkin'>
+                                                            <div className='check-in-date-inner'>
+                                                                <span id='check-in'>CHECK-IN</span>
+                                                                <span id='check-in-mdy'>{startDate}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className='check-out-date' id='datepicker-checkout'>
+                                                            <div className='check-in-date-inner'>
+                                                                <span id='check-in'>CHECKOUT</span>
+                                                                <span id='check-in-mdy'>{endDate}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <DateRangePicker
+                                                    calendarClassName='daterangepicker'
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    onChange={setSelectedDates}
+                                                    value={selectedDates}
+                                                    rangeDivider={false}
+                                                    showDoubleView={true}
+                                                    monthPlaceholder={'mm'}
+                                                    yearPlaceholder={'yyyy'}
+                                                    dayPlaceholder={'dd'}
+                                                    showNeighboringMonth={false}
+                                                    showFixedNumberOfWeeks={false}
+                                                    isOpen={true}
+                                                    closeCalendar={false}
+                                                    calendarType={'US'}
+                                                    minDetail={'month'}
+                                                    onClickDay={(value) => {
+                                                        if (startDate == 'Add date') {
+                                                            setStartDate(value.toLocaleDateString())
+                                                        }
+                                                        if (selectedDates[1]) {
+                                                            setStartDate(value.toLocaleDateString())
+                                                            setEndDate('Add date')
+                                                            setNumNights('Select dates')
+                                                            setNumNightsPrice(1)
+                                                            setTravelDates('Add travel dates for exact pricing')
+                                                            setSelectedDates('')
+                                                        }
+                                                    }}
+                                                    tileDisabled={({ a, date, c }) => {
+                                                        const startDateToJSON = new Date(startDate)
+                                                        if (date.toJSON() < today.toJSON() || ((startDate !== 'Add date') && date.toJSON() < startDateToJSON.toJSON())) {
+                                                            return true
+                                                        }
+                                                    }}
+                                                />
+                                                <div className='calendar-clear-and-close'>
+                                                    <span id='clear-dates'
+                                                        onClick={() => {
+                                                            handleClearDates()
+                                                        }}
+                                                    >Clear dates</span>
+                                                    <span id='close-calendar'
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            setCalendarOpen(false)
+                                                        }}
+                                                    >Close</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                                <div id='reserve-button'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if(!selectedDates[1]) {
+                                        handleOpenCalendar()
+                                    } else {
+                                        setIsConfirmation(true);
+                                    }
+                                }}
+                                >
+                                    <span id='reserve-button-text'>{selectedDates[1] ? 'Reserve' : 'Check Availability'}</span>
+                                </div>
+                            </div>}
+                            <div className='third-pf'>
+                                {isLoaded &&
+                                    <div style={{ width: '100%' }}>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >${spot.price} x {numNightsPrice} {numNightsPrice == 1 ? 'night' : 'nights'}</span>
+                                            <span>${spot.price * numNightsPrice}</span>
+                                        </div>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >Cleaning fee</span>
+                                            <span>${(spot.price / 5).toFixed(0)}</span>
+                                        </div>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >Service fee</span>
+                                            <span>${(spot.price / 4).toFixed(0)}</span>
+                                        </div>
+                                    </div>}
+                            </div>
+                            <div className='second-pf'
+                                style={{ marginTop: '5px' }}
+                            ></div>
+                            {isLoaded &&
+                                <div className='total'>
+                                    <span>Total</span>
+                                    <span>${totalPrice.toFixed(0)}</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className='spot-reviews'>
                 <div className='review-header'>
                     <div className='review-header-left'>
-                    <i className="fa-solid fa-star" style={{ fontSize: '15px' }}></i>
-                    <span style={{ fontSize: '21px', marginLeft: '10px' }} className='spot-info-under-name-text'>{spot.avgStarRating}</span>
-                    <span className='dot-2'>.</span>
-                    <span style={{ fontWeight: '350', fontSize: '21px' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
+                        <i className="fa-solid fa-star" style={{ fontSize: '15px' }}></i>
+                        <span style={{ fontSize: '21px', marginLeft: '10px' }} className='spot-info-under-name-text'>{spot.avgStarRating}</span>
+                        <span className='dot-2'>.</span>
+                        <span style={{ fontWeight: '350', fontSize: '21px' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                     </div>
                     {isLoaded && user && spot?.ownerId !== user.id && !reviewIdsArray.includes(user.id) &&
                         <div className='link-to-review-form' onClick={() => setShowReviewModal(true)}>
@@ -403,13 +447,13 @@ const SpotDetails = () => {
                     <div key={review.id} className='each-review'>
                         <div className='each-review-top'>
                             <div className='each-rev-top-left'>
-                            <div className='profile-img-wrapper'>
-                                <i className="fa-regular fa-circle-user" style={{ fontSize: '35px', color: 'grey' }}></i>
-                            </div>
-                            <div className='review-top-text'>
-                                <span style={{ fontWeight: '600', marginLeft: '10px', marginTop: '-2px' }} className='review-user-name-date'>{review.User.firstName}</span>
-                                <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
-                            </div>
+                                <div className='profile-img-wrapper'>
+                                    <i className="fa-regular fa-circle-user" style={{ fontSize: '35px', color: 'grey' }}></i>
+                                </div>
+                                <div className='review-top-text'>
+                                    <span style={{ fontWeight: '600', marginLeft: '10px', marginTop: '-2px' }} className='review-user-name-date'>{review.User.firstName}</span>
+                                    <span style={{ marginLeft: '10px', fontWeight: '300', color: 'gray' }}>{dateArray(review.createdAt)}</span>
+                                </div>
                             </div>
                             {!!user && review?.userId === user.id && <div id={review.id} key={review.id} className='delete-review-button' onClick={(e) => handleDeleteReview(e)}>
                                 <span id={review.id} key={review.id}>Delete</span>
@@ -422,10 +466,132 @@ const SpotDetails = () => {
                 ))}
             </div>
             {showReviewModal && (
-                    <Modal onClose={() => setShowReviewModal(false)}>
-                        <ReviewForm />
-                    </Modal>
-                )}
+                <Modal onClose={() => setShowReviewModal(false)}>
+                    <ReviewForm />
+                </Modal>
+            )}
+        </div>
+    )
+
+    if(isConfirmation) return (
+        <div className='confirmation-page-container'>
+            <div className='confirmation-page-wrapper'>
+                <div className='confirmation-page-inner-wrapper'>
+                    <div className='confirm-and-pay-wrapper'>
+                        <i className="fa-solid fa-chevron-left" id='confirm-and-pay-prev-arrow'
+                        onClick={() => {setIsConfirmation(false)}}
+                        />
+                        <span id='confirm-and-pay-text'>Confirm and pay</span>
+                    </div>
+                    <div className='confirmation-page-middle-wrapper'>
+                        <div className='confirmation-page-middle-left-wrapper'>
+                            <span id='your-trip'>Your trip</span>
+                            <div className='your-trip-dates'>
+                                <div className='your-trip-dates-left'>
+                                    <span id='your-trip-dates-title'>Dates</span>
+                                    <span id='your-trip-dates-dates'>{travelDates}</span>
+                                </div>
+                                <span id='your-trip-edit'>Edit</span>
+                            </div>
+                            <div className='your-trip-dates' id='your-trip-nights'>
+                                <div className='your-trip-dates-left'>
+                                    <span id='your-trip-dates-title'>Nights</span>
+                                    <span id='your-trip-dates-dates'>{numNights}</span>
+                                </div>
+                            </div>
+                            {user && (
+                                <div id='confirm-registration'>Confirm Reservation</div>
+                            )}
+                            {!user && (
+                                <form className='log-in-to-book-container'
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                }}
+                                >
+                                    <span id='log-in-to-book-text'>Log in to book</span>
+                                    <div className='log-in-to-book-input-div'>
+                                        <label htmlFor='username' className='log-in-to-book-labels'>Username</label>
+                                        <input id='log-in-to-book-username'
+                                        name='username'
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        ></input>
+                                        <label htmlFor='password'
+                                        className='log-in-to-book-labels'
+                                        id='log-in-to-book-labels-password'
+                                        >Password</label>
+                                        <input id='log-in-to-book-password'
+                                        name='password'
+                                        type='password'
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        ></input>
+                                    </div>
+                                    <button id='log-in-to-book-submit' type='submit'>Continue</button>
+                                    <div className='or' id='log-in-to-book-or'>
+                                        <div className='or-sides'>
+                                        </div>
+                                        <span style={{ fontSize: '12px', color: 'gray', fontWeight: '250' }}>or</span>
+                                        <div className='or-sides'></div>
+                                    </div>
+                                    <div id='log-in-to-book-demo'>Continue as demo user</div>
+                                </form>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className='price-details-wrapper'>
+                    <div className='price-details-inner-wrapper'>
+                        <div className='price-details-top'>
+                            <img alt={spot.name} src={spot.SpotImages[0].url} id='price-details-top-img'/>
+                            <div className='price-details-top-right'>
+                                <div className='price-details-top-right-top'>
+                                    <span id='price-details-spot-name'>{spot.name}</span>
+                                    <span id='price-details-spot-location'>{spot.city}, {spot.state}</span>
+                                </div>
+                                <div className='price-details-reviews'>
+                                    <i className="fa-solid fa-star" style={{marginRight: '3px', fontSize: '10px'}}></i>
+                                    <span>{spot.avgStarRating}</span>
+                                    <span id='price-details-num-reviews'>({spot.numReviews} {spot.numReviews == 1 ? 'review' : 'reviews'})</span>
+                                </div>
+                            </div>
+                        </div>
+                            <span id='price-details-text'>Price Details</span>
+                        <div className='third-pf'>
+                                {isLoaded &&
+                                    <div style={{ width: '100%' }}>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >${spot.price} x {numNightsPrice} {numNightsPrice == 1 ? 'night' : 'nights'}</span>
+                                            <span>${spot.price * numNightsPrice}</span>
+                                        </div>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >Cleaning fee</span>
+                                            <span>${(spot.price / 5).toFixed(0)}</span>
+                                        </div>
+                                        <div className='seven-nights'>
+                                            <span
+                                                style={{ textDecoration: 'underline' }}
+                                            >Service fee</span>
+                                            <span>${(spot.price / 4).toFixed(0)}</span>
+                                        </div>
+                                    </div>}
+                            </div>
+                            <div className='second-pf' id='price-details-second-pf'
+                                style={{ marginTop: '5px' }}
+                            ></div>
+                            {isLoaded &&
+                                <div className='total'>
+                                    <span>Total</span>
+                                    <span>${totalPrice.toFixed(0)}</span>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

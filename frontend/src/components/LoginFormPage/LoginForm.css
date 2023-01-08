@@ -94,6 +94,10 @@
     cursor: pointer;
 }
 
+.login:active {
+    transform: scale(0.98);
+}
+
 .or {
     /* border: solid 2px blue; */
     position: absolute;
@@ -126,6 +130,10 @@
     font-weight: 400;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     cursor: pointer;
+}
+
+.demo-butt:active {
+    transform: scale(0.98);
 }
 
 input {

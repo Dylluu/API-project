@@ -238,6 +238,7 @@
     height: 100%;
     width: 50%;
     border-right: solid 1px #B0B0B0;
+    cursor: pointer;
 }
 
 .check-out-date {
@@ -279,6 +280,10 @@
     cursor: pointer;
 }
 
+#reserve-button:active {
+    transform: scale(0.98);
+}
+
 #reserve-button-text {
     color: white;
     font-size: 15px;
@@ -290,8 +295,9 @@
     position: absolute;
     align-items: center;
     justify-content: center;
-    height: 468px;
+    min-height: 468px;
     width: 661px;
+    /* min-height: fit-content; */
     margin-left: -285px;
     margin-top: -25.5px;
     background-color: white;
@@ -305,7 +311,8 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 90%;
+    min-height: 90%;
+    min-height: fit-content;
     /* border: solid 1px red; */
 }
 
@@ -344,7 +351,7 @@
     width: 344px;
     border: solid 2px black;
     border-radius: 7px;
-    height: 57.5px;
+    height: 57px;
     margin-top: -.5px;
     margin-left: .5px;
 }
@@ -855,6 +862,7 @@
     justify-content: flex-end;
     margin-top: 213px;
     height: 34px;
+    z-index: 2;
     /* border: solid 1px red; */
   }
 
@@ -877,3 +885,352 @@
     border-radius: 7px;
     cursor: pointer;
   }
+
+  .react-calendar__month-view > div {
+    display: flex;
+    align-items: flex-start !important;
+  }
+
+  .react-calendar__tile:disabled {
+    background-color: white;
+    color: lightgray;
+    text-decoration: line-through;
+  }
+
+  .react-calendar__navigation__arrow:focus {
+    background-color: white !important;
+  }
+
+  .react-calendar__navigation__arrow:hover {
+    background-color: #F7F7F7 !important;
+  }
+
+
+/* Confirmation Page */
+
+.confirmation-page-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    padding-top: 105px;
+    /* border: solid 1px red; */
+}
+
+.confirmation-page-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1140px;
+    background-color: white;
+    /* border: solid 1px blue; */
+}
+
+.confirmation-page-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 558px;
+    /* border: solid 1px green; */
+}
+
+@media (max-width: 1300px) {
+    .confirmation-page-inner-wrapper{
+        width: 490px;
+    }
+    .confirmation-page-wrapper {
+        width: 1000px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .confirmation-page-inner-wrapper{
+        min-width: 392px;
+        width: 39%;
+    }
+    .confirmation-page-wrapper {
+        min-width: 800px;
+        width: 80%;
+    }
+}
+
+.confirm-and-pay-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 35px;
+    color: #222222;
+}
+
+#confirm-and-pay-prev-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    margin-right: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#confirm-and-pay-prev-arrow:hover {
+    background-color: #F7F7F7;
+}
+
+#confirm-and-pay-text {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.confirmation-page-middle-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    /* border: solid 1px red; */
+}
+
+.confirmation-page-middle-left-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: solid 1px purple; */
+}
+
+#your-trip {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.your-trip-dates {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.your-trip-dates-left {
+    display: flex;
+    flex-direction: column;
+}
+
+#your-trip-dates-title, #your-trip-edit {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+#your-trip-dates-dates {
+    font-weight: 300;
+}
+
+#your-trip-edit {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#your-trip-nights {
+    padding-bottom: 20px;
+    border-bottom: solid 1px #DDDDDD;
+    margin-bottom: 30px;
+}
+
+#log-in-to-book-submit {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#log-in-to-book-submit:active {
+    transform: scale(0.98);
+}
+
+#confirm-registration, #log-in-to-book-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 10px;
+    background-size: 180% 180%;
+    background-position: 50%;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    cursor: pointer;
+}
+
+#confirm-registration:active {
+    transform: scale(0.98);
+}
+
+.log-in-to-book-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#log-in-to-book-text {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.log-in-to-book-input-div {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #B0B0B0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#log-in-to-book-username {
+    display: flex;
+    margin-top: 16px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: solid 1px #B0B0B0;
+    background-color: transparent;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+#log-in-to-book-password {
+    display: flex;
+    margin-top: 16px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.log-in-to-book-labels {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 9px;
+    color: #717171;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#log-in-to-book-labels-password {
+    margin-top: 64px;
+}
+
+#log-in-to-book-or {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: static;
+    width: 100%;
+}
+
+#log-in-to-book-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 10px;
+    border: solid 2px black;
+    cursor: pointer;
+}
+
+#log-in-to-book-demo:active {
+    transform: scale(0.98);
+}
+
+.price-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: fit-content;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border: solid 1px #DDDDDD;
+    border-radius: 10px;
+}
+
+.price-details-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    /* border: solid 1px red; */
+}
+
+.price-details-top {
+    display: flex;
+    flex-direction: row;
+    height: 130px;
+    padding-bottom: 24px;
+    border-bottom: solid 1px #B0B0B0;
+}
+
+#price-details-top-img {
+    object-fit: cover;
+    width: 124px;
+    height: 106px;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+.price-details-top-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price-details-top-right-top {
+    display: flex;
+    flex-direction: column;
+}
+
+#price-details-spot-name {
+    font-weight: 300;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#price-details-spot-location {
+    font-size: 12px;
+    font-weight: 300;
+    color: #717171;
+}
+
+.price-details-reviews {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+}
+
+#price-details-num-reviews {
+    margin-left: 2px;
+    color: #717171;
+    font-weight: 300;
+}
+
+#price-details-second-pf {
+    background-color: #B0B0B0;
+}
+
+#price-details-text {
+    margin-top: 24px;
+    margin-bottom: -8px;
+    font-size: 22px;
+    font-weight: 400;
+}
