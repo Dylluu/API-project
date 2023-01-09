@@ -32,29 +32,33 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <div className="host-and-menu-user">
-    <NavLink  className='host-spot-div' to='/host-spot'>
-                    <div>
-                    <span>Host a new spot</span>
-                    </div>
-                </NavLink>
-      <div onClick={openMenu} className='menu-user'>
-      <i style={{paddingRight: '5px'}} className="fa-solid fa-bars"></i>
-      <div className='user-icon-div' style={{marginRight: '2px'}}>
-      <i style={{color: 'white'}} className="fa-solid fa-user"></i>
-      </div>
-      </div>
-      {showMenu && (
-        <div className="profile-dropdown" id='profile-dropdown-LO' style={{height: '100px', justifyContent: 'center'}}>
-          <div className="user-info">
-            <div className="user-info-text" style={{fontWeight: '200', height:'25px', overflow: 'hidden'}}>{user.firstName} {user.lastName}</div>
-            <div className="user-info-text" style={{fontWeight: '200', height:'25px', overflow: 'hidden'}}>{user.username}</div>
+      <div className="host-and-menu-user">
+        <NavLink className='host-spot-div' to='/host-spot'>
+          <div>
+            <span>Host a new spot</span>
+          </div>
+        </NavLink>
+        <div onClick={openMenu} className='menu-user'>
+          <i style={{ paddingRight: '5px' }} className="fa-solid fa-bars"></i>
+          <div className='user-icon-div' style={{ marginRight: '2px' }}>
+            <i style={{ color: 'white' }} className="fa-solid fa-user"></i>
+          </div>
+        </div>
+        {showMenu && (
+          <div className="profile-dropdown" id='profile-dropdown-LO' style={{ height: '185px', justifyContent: 'center' }}>
+            <div className="user-info">
+              <div className="user-info-text" style={{ fontWeight: '200', height: '35px', overflow: 'hidden', marginTop: '1px', marginBottom: '-5px' }}>{user.firstName} {user.lastName}</div>
+              <div className="user-info-text" style={{ fontWeight: '200', height: '35px', overflow: 'hidden' }}>{user.username}</div>
+            </div>
+            <div className="user-info" id="listings-and-account-div">
+              <div className="profile-dropdown-text-divs" id="listings-and-account">Manage Listings</div>
+              <div className="profile-dropdown-text-divs" id="listings-and-account">Trips</div>
             </div>
             <div id='logout-div'
-            style={{borderRadius: '5px'}}
-            className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
-        </div>
-      )}
+              style={{ borderRadius: '5px' }}
+              className='profile-dropdown-text-divs' onClick={logout}>Log Out</div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -24,23 +24,38 @@
     /* border: solid 1px red; */
     cursor: default;
     margin-bottom: 2px;
-    height: 55px;
+    height: 70px;
+    /* padding-top: 5px; */
     display: flex;
     flex-direction: column;
     border-bottom: solid 1px #E8E8E8;
 }
 
 .user-info-text {
-        font-size: 14px;
-        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-        height: 33px;
-        color: grey;
-        text-indent: 15px;
-        display: flex;
-        align-items: center;
+    font-size: 14px;
+    font-family: Circular, -apple-system,BlinkMacSystemFont, Roboto, "HelveticaNeue", sans-serif;
+    height: 33px;
+    color: grey;
+    text-indent: 15px;
+    display: flex;
+    align-items: center;
+    /* border: solid 1px red; */
+}
+
+#logout-div {
+    margin-bottom: 5px;
 }
 
 #logout-div:hover {
+    border-radius: 0px;
+    color: black;
+}
+
+#listings-and-account-div {
+    height: 70px;
+}
+
+#listings-and-account:hover {
     border-radius: 0px;
     color: black;
 }

@@ -49,7 +49,7 @@ function MainNavigation({ isLoaded }) {
                     </div>
                 {showMenu && (
                     <div className='profile-dropdown'
-                    style={{marginRight: '5rem'}}
+                    style={{marginRight: '5rem', width: '150px'}}
                     >
                         <div id='login-div' onClick={() => setShowModal(true)} className='profile-dropdown-text-divs'>
                             Login
