@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as sessionActions from '../../store/session';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpot } from '../../store/spots';
 import { useParams, useHistory } from 'react-router-dom'
@@ -35,8 +36,9 @@ const SpotDetails = () => {
     const [numNightsPrice, setNumNightsPrice] = useState(1);
     const [travelDates, setTravelDates] = useState('Add travel dates for exact pricing');
     const [isConfirmation, setIsConfirmation] = useState(false);
-    const [username, setUsername] = useState('');
+    const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
 
     const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
 
@@ -139,6 +141,22 @@ const SpotDetails = () => {
             setCalendarOpen(false);
         })
     }
+
+    const handleDemoButton = (e) => {
+        e.preventDefault();
+
+        return dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+      }
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ credential, password }))
+          .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          });
+      }
 
     const today = new Date()
 
@@ -387,6 +405,7 @@ const SpotDetails = () => {
                                         handleOpenCalendar()
                                     } else {
                                         setIsConfirmation(true);
+                                        window.scrollTo(0, 0)
                                     }
                                 }}
                                 >
@@ -504,17 +523,16 @@ const SpotDetails = () => {
                             )}
                             {!user && (
                                 <form className='log-in-to-book-container'
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                }}
+                                onSubmit={(e) => handleSubmit(e)}
                                 >
                                     <span id='log-in-to-book-text'>Log in to book</span>
                                     <div className='log-in-to-book-input-div'>
-                                        <label htmlFor='username' className='log-in-to-book-labels'>Username</label>
+                                        <label htmlFor='username' className='log-in-to-book-labels'>Username or Email</label>
                                         <input id='log-in-to-book-username'
                                         name='username'
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        value={credential}
+                                        onChange={(e) => setCredential(e.target.value)}
+                                        required
                                         ></input>
                                         <label htmlFor='password'
                                         className='log-in-to-book-labels'
@@ -525,8 +543,13 @@ const SpotDetails = () => {
                                         type='password'
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        required
                                         ></input>
                                     </div>
+                                    {errors[0] &&
+                                        <div className='error-div' id='confirmation-page-errors'>
+                                            {errors[0]}
+                                        </div>}
                                     <button id='log-in-to-book-submit' type='submit'>Continue</button>
                                     <div className='or' id='log-in-to-book-or'>
                                         <div className='or-sides'>
@@ -534,7 +557,9 @@ const SpotDetails = () => {
                                         <span style={{ fontSize: '12px', color: 'gray', fontWeight: '250' }}>or</span>
                                         <div className='or-sides'></div>
                                     </div>
-                                    <div id='log-in-to-book-demo'>Continue as demo user</div>
+                                    <div id='log-in-to-book-demo'
+                                    onClick={(e) => handleDemoButton(e)}
+                                    >Continue as demo user</div>
                                 </form>
                             )}
                         </div>

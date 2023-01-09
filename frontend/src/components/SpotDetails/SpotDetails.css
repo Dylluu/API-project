@@ -1234,3 +1234,9 @@
     font-size: 22px;
     font-weight: 400;
 }
+
+#confirmation-page-errors {
+    position: static;
+    margin-bottom: 10px;
+    margin-top: -10px;
+}

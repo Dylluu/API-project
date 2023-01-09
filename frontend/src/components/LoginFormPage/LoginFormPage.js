@@ -52,23 +52,28 @@ function LoginFormPage() {
         </ul>
         <div>
             <input
+            name='username'
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
             className='username-email'
-            placeholder='Username or Email'
+            // placeholder='Username or Email'
             style={{borderBottom: 'none'}}
+            id='login-username'
             />
         </div>
+        <label htmlFor='username' className='log-in-to-book-labels' id='login-modal-labels-username'>Username or Email</label>
+          <label htmlFor='password' className='log-in-to-book-labels' id='login-modal-labels-password'>Password</label>
         <div>
             <input
             type="password"
+            name='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             className='password'
-            placeholder='Password'
+            // placeholder='Password'
             />
         </div>
         {errors[0] &&

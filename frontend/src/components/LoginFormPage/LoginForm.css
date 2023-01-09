@@ -54,6 +54,7 @@
 }
 
 .username-email {
+    padding-top: 10px;
     height: 55px;
     width: 430px;
     position: absolute;
@@ -66,6 +67,7 @@
 }
 
 .password {
+    padding-top: 10px;
     height: 55px;
     width: 430px;
     position: absolute;
@@ -155,4 +157,14 @@ body {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     font-size: 13px;
     color: red;
+}
+
+#login-modal-labels-username {
+    margin-left: -184px;
+}
+
+#login-modal-labels-password {
+    margin-left: -184px;
+    margin-top: 61.5px;
+    z-index: 2;
 }
