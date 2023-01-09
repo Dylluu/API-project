@@ -668,8 +668,8 @@
     z-index: 1;
   }
   .react-daterange-picker__calendar--closed, .react-daterange-picker__calendar--open {
-    position: absolute;
-    inset: auto auto 100% 0px;
+    position: absolute !important;
+    inset: auto auto 100% 0px !important;
   }
   .react-daterange-picker__calendar .react-calendar {
     border-width: thin;
