@@ -1,0 +1,64 @@
+.trips-page-container {
+margin-top: 115px;
+display: flex;
+flex-direction: column;
+/* border: solid 1px purple; */
+width: 90vw;
+margin-left: 10%;
+margin-right: 10%;
+/* max-width: 1140px; */
+/* max-width: 1000px; */
+/* align-items: center; */
+}
+
+#trips-title {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.upcoming-reservations {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-top: solid 1px #DDDDDD;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+#upcoming-reservations-text {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.no-bookings-yet-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#no-bookings-yet-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#time-to-dust-text {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 18px;
+}
+
+#start-searching-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 163px;
+    border-radius: 8px;
+    border: solid 1px black;
+    cursor: pointer;
+}
+
+#start-searching-button:active {
+    transform: scale(0.98);
+}

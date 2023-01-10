@@ -100,9 +100,14 @@
     margin-top: 12px;
 }
 
+.profile-dropdown-text-divs {
+    font-weight: 300;
+}
+
 .profile-dropdown-text-divs:hover {
     background-color: #F8F8F8;
     color: black;
+    font-weight: 400;
 }
 
 #profile-dropdown-LO {

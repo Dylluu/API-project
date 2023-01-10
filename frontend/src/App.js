@@ -10,6 +10,7 @@ import SpotDetails from "./components/SpotDetails";
 import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotForm from "./components/UpdateSpotForm";
 import MainNavigation from "./components/MainNavigation";
+import Trips from "./components/Trips";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ function App() {
     </Route>
     <Route path='/update/:spotId'>
       <UpdateSpotForm />
+    </Route>
+    <Route path='/trips'>
+      <MainNavigation isLoaded={isLoaded}/>
+      <Trips />
     </Route>
     </Switch>
 

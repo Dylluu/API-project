@@ -1240,3 +1240,18 @@
     margin-bottom: 10px;
     margin-top: -10px;
 }
+
+#fit-content {
+    height: 300px !important;
+    padding-top: 20px;
+}
+
+.cannot-book-own-spot {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: -5px;
+    font-weight: 300;
+    /* border: solid 1px red; */
+}

@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-info" id="listings-and-account-div">
               <div className="profile-dropdown-text-divs" id="listings-and-account">Manage Listings</div>
-              <div className="profile-dropdown-text-divs" id="listings-and-account">Trips</div>
+              <NavLink to='/trips' className="profile-dropdown-text-divs" id="listings-and-account">Trips</NavLink>
             </div>
             <div id='logout-div'
               style={{ borderRadius: '5px' }}

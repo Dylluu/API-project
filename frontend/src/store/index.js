@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import reviewsReducer from './reviews';
 import sessionReducer from './session';
 import spotsReducer from './spots'
+import bookingsReducer from './bookings';
 
 let enhancer;
 
@@ -18,7 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 const rootReducer = combineReducers({
     session: sessionReducer,
     spots: spotsReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    bookings: bookingsReducer
 });
 
 const configureStore = (preloadedState) => {

@@ -96,6 +96,16 @@ const SpotDetails = () => {
         }
     }, [endDate])
 
+    useEffect(() => {
+        const priceForm = document.getElementsByClassName('price-form')[0];
+        const updateButton = document.getElementsByClassName('up-del-actual-buttons')[0];
+        if(priceForm && updateButton) {
+            priceForm.setAttribute('id', 'fit-content');
+        } else if(priceForm) {
+            priceForm.removeAttribute('id');
+        }
+    }, [isLoaded, user])
+
     setTimeout(() => setIsLoaded(true), 600)
 
     const handleDeleteClick = async (e) => {
@@ -303,7 +313,12 @@ const SpotDetails = () => {
                                     <span style={{ fontWeight: '250' }} className='spot-info-under-name-text'>{spot.numReviews} reviews</span>
                                 </div>}
                             </div>
-                            {isLoaded && <div className='reservation-dates'>
+                            {isLoaded && user && spot?.Owner?.id === user?.id && (
+                                <div className='cannot-book-own-spot'>
+                                    <span>* Cannot reserve spots hosted by you</span>
+                                </div>
+                            )}
+                            {isLoaded && spot?.Owner?.id !== user?.id && (<div className='reservation-dates'>
                                 <div className='check-in-check-out'
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -411,7 +426,7 @@ const SpotDetails = () => {
                                 >
                                     <span id='reserve-button-text'>{selectedDates[1] ? 'Reserve' : 'Check Availability'}</span>
                                 </div>
-                            </div>}
+                            </div>)}
                             <div className='third-pf'>
                                 {isLoaded &&
                                     <div style={{ width: '100%' }}>
