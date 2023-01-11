@@ -16,6 +16,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 // import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
+import { getBookings, getBookingsThunk, postBookingThunk } from '../../store/bookings';
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -27,6 +28,7 @@ const SpotDetails = () => {
     const user = useSelector(state => state.session.user);
     const reviewsArray = Object.values(reviews);
     const reviewIdsArray = reviewsArray.map(review => review.userId);
+    const allBookings = useSelector(state => state.bookings?.allBookings?.Bookings);
     const [isLoaded, setIsLoaded] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [startDate, setStartDate] = useState('Add date');
@@ -50,8 +52,9 @@ const SpotDetails = () => {
     const totalPrice = ((spot.price * numNightsPrice) + (spot.price / 5) + (spot.price / 4))
 
     useEffect(() => {
-        dispatch(getSpot(spotId))
-        dispatch(getReviews(spotId))
+        dispatch(getSpot(spotId));
+        dispatch(getReviews(spotId));
+        dispatch(getBookingsThunk());
     }, [dispatch])
 
     useEffect(() => {
@@ -83,6 +86,7 @@ const SpotDetails = () => {
     useEffect(() => {
         if (selectedDates[1]) {
             setEndDate(selectedDates[1].toLocaleDateString())
+            console.log(startDate, 'START DATE')
         }
     }, [selectedDates])
 
@@ -94,6 +98,7 @@ const SpotDetails = () => {
             setNumNights(`${Math.round(dayDifference)} ${dayDifference == 1 ? 'night' : 'nights'}`)
             setNumNightsPrice(Math.round(dayDifference))
         }
+        console.log(typeof endDate, 'END DATE')
     }, [endDate])
 
     useEffect(() => {
@@ -168,11 +173,28 @@ const SpotDetails = () => {
           });
       }
 
+    const parseDate = (date) => {
+        const year = date.split('/')[2];
+        const month = date.split('/')[1];
+        const day = date.split('/')[0];
+        return `${year}-${month}-${day}`;
+    }
+
+    const handleConfirmReservation = async (e) => {
+        const start = parseDate(startDate);
+        const end = parseDate(endDate);
+        const booking = {startDate: start, endDate: end};
+        await dispatch(postBookingThunk(spotId, booking));
+        await history.push('/trips');
+    }
+
     const today = new Date()
 
     if (!Object.values(spot).length) return null;
 
     if (!spot.SpotImages) return null;
+
+    if(!allBookings) return null;
 
     if(!isConfirmation) return (
         <div className='spot-details-container'>
@@ -534,7 +556,9 @@ const SpotDetails = () => {
                                 </div>
                             </div>
                             {user && (
-                                <div id='confirm-registration'>Confirm Reservation</div>
+                                <div id='confirm-registration'
+                                onClick={handleConfirmReservation}
+                                >Confirm Reservation</div>
                             )}
                             {!user && (
                                 <form className='log-in-to-book-container'

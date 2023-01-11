@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_BOOKINGS = 'bookings/GET';
 const CLEAR_BOOKINGS = 'bookings/CLEAR';
+const POST_BOOKING = 'bookings/POST';
 
 export const getBookings = (bookings) => {
     return {
@@ -23,6 +24,16 @@ export const getBookingsThunk = () => async (dispatch) => {
         const bookings = await response.json();
         dispatch(getBookings(bookings));
     }
+}
+
+export const postBookingThunk = (spotId, booking) => async (dispatch) => {
+    return await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: 'post',
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(booking)
+    })
 }
 
 export default function bookingsReducer(state = {}, action) {

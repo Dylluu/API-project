@@ -1,0 +1,103 @@
+.reservation-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    height: 300px;
+    border-radius: 15px;
+    border: solid 1px #C8C8C8;
+}
+
+.reservation-cards-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.reservation-cards-left-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* border: solid 1px red; */
+}
+
+.reservation-cards-left-top {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 20px;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+#reservation-cards-spot-name {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#reservation-cards-spot-location {
+    font-size: 13px;
+    font-weight: 300;
+    color: #717171;
+    margin-bottom: 30px;
+}
+
+.reservation-cards-left-bottom {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* border: solid 1px blue; */
+}
+
+.reservation-cards-left-bottom-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40%;
+    border-right: solid 1px #DDDDDD;
+}
+
+.reservation-cards-left-bottom-left-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding-top: 30px;
+    padding-left: 20px;
+    /* border: solid 1px red; */
+}
+
+.reservation-cards-left-bottom-right {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 100%;
+    height: 100%;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    /* border: solid 1px green; */
+}
+
+.reservation-cards-left-bottom-right-inner {
+    display: flex;
+    justify-content: flex-start;
+    /* border: solid 1px blue; */
+}
+
+#reservation-cards-spot-description {
+    margin-top: 0px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#reservation-cards-spot-image {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
