@@ -36,6 +36,12 @@ export const postBookingThunk = (spotId, booking) => async (dispatch) => {
     })
 }
 
+export const deleteBookingThunk = (bookingId) => async (dispatch) => {
+    return await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'delete'
+    })
+}
+
 export default function bookingsReducer(state = {}, action) {
     const newState = {...state}
     switch (action.type) {

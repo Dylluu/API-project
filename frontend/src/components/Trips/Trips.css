@@ -62,3 +62,16 @@ margin-right: 10%;
 #start-searching-button:active {
     transform: scale(0.98);
 }
+
+@media (max-width: 1300px) {
+    .trips-page-container{
+        width: 1000px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .trips-page-container{
+        min-width: 800px;
+        width: 80%;
+    }
+}

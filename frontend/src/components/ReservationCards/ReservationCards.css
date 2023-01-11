@@ -36,7 +36,7 @@
 }
 
 #reservation-cards-spot-location {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 300;
     color: #717171;
     margin-bottom: 30px;
@@ -46,6 +46,7 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    overflow: hidden;
     /* border: solid 1px blue; */
 }
 
@@ -62,9 +63,34 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-left: 20px;
     /* border: solid 1px red; */
+}
+
+.reservation-cards-dates-and-nights {
+    font-size: 17px;
+}
+
+#reservation-cards-dates {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #717171;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.reservation-cards-edit-and-cancel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* border: solid 1px red; */
+    margin-right: 20px;
+    text-decoration: underline;
+}
+
+#edit-and-cancel-buttons {
+    cursor: pointer;
 }
 
 .reservation-cards-left-bottom-right {
@@ -73,10 +99,11 @@
     /* justify-content: center; */
     width: 100%;
     height: 100%;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+    overflow: hidden;
     /* border: solid 1px green; */
 }
 
@@ -100,4 +127,5 @@
     object-fit: cover;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    cursor: pointer;
 }
