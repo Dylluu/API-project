@@ -86,7 +86,7 @@ const SpotDetails = () => {
     useEffect(() => {
         if (selectedDates[1]) {
             setEndDate(selectedDates[1].toLocaleDateString())
-            console.log(startDate, 'START DATE')
+            // console.log(startDate, 'START DATE')
         }
     }, [selectedDates])
 
@@ -98,16 +98,19 @@ const SpotDetails = () => {
             setNumNights(`${Math.round(dayDifference)} ${dayDifference == 1 ? 'night' : 'nights'}`)
             setNumNightsPrice(Math.round(dayDifference))
         }
-        console.log(typeof endDate, 'END DATE')
+        // console.log(typeof endDate, 'END DATE')
     }, [endDate])
 
     useEffect(() => {
         const priceForm = document.getElementsByClassName('price-form')[0];
         const updateButton = document.getElementsByClassName('up-del-actual-buttons')[0];
+        const reservationDates = document.getElementsByClassName('reservation-dates')[0];
         if(priceForm && updateButton) {
             priceForm.setAttribute('id', 'fit-content');
-        } else if(priceForm) {
+            reservationDates.classList.add('negative-zindex');
+        } else if(priceForm && reservationDates) {
             priceForm.removeAttribute('id');
+            reservationDates.classList.remove('negative-zindex');
         }
     }, [isLoaded, user])
 
@@ -175,8 +178,8 @@ const SpotDetails = () => {
 
     const parseDate = (date) => {
         const year = date.split('/')[2];
-        const month = date.split('/')[1];
-        const day = date.split('/')[0];
+        const month = date.split('/')[0];
+        const day = date.split('/')[1];
         return `${year}-${month}-${day}`;
     }
 
@@ -337,10 +340,10 @@ const SpotDetails = () => {
                             </div>
                             {isLoaded && user && spot?.Owner?.id === user?.id && (
                                 <div className='cannot-book-own-spot'>
-                                    <span>* Cannot reserve spots hosted by you</span>
+                                    <span>* Hosts cannot book their own listings</span>
                                 </div>
                             )}
-                            {isLoaded && spot?.Owner?.id !== user?.id && (<div className='reservation-dates'>
+                            {isLoaded && (<div className='reservation-dates'>
                                 <div className='check-in-check-out'
                                     onClick={(e) => {
                                         e.stopPropagation();

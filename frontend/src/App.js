@@ -37,7 +37,7 @@ function App() {
       <UpdateSpotForm />
     </Route>
     <Route path='/trips'>
-      <MainNavigation isLoaded={isLoaded}/>
+      <Navigation isLoaded={isLoaded}/>
       <Trips />
     </Route>
     </Switch>

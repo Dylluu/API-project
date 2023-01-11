@@ -1091,6 +1091,14 @@
     margin-bottom: 20px;
 }
 
+.log-in-to-book-input-div:focus-within {
+    border: solid 1px black;
+}
+
+.log-in-to-book-input-div:focus-within > #log-in-to-book-username {
+    border-bottom: solid 1px black;
+}
+
 #log-in-to-book-username {
     display: flex;
     margin-top: 16px;
@@ -1242,8 +1250,8 @@
 }
 
 #fit-content {
-    height: 300px !important;
-    padding-top: 20px;
+    height: 430px !important;
+    /* padding-top: 20px; */
 }
 
 .cannot-book-own-spot {
@@ -1251,7 +1259,11 @@
     flex-direction: column;
     width: 100%;
     margin-top: 15px;
-    margin-bottom: -5px;
+    margin-bottom: -15px;
     font-weight: 300;
     /* border: solid 1px red; */
+}
+
+.negative-zindex {
+    z-index: -2;
 }

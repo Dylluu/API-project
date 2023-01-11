@@ -58,6 +58,9 @@ router.post('/:spotId/bookings', authenticate, async(req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
     const { startDate, endDate } = req.body;
 
+    // console.log(startDate, 'START DATE IN BACKEND')
+    // console.log(endDate, 'END DATE IN BACKEND')
+
     if(!spot){
         res.status(404);
         return res.json({
