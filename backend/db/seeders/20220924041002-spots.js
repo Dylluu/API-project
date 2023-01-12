@@ -26,7 +26,7 @@ module.exports = {
    },
    {
     ownerId: 2,
-    address: '518 W. Figueroa St.',
+    address: '2317 Chesnut St.',
     city: 'San Fransisco',
     state: 'California',
     country: 'United States',
@@ -38,7 +38,7 @@ module.exports = {
    },
    {
     ownerId: 3,
-    address: '517 W. Figueroa St. 2',
+    address: '1111 S Figueroa St.',
     city: 'Los Angeles',
     state: 'California',
     country: 'United States',
@@ -62,7 +62,7 @@ module.exports = {
    },
    {
     ownerId: 4,
-    address: '247 Cabin St.',
+    address: '26 Debot Rd',
     city: 'Phillipsport',
     state: 'New York',
     country: 'United States',
@@ -74,7 +74,7 @@ module.exports = {
    },
    {
     ownerId: 5,
-    address: '248 Cabin St.',
+    address: 'WorldMark Way',
     city: 'Joshua Tree',
     state: 'California',
     country: 'United States',
@@ -86,7 +86,7 @@ module.exports = {
    },
    {
     ownerId: 5,
-    address: '248 Malibu St.',
+    address: '23750 E Pacific Coast Hwy',
     city: 'Malibu',
     state: 'California',
     country: 'United States',
@@ -98,7 +98,7 @@ module.exports = {
    },
    {
     ownerId: 6,
-    address: '249 Malibu St.',
+    address: '30210 Pace Ln',
     city: 'Indio Hills',
     state: 'California',
     country: 'United States',
@@ -107,6 +107,30 @@ module.exports = {
     name: 'Oasis Home',
     description: "Home features 7 bedrooms, completed with kings and queen beds and a 1 set of twin over a queen bed and a full bath.",
     price: 780.00
+   },
+   {
+    ownerId: 6,
+    address: '905 Loma Vista Dr',
+    city: 'Beverly Hills',
+    state: 'California',
+    country: 'United States',
+    lat: 3.16,
+    lng: 3.16,
+    name: 'Beverly Hills Mansion',
+    description: "Private, gated French country chateau-inspired home sits at the end of a cul de sac on nearly 2 acres of land and is surrounded by stately trees, mature landscaping, and verdant canyon views.",
+    price: 2000.00
+   },
+   {
+    ownerId: 6,
+    address: '1401 Coast Rd',
+    city: 'Santa Cruz',
+    state: 'California',
+    country: 'United States',
+    lat: 3.16,
+    lng: 3.16,
+    name: 'Ocean View Santa Cruz Home',
+    description: "Incredible beach home with sweeping views of the ocean. Watch the waves crash from your bed. Directly in front of Pleasure Point, a world class surf spot.",
+    price: 600.00
    }
   ])
   },
