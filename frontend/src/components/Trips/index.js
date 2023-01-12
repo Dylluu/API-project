@@ -30,7 +30,7 @@ function Trips() {
             <span id='trips-title'>Trips</span>
             <div className='upcoming-reservations'>
                 {allBookings?.length > 0 && <span id='upcoming-reservations-text'>Upcoming Reservations</span>}
-                {allBookings?.length > 0 && (allBookings.map(booking => <ReservationCards spotId={booking.spotId} booking={booking}/>))}
+                {allBookings?.length > 0 && (allBookings.map(booking => <ReservationCards key={booking.id} spotId={booking.spotId} booking={booking}/>))}
                 {allBookings?.length == 0 && (
                     <div className='no-bookings-yet-wrapper'>
                         <span id='no-bookings-yet-title'>No trips booked...yet!</span>

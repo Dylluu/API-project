@@ -16,7 +16,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 // import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
-import { getBookings, getBookingsThunk, postBookingThunk } from '../../store/bookings';
+import { getBookings, getBookingsThunk, getSpotBookingsThunk, postBookingThunk } from '../../store/bookings';
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -29,6 +29,7 @@ const SpotDetails = () => {
     const reviewsArray = Object.values(reviews);
     const reviewIdsArray = reviewsArray.map(review => review.userId);
     const allBookings = useSelector(state => state.bookings?.allBookings?.Bookings);
+    const spotBookings = useSelector(state => state.bookings?.spotBookings?.Bookings);
     const [isLoaded, setIsLoaded] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [startDate, setStartDate] = useState('Add date');
@@ -55,6 +56,7 @@ const SpotDetails = () => {
         dispatch(getSpot(spotId));
         dispatch(getReviews(spotId));
         dispatch(getBookingsThunk());
+        dispatch(getSpotBookingsThunk(spotId));
     }, [dispatch])
 
     useEffect(() => {
@@ -197,7 +199,7 @@ const SpotDetails = () => {
 
     if (!spot.SpotImages) return null;
 
-    if(!allBookings) return null;
+    // if(!allBookings) return null;
 
     if(!isConfirmation) return (
         <div className='spot-details-container'>
@@ -432,7 +434,7 @@ const SpotDetails = () => {
                                                             e.stopPropagation()
                                                             setCalendarOpen(false)
                                                         }}
-                                                    >Close</span>
+                                                    >{endDate == 'Add date' ? 'Close' : 'Ok'}</span>
                                                 </div>
                                             </div>
                                         </div>
