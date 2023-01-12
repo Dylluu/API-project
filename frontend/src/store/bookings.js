@@ -58,6 +58,16 @@ export const getSpotBookingsThunk = (spotId) => async (dispatch) => {
     }
 }
 
+export const editBookingThunk = (bookingId, booking) => async (dispatch) => {
+    return await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'put',
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(booking)
+    })
+}
+
 export default function bookingsReducer(state = {}, action) {
     const newState = {...state}
     switch (action.type) {

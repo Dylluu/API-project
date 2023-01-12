@@ -158,7 +158,9 @@ const SpotDetails = () => {
     }
 
     const handleOpenCalendar = (e) => {
-        setCalendarOpen(true)
+        setCalendarOpen(true);
+        // const calendarContainer = document.getElementsByClassName('price-form')[0];
+        // calendarContainer.scrollIntoView();
         document.addEventListener('click', () => {
             setCalendarOpen(false);
         })
