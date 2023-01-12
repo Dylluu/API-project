@@ -1,0 +1,15 @@
+.where-youve-been-cards-container {
+    display: flex;
+    flex-direction: row;
+    height: 106px;
+    width: 33.33%;
+    margin-bottom: 30px;
+    cursor: pointer;
+    /* border: solid 1px red; */
+}
+
+.where-youve-been-cards-right {
+    display: flex;
+    flex-direction: column;
+    /* border: solid 1px green; */
+}

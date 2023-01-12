@@ -57,6 +57,8 @@ const SpotDetails = () => {
         dispatch(getReviews(spotId));
         dispatch(getBookingsThunk());
         dispatch(getSpotBookingsThunk(spotId));
+        // console.log(Object.values(allBookings), 'ALL BOOKINGS IN FRONTEND')
+        // console.log(new Date(Object.values(allBookings)[0].startDate).toJSON())
     }, [dispatch])
 
     useEffect(() => {
@@ -418,8 +420,24 @@ const SpotDetails = () => {
                                                     }}
                                                     tileDisabled={({ a, date, c }) => {
                                                         const startDateToJSON = new Date(startDate)
+                                                        // console.log(startDateToJSON, 'JSON START DATE')
                                                         if (date.toJSON() < today.toJSON() || ((startDate !== 'Add date') && date.toJSON() < startDateToJSON.toJSON())) {
+                                                            // console.log(date.toJSON(), 'DATE IN CALENDAR')
                                                             return true
+                                                        }
+                                                        for(let booking of Object.values(allBookings)) {
+                                                            let start = booking.startDate
+                                                            let end = booking.endDate
+                                                            if(date.toJSON() == start || date.toJSON() == end || (date.toJSON() > start && date.toJSON() < end)) {
+                                                                return true
+                                                            }
+                                                        }
+                                                        for(let booking of Object.values(spotBookings)) {
+                                                            let start = booking.startDate
+                                                            let end = booking.endDate
+                                                            if(date.toJSON() == start || date.toJSON() == end || (date.toJSON() > start && date.toJSON() < end)) {
+                                                                return true
+                                                            }
                                                         }
                                                     }}
                                                 />
@@ -552,7 +570,15 @@ const SpotDetails = () => {
                                     <span id='your-trip-dates-title'>Dates</span>
                                     <span id='your-trip-dates-dates'>{travelDates}</span>
                                 </div>
-                                <span id='your-trip-edit'>Edit</span>
+                                <span id='your-trip-edit' className='up-del-actual-buttons'
+                                onClick={async (e) => {
+                                    e.stopPropagation()
+                                    await setIsConfirmation(false)
+                                    const checkIn = document.getElementsByClassName('check-in-date')[0];
+                                    await checkIn.scrollIntoView();
+                                    await setCalendarOpen(true);
+                                }}
+                                >Edit</span>
                             </div>
                             <div className='your-trip-dates' id='your-trip-nights'>
                                 <div className='your-trip-dates-left'>

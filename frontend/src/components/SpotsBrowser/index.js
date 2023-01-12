@@ -5,6 +5,7 @@ import './Spots.css';
 import SpotCard from '../SpotCard';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { clearBookings } from '../../store/bookings';
 
 const SpotsBrowser = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const SpotsBrowser = () => {
     const [count, setCount] = useState(0);
     useEffect(() => {
         dispatch(getSpots())
+        dispatch(clearBookings())
     }, [dispatch])
 
     useEffect(() => {
