@@ -203,6 +203,8 @@ const SpotDetails = () => {
 
     if (!spot.SpotImages) return null;
 
+    if (!allBookings || !spotBookings) return null;
+
     // if(!allBookings) return null;
 
     if(!isConfirmation) return (
