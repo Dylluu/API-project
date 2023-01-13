@@ -1,4 +1,6 @@
 import { csrfFetch } from "./csrf";
+const LOAD_SPOTS = 'spots/LOAD';
+const LOAD_SPOT_DETAILS = 'spotDetails/LOAD';
 
 export const getSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
@@ -18,16 +20,12 @@ export const getSpot = (spotId) => async dispatch => {
     }
   };
 
-const LOAD_SPOTS = 'spots/LOAD';
-
 export const loadSpots = (spots) => {
     return {
         type: LOAD_SPOTS,
         spots
     }
 }
-
-const LOAD_SPOT_DETAILS = 'spotDetails/LOAD';
 
 export const loadSpotDetails = (spot) => {
     return {

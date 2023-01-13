@@ -2,6 +2,8 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const CLEAR_SPOT_CURRENT = 'session/clearSpot';
+const LOAD_SPOT_CURRENT = 'session/loadSpot';
 
 const setUser = (user) => {
   return {
@@ -15,6 +17,28 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+export const loadSpotsCurrent = (spots) => {
+  return {
+    type: LOAD_SPOT_CURRENT,
+    spots
+  }
+}
+
+export const clearSpotsCurrent = () => {
+  return {
+    type: CLEAR_SPOT_CURRENT
+  }
+}
+
+export const loadSpotsCurrentThunk = () => async (dispatch) => {
+  const response = await csrfFetch('/api/spots/current');
+
+  if (response.ok) {
+    const spots = await response.json();
+    await dispatch(loadSpotsCurrent(spots));
+  }
+}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -76,6 +100,14 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case LOAD_SPOT_CURRENT:
+      newState = Object.assign({}, state);
+      newState.spots = action.spots
+      return newState;
+    case CLEAR_SPOT_CURRENT:
+      newState = Object.assign({}, state);
+      newState.spots = {}
       return newState;
     default:
       return state;

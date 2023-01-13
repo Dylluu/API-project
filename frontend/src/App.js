@@ -11,6 +11,7 @@ import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotForm from "./components/UpdateSpotForm";
 import MainNavigation from "./components/MainNavigation";
 import Trips from "./components/Trips";
+import ManageListings from "./components/ManageListings";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ function App() {
     <Route path='/trips'>
       <Navigation isLoaded={isLoaded}/>
       <Trips />
+    </Route>
+    <Route path='/manage'>
+      <Navigation isLoaded={isLoaded}/>
+      <ManageListings />
     </Route>
     </Switch>
 

@@ -51,7 +51,7 @@ function ProfileButton({ user }) {
               <div className="user-info-text" style={{ fontWeight: '200', height: '35px', overflow: 'hidden' }}>{user.username}</div>
             </div>
             <div className="user-info" id="listings-and-account-div">
-              <div className="profile-dropdown-text-divs" id="listings-and-account">Manage Listings</div>
+              <NavLink to='/manage' className="profile-dropdown-text-divs" id="listings-and-account">Manage Listings</NavLink>
               <NavLink to='/trips' className="profile-dropdown-text-divs" id="listings-and-account">Trips</NavLink>
             </div>
             <div id='logout-div'
