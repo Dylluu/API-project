@@ -50,7 +50,7 @@ export const deleteBookingThunk = (bookingId) => async (dispatch) => {
 }
 
 export const getSpotBookingsThunk = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
+    const response = await fetch(`/api/spots/${spotId}/bookings`);
 
     if(response.ok) {
         const bookings = await response.json();
@@ -78,7 +78,8 @@ export default function bookingsReducer(state = {}, action) {
             newState.spotBookings = action.bookings
             return newState
         case CLEAR_BOOKINGS:
-            newState.allBookings = {}
+            newState.allBookings = {Bookings: {}}
+            newState.spotBookings = {Bookings: {}}
             return newState
         default:
             return state;

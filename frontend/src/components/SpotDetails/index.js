@@ -16,7 +16,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 // import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
-import { getBookings, getBookingsThunk, getSpotBookingsThunk, postBookingThunk } from '../../store/bookings';
+import { clearBookings, getBookings, getBookingsThunk, getSpotBookingsThunk, postBookingThunk } from '../../store/bookings';
 
 const SpotDetails = () => {
     const history = useHistory();
@@ -53,13 +53,12 @@ const SpotDetails = () => {
     const totalPrice = ((spot.price * numNightsPrice) + (spot.price / 5) + (spot.price / 4))
 
     useEffect(() => {
+        dispatch(clearBookings());
         dispatch(getSpot(spotId));
         dispatch(getReviews(spotId));
         dispatch(getBookingsThunk());
         dispatch(getSpotBookingsThunk(spotId));
-        // console.log(Object.values(allBookings), 'ALL BOOKINGS IN FRONTEND')
-        // console.log(new Date(Object.values(allBookings)[0].startDate).toJSON())
-    }, [dispatch])
+    }, [dispatch, user])
 
     useEffect(() => {
         const yearPrevArrow = document.getElementsByClassName('react-calendar__navigation__prev2-button')[0]
@@ -204,8 +203,6 @@ const SpotDetails = () => {
     if (!spot.SpotImages) return null;
 
     if (!allBookings || !spotBookings) return null;
-
-    // if(!allBookings) return null;
 
     if(!isConfirmation) return (
         <div className='spot-details-container'>
