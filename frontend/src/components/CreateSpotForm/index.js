@@ -122,7 +122,7 @@ function CreateSpotForm() {
 
             await handleOtherImages(imageArray)
 
-            await history.push(`/spots/${newSpot.id}`)
+            await history.push(`/manage`)
         }
     }
 

@@ -11,12 +11,19 @@ function ManageListings () {
     const dispatch = useDispatch();
     const history = useHistory();
     const spots = useSelector(state => state.session?.spots?.Spots);
+    const user = useSelector(state => state.session?.user);
 
     useEffect(() => {
         dispatch(clearSpotsCurrent());
         dispatch(loadSpotsCurrentThunk());
         dispatch(getSpots());
     }, [dispatch])
+
+    useEffect(() => {
+        if(!user) {
+            history.push('/');
+        }
+    }, [user])
 
     if(!spots) return null;
 

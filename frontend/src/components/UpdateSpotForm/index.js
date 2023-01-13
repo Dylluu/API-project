@@ -75,7 +75,7 @@ function UpdateSpotForm() {
 
         // await handleOtherImages(imageArray)
         if(newSpot){
-        await history.push(`/spots/${newSpot.id}`);
+        await history.push(`/manage`);
         }
     }
 

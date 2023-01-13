@@ -10,19 +10,12 @@ function ManageListingsCards ({spotId}) {
     const history = useHistory();
     const spots = useSelector(state => state.spots);
     const spot = Object.values(spots).find(spot => spot.id == spotId);
-    const user = useSelector(state => state.session?.user)
 
     async function handleDeleteListing (e) {
         e.preventDefault();
         await dispatch(deleteSpotThunk(spotId));
         await history.go(0);
     }
-
-    useEffect(() => {
-        if(!user) {
-            history.push('/');
-        }
-    }, [user])
 
     if(!spots) return null;
 
