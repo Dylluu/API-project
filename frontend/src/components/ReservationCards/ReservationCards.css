@@ -25,9 +25,10 @@
 .reservation-cards-left-top {
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
-    padding-left: 20px;
-    border-bottom: solid 1px #DDDDDD;
+    padding-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: solid 1px #eeeeef;
 }
 
 #reservation-cards-spot-name {
@@ -39,7 +40,7 @@
     font-size: 15px;
     font-weight: 300;
     color: #717171;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .reservation-cards-left-bottom {
@@ -55,7 +56,9 @@
     align-items: center;
     justify-content: center;
     min-width: 40%;
-    border-right: solid 1px #DDDDDD;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-right: solid 1px #eeeeef;
 }
 
 .reservation-cards-left-bottom-left-inner {
@@ -63,7 +66,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-left: 20px;
     /* border: solid 1px red; */
 }
@@ -110,6 +113,7 @@
 .reservation-cards-left-bottom-right-inner {
     display: flex;
     justify-content: flex-start;
+    padding-top: 5px;
     /* border: solid 1px blue; */
 }
 

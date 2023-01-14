@@ -132,6 +132,8 @@ a:link {
 
 .search-bar-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
@@ -148,6 +150,53 @@ a:link {
 
 .search-bar-container:hover {
     box-shadow: lightgray 0px 2px 5px;
+}
+
+.search-bar-inner-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 55%;
+    width: 95%;
+    /* border: solid 1px red; */
+}
+
+.search-bar-inner-thirds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 99px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    border-right: solid 1px #DDDDDD;
+}
+
+.search-bar-inner-thirds-last {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 99px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.search-bar-inner-search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-size: 200% 200%;
+    background-position: 50%;
+    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+}
+
+#search-bar-inner-search-icon {
+    color: white;
+    font-size: 13px;
 }
 
 #opened-navMain-container {
@@ -208,6 +257,7 @@ a:link {
     width: 70%;
     padding: 0px;
     text-indent: 0px;
+    font-size: 14px;
     background-color: transparent;
 }
 
@@ -269,4 +319,130 @@ a:link {
 
 #opened-search-bar-search-button-text {
     color: white;
+}
+
+.opened-search-bar-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 710px;
+    height: 450px;
+    margin-bottom: -540px;
+    margin-left: -5px;
+    background-color: white;
+    border-radius: 25px;
+    border-top: solid 1px #DDDDDD;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.opened-search-bar-box-inner {
+    display: flex;
+    flex-direction: row;
+    width: 91%;
+    height: 83%;
+    /* border: solid 1px red; */
+}
+
+.opened-search-bar-box-suggested-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 45%;
+    border-right: solid 1px #DDDDDD;
+}
+
+#suggested-searches {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.suggested-searches-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 64px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.suggested-searches-cards:hover {
+    background-color: #F7F7F7;
+}
+
+#suggested-searches-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 10px;
+    background-color: #EBEBEB;
+}
+
+#suggested-searches-icon-icon {
+    font-size: 22px;
+}
+
+.suggested-searches-text-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 36px;
+    margin-left: 15px;
+    /* border: solid 1px red; */
+}
+
+#suggested-searches-state-name {
+    font-weight: 300;
+}
+
+#suggested-searches-any-week {
+    font-size: 12px;
+    font-weight: 300;
+    color: #717171;
+}
+
+.opened-search-bar-box-region-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50.5%;
+    margin-left: 25px;
+    /* border: solid 1px red; */
+}
+
+.opened-search-bar-box-region-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    /* border: solid 1px red; */
+}
+
+.opened-search-bar-box-region-cards {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+#opened-search-bar-box-region-cards-img {
+    height: 132px;
+    width: 132px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: solid 1px #DDDDDD;
+    cursor: pointer;
+}
+
+#opened-search-bar-box-region-cards-img:hover {
+    border: solid 1px black;
+}
+
+#opened-search-bar-box-region-img-label {
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 10px;
 }

@@ -9,6 +9,10 @@ import LoginFormPage from '../LoginFormPage/LoginFormPage';
 import logo from '../../assets/airLogo.png';
 import SignupFormPage from '../SignupFormPage/SignupFormPage';
 import useModalContext from '../../context/ShowModalContext';
+import allRegionsMap from '../../assets/allRegionsMap.png';
+import california from '../../assets/california.png';
+import newYork from '../../assets/newYork.png';
+import florida from '../../assets/florida.png';
 
 function MainNavigation({ isLoaded }) {
     const {showModal, setShowModal, showSUModal, setShowSUModal} = useModalContext();
@@ -16,6 +20,7 @@ function MainNavigation({ isLoaded }) {
     const [showMenu, setShowMenu] = useState(false);
     const [showMainNavSearch, setShowMainNavSearch] = useState(false);
     const [searchBarStatus, setSearchBarStatus] = useState('where');
+    const [searchLocation, setSearchLocation] = useState('');
 
     const openMenu = () => {
         if (showMenu) return;
@@ -110,11 +115,29 @@ function MainNavigation({ isLoaded }) {
                     <img alt='logo' className='logo' src={logo} />
                 </NavLink>
             </div>
-            <div className='search-bar-container' onClick={() => setShowMainNavSearch(true)}></div>
+            <div className='search-bar-container' onClick={() => setShowMainNavSearch(true)}>
+                <div className='search-bar-inner-wrapper'>
+                    <span className='search-bar-inner-thirds'>
+                        Anywhere
+                    </span>
+                    <span className='search-bar-inner-thirds'>
+                        Any week
+                    </span>
+                    <span className='search-bar-inner-thirds-last'>
+                        Add dates
+                    </span>
+                    <div className='search-bar-inner-search-button'>
+                        <i className="fa-solid fa-magnifying-glass" id='search-bar-inner-search-icon'/>
+                    </div>
+                </div>
+            </div>
             {isLoaded && sessionLinks}
             </div>
             {showMainNavSearch && (
-                <Modal onClose={() => setShowMainNavSearch(false)}>
+                <Modal onClose={() => {
+                    setShowMainNavSearch(false);
+                    setSearchLocation('');
+                    }}>
                     <div className='navMain-container' id='opened-navMain-container'>
                         <div className='main-form-div-inner'>
                             <div className='home-container'>
@@ -130,7 +153,10 @@ function MainNavigation({ isLoaded }) {
                             <div className='opened-search-bar-where' id='opened-search-bar-focus' onClick={() => setSearchBarStatus('where')}>
                                 <div className='opened-search-bar-where-inner'>
                                     <span id='opened-search-bar-where-label'>Where</span>
-                                    <input id='opened-search-bar-where-input' placeholder='Search destinations' autoFocus></input>
+                                    <input id='opened-search-bar-where-input' placeholder='Search destinations' autoFocus
+                                    value={searchLocation}
+                                    onChange={(e) => setSearchLocation(e.target.value)}
+                                    ></input>
                                 </div>
                             </div>
                             <div className='opened-search-bar-separator'></div>
@@ -140,12 +166,92 @@ function MainNavigation({ isLoaded }) {
                                     <span id='opened-search-bar-dates-dates'>Add dates</span>
                                 </div>
                             </div>
-                            {/* <div className='opened-search-bar-separator'></div> */}
+                            <div className='opened-search-bar-separator'></div>
                             <div className='opened-search-bar-search-button'>
                                 <div className='opened-search-bar-search-button-inner'>
-                                    <i class="fa-solid fa-magnifying-glass" id='opened-search-bar-search-icon'/>
+                                    <i className="fa-solid fa-magnifying-glass" id='opened-search-bar-search-icon'/>
                                     <span id='opened-search-bar-search-button-text'>Search</span>
                                 </div>
+                            </div>
+                            <div className='opened-search-bar-box-container'>
+                                {searchBarStatus == 'where' && (<div className='opened-search-bar-box-inner'>
+                                    <div className='opened-search-bar-box-suggested-div'>
+                                        <span id='suggested-searches'>Suggested searches</span>
+                                        <div className='suggested-searches-cards'
+                                        onClick={() => setSearchLocation('San Fransisco')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon'/>
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>San Fransisco</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                        <div className='suggested-searches-cards'
+                                        onClick={() => setSearchLocation('Los Angeles')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon'/>
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>Los Angeles</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                        <div className='suggested-searches-cards'
+                                        onClick={() => setSearchLocation('Santa Barbara')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon'/>
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>Santa Barbara</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                        <div className='suggested-searches-cards'
+                                        onClick={() => setSearchLocation('Santa Cruz')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon'/>
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>Santa Cruz</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='opened-search-bar-box-region-div'>
+                                        <span id='suggested-searches'>Search by region</span>
+                                        <div className='opened-search-bar-box-region-cards-wrapper'>
+                                            <div className='opened-search-bar-box-region-cards'>
+                                                <img alt='allRegions' src={allRegionsMap} id='opened-search-bar-box-region-cards-img'
+                                                onClick={() => setSearchLocation('Anywhere')}
+                                                />
+                                                <span id='opened-search-bar-box-region-img-label'>I'm flexible</span>
+                                            </div>
+                                            <div className='opened-search-bar-box-region-cards'>
+                                                <img alt='allRegions' src={california} id='opened-search-bar-box-region-cards-img'
+                                                onClick={() => setSearchLocation('California')}
+                                                />
+                                                <span id='opened-search-bar-box-region-img-label'>California</span>
+                                            </div>
+                                            <div className='opened-search-bar-box-region-cards'>
+                                                <img alt='allRegions' src={newYork} id='opened-search-bar-box-region-cards-img'
+                                                onClick={() => setSearchLocation('New York')}
+                                                />
+                                                <span id='opened-search-bar-box-region-img-label'>New York</span>
+                                            </div>
+                                            <div className='opened-search-bar-box-region-cards'>
+                                                <img alt='allRegions' src={florida} id='opened-search-bar-box-region-cards-img'
+                                                onClick={() => setSearchLocation('Florida')}
+                                                />
+                                                <span id='opened-search-bar-box-region-img-label'>Florida</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>)}
                             </div>
                         </div>
                     </div>
