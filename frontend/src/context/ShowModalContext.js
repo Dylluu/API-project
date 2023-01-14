@@ -8,11 +8,12 @@ export function ShowModalProvider({children}){
     const [showSUModal, setShowSUModal] = useState(false);
     const [showReviewModal, setShowReviewModal] = useState(false);
     const [showEditBookingModal, setShowEditBookingModal] = useState(false);
+    const [showMainNavSearch, setShowMainNavSearch] = useState(false);
 
     return (
         <ShowModalContext.Provider
             value={{
-                showModal, setShowModal, showSUModal, setShowSUModal, showReviewModal, setShowReviewModal, showEditBookingModal, setShowEditBookingModal
+                showModal, setShowModal, showSUModal, setShowSUModal, showReviewModal, setShowReviewModal, showEditBookingModal, setShowEditBookingModal, showMainNavSearch, setShowMainNavSearch
             }}
             >
                 {children}
