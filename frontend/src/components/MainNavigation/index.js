@@ -277,6 +277,17 @@ function MainNavigation({ isLoaded }) {
                                     <div className='opened-search-bar-box-suggested-div'>
                                         <span id='suggested-searches'>Suggested searches</span>
                                         <div className='suggested-searches-cards'
+                                            onClick={() => setSearchLocation('Miami')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon' />
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>Miami</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                        <div className='suggested-searches-cards'
                                             onClick={() => setSearchLocation('San Fransisco')}
                                         >
                                             <div id='suggested-searches-icon'>
@@ -317,17 +328,6 @@ function MainNavigation({ isLoaded }) {
                                             </div>
                                             <div className='suggested-searches-text-div'>
                                                 <span id='suggested-searches-state-name'>Santa Cruz</span>
-                                                <span id='suggested-searches-any-week'>Any week</span>
-                                            </div>
-                                        </div>
-                                        <div className='suggested-searches-cards'
-                                            onClick={() => setSearchLocation('Beverly Hills')}
-                                        >
-                                            <div id='suggested-searches-icon'>
-                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon' />
-                                            </div>
-                                            <div className='suggested-searches-text-div'>
-                                                <span id='suggested-searches-state-name'>Beverly Hills</span>
                                                 <span id='suggested-searches-any-week'>Any week</span>
                                             </div>
                                         </div>

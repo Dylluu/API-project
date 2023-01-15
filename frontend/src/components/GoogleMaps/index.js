@@ -69,7 +69,7 @@ const { isLoaded } = useJsApiLoader({
         <div style={{ height: '900px', width: '100%' }}>
             {isLoaded && <GoogleMap
               mapContainerStyle={containerStyle}
-              zoom={6}
+              zoom={7}
               center={currentPosition}
               onUnmount={onUnmount}
               >
