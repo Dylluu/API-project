@@ -263,7 +263,7 @@ function MainNavigation({ isLoaded }) {
                             <div className='opened-search-bar-separator'></div>
                             <div className='opened-search-bar-search-button'
                             onClick={() => {
-                                history.push(`/search/${searchLocation ? searchLocation : 'anywhere'}`);
+                                history.push(`/search/${searchLocation ? searchLocation : 'Anywhere'}`);
                                 setShowMainNavSearch(false);
                             }}
                             >
@@ -317,6 +317,17 @@ function MainNavigation({ isLoaded }) {
                                             </div>
                                             <div className='suggested-searches-text-div'>
                                                 <span id='suggested-searches-state-name'>Santa Cruz</span>
+                                                <span id='suggested-searches-any-week'>Any week</span>
+                                            </div>
+                                        </div>
+                                        <div className='suggested-searches-cards'
+                                            onClick={() => setSearchLocation('Beverly Hills')}
+                                        >
+                                            <div id='suggested-searches-icon'>
+                                                <i className='fa-regular fa-clock' id='suggested-searches-icon-icon' />
+                                            </div>
+                                            <div className='suggested-searches-text-div'>
+                                                <span id='suggested-searches-state-name'>Beverly Hills</span>
                                                 <span id='suggested-searches-any-week'>Any week</span>
                                             </div>
                                         </div>

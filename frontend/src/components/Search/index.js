@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
+import GoogleMaps from '../GoogleMaps';
 import SpotCard from '../SpotCard';
 import './Search.css';
 
@@ -35,13 +36,18 @@ function Search () {
             <div className='search-results-page-spot-cards-div'>
                 <span id='suggested-results-for'>{`Suggested results for ${searchParams}`}</span>
                 <div className='search-results-page-spot-cards-grid-div'>
-                    {searchResults.map(spot => (
+                    {searchResults.length > 0 && searchResults.map(spot => (
                         <SpotCard key={spot.id} spot={spot}/>
+                    ))}
+                    {searchResults.length == 0 && spotsArray.map(spot => (
+                        <SpotCard key={spot.id} spot={spot} />
                     ))}
                 </div>
             </div>
             <div className='google-maps-api-container'>
-                <div className='google-maps-fixed-div'></div>
+                <div className='google-maps-fixed-div'>
+                    <GoogleMaps searchParams={searchParams} searchResults={searchResults}/>
+                </div>
             </div>
         </div>
     )
