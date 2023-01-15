@@ -12,6 +12,7 @@ import UpdateSpotForm from "./components/UpdateSpotForm";
 import MainNavigation from "./components/MainNavigation";
 import Trips from "./components/Trips";
 import ManageListings from "./components/ManageListings";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function App() {
     <Route path='/manage'>
       <Navigation isLoaded={isLoaded}/>
       <ManageListings />
+    </Route>
+    <Route path='/search/:searchParams'>
+      <MainNavigation isLoaded={isLoaded} />
+      <Search />
     </Route>
     </Switch>
 

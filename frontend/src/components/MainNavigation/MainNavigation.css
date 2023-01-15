@@ -446,3 +446,15 @@ a:link {
     font-weight: 300;
     margin-top: 10px;
 }
+
+#opened-search-bar-box-dates-container {
+    position: static;
+    margin: 0px;
+    box-shadow: none;
+    border: none;
+}
+
+.opened-search-bar-box-container-new-height {
+    height: 475px;
+    margin-bottom: -565px;
+}
