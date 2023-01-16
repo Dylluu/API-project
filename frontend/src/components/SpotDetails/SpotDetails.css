@@ -472,7 +472,7 @@
 }
 
 .spot-reviews {
-    min-height: 530px;
+    /* min-height: 530px; */
     margin-bottom: 30px;
     /* border: solid 1px red; */
 }
@@ -1266,4 +1266,28 @@
 
 .negative-zindex {
     z-index: -2;
+}
+
+.where-youll-be {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-top: solid 1px #DDDDDD;
+    /* border: solid 1px red; */
+}
+
+#where-youll-be-title {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+#spot-details-footer {
+    position: static;
+}
+
+#spot-details-footer-inner {
+    width: 100%;
 }

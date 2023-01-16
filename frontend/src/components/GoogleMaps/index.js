@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, OverlayView } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import './GoogleMaps.css';
 
 
 
@@ -54,7 +55,7 @@ const { isLoaded } = useJsApiLoader({
 
   const containerStyle = {
     width: '76%',
-    height: '800px'
+    height: '100%'
   };
 
   const [map, setMap] = useState(null)
@@ -66,27 +67,27 @@ const { isLoaded } = useJsApiLoader({
 
     return (
       // Important! Always set the container height explicitly
-
-      <div className="map_page__container">
-
-        <div style={{ height: '900px', width: '100%' }}>
+      <>
             {isLoaded && <GoogleMap
               mapContainerStyle={containerStyle}
-              zoom={searchParams == 'Anywhere' || searchParams == 'California' || searchParams == 'New York' ? 7 : 12}
+              zoom={searchParams == 'Anywhere' || searchParams == 'California' || searchParams == 'New York' ? 7 : 13}
               center={currentPosition}
               onUnmount={onUnmount}
               >
                 {searchResults.map(spot => (
-                    <Marker
-                    key={spot.id}
+                    <OverlayView
+                    // key={spot.id}
                     position={{lat: spot.lat, lng: spot.lng}}
-                    onClick={() => history.push(`/spots/${spot.id}`)}
-                    />
+                    // onClick={() => history.push(`/spots/${spot.id}`)}
+                    mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                    >
+                      <div className='google-maps-price-overlay'
+                      onClick={() => history.push(`/spots/${spot.id}`)}
+                      >${spot.price}</div>
+                    </OverlayView>
                 ))}
             </GoogleMap>}
-        </div>
-
-      </div>
+        </>
     );
 
 }
