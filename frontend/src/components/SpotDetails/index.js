@@ -43,7 +43,7 @@ const SpotDetails = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
 
-    const months = { 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
+    const months = { 01: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December' }
 
     const dateArray = (date) => {
         const newDate = date.split('-')
