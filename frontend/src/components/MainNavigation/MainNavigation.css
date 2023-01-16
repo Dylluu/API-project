@@ -473,14 +473,6 @@ a:link {
 
 @media (max-width: 600px) {
     .search-bar-container {
-        justify-content: center;
-        width: 36px;
-        height: 32px;
-    }
-    .search-bar-inner-thirds {
-        display: none;
-    }
-    .search-bar-inner-thirds-last {
         display: none;
     }
 }

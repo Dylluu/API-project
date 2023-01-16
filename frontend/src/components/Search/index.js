@@ -17,6 +17,9 @@ function Search () {
 
     useEffect(() => {
         dispatch(getSpots());
+    }, [dispatch, searchParams])
+
+    useEffect(() => {
         const searchResultsArray = [];
         for (let spot of spotsArray) {
             if(!spot.city) {
@@ -30,7 +33,7 @@ function Search () {
             }
         }
         setSearchResults(searchResultsArray);
-    }, [dispatch, searchParams])
+    }, [spots])
 
     if(!spots || !spotsArray) return null;
 
