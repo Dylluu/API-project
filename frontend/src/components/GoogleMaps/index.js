@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
+import { useHistory } from 'react-router-dom';
 
 
 
 const GoogleMaps = ({ searchParams, searchResults }) => {
+
+    const history = useHistory();
 
     // This is the equivalent to a script tag
 
@@ -73,6 +76,12 @@ const { isLoaded } = useJsApiLoader({
               center={currentPosition}
               onUnmount={onUnmount}
               >
+                {searchResults.map(spot => (
+                    <Marker
+                    position={{lat: spot.lat, lng: spot.lng}}
+                    onClick={() => history.push(`/spots/${spot.id}`)}
+                    />
+                ))}
             </GoogleMap>}
         </div>
 

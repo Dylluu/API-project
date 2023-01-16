@@ -1,6 +1,13 @@
 import { csrfFetch } from "./csrf";
 const LOAD_SPOTS = 'spots/LOAD';
 const LOAD_SPOT_DETAILS = 'spotDetails/LOAD';
+const CLEAR_SPOTS = 'spots/CLEAR';
+
+export const clearSpots = () => {
+  return {
+    type: CLEAR_SPOTS
+  }
+}
 
 export const getSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
@@ -89,6 +96,8 @@ export default function spotsReducer(state = {}, action) {
             return {...action.spots.Spots};
         case LOAD_SPOT_DETAILS:
             return {...action.spot};
+        case CLEAR_SPOTS:
+            return {}
         default:
             return state;
     }

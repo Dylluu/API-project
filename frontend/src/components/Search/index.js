@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getSpots } from '../../store/spots';
+import { clearSpots, getSpots } from '../../store/spots';
 import GoogleMaps from '../GoogleMaps';
 import SpotCard from '../SpotCard';
 import './Search.css';
@@ -19,6 +19,9 @@ function Search () {
         dispatch(getSpots());
         const searchResultsArray = [];
         for (let spot of spotsArray) {
+            if(!spot.city) {
+                history.go(0);
+            }
             if (spot.city.toLowerCase().includes(searchParams.toLowerCase())) {
                 searchResultsArray.push(spot);
             }
