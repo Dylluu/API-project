@@ -458,3 +458,29 @@ a:link {
     height: 475px;
     margin-bottom: -565px;
 }
+
+@media (max-width: 860px) {
+    .search-bar-container {
+        width: 100px;
+    }
+    .search-bar-inner-thirds {
+        display: none;
+    }
+    .search-bar-inner-thirds-last {
+        width: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-bar-container {
+        justify-content: center;
+        width: 36px;
+        height: 32px;
+    }
+    .search-bar-inner-thirds {
+        display: none;
+    }
+    .search-bar-inner-thirds-last {
+        display: none;
+    }
+}
