@@ -2,11 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
-const GoogleMaps = ({ searchParams, searchResults }) => {
-
+const GoogleMaps = ({ searchParams, searchResults, setSearchResults }) => {
     const history = useHistory();
 
     // This is the equivalent to a script tag
@@ -31,7 +31,7 @@ Geocode.enableDebug();
 useEffect(() => {
     const makeMap = () => {
         // e.preventDefault()
-        Geocode.fromAddress(searchResults[0]?.address).then(
+        Geocode.fromAddress(searchResults[0]?.address ? searchResults[0].address : '4347 Marina Dr, Santa Barbara, CA 93110').then(
             (response) => {
               const {lat, lng} = response.results[0].geometry.location
               setCurrentPosition({lat, lng})
@@ -72,12 +72,13 @@ const { isLoaded } = useJsApiLoader({
         <div style={{ height: '900px', width: '100%' }}>
             {isLoaded && <GoogleMap
               mapContainerStyle={containerStyle}
-              zoom={7}
+              zoom={searchParams == 'Anywhere' || searchParams == 'California' || searchParams == 'New York' ? 7 : 12}
               center={currentPosition}
               onUnmount={onUnmount}
               >
                 {searchResults.map(spot => (
                     <Marker
+                    key={spot.id}
                     position={{lat: spot.lat, lng: spot.lng}}
                     onClick={() => history.push(`/spots/${spot.id}`)}
                     />

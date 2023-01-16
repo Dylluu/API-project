@@ -13,7 +13,7 @@ module.exports = {
     */
    await queryInterface.bulkInsert('Spots', [
     {
-    ownerId: 1,
+    ownerId: 6,
     address: '4347 Marina Dr, Santa Barbara, CA 93110',
     city: 'Santa Barbara',
     state: 'California',

@@ -33,6 +33,9 @@ function Search () {
             }
         }
         setSearchResults(searchResultsArray);
+        if(searchParams == 'Anywhere') {
+            setSearchResults(spotsArray)
+        }
     }, [spots])
 
     if(!spots || !spotsArray) return null;
@@ -40,7 +43,7 @@ function Search () {
     return (
         <div className='search-results-page-container'>
             <div className='search-results-page-spot-cards-div'>
-                <span id='suggested-results-for'>{`Suggested results for ${searchParams}`}</span>
+                <span id='suggested-results-for'>{`${searchResults.length} suggested ${searchResults.length == 1 ? 'result' : 'results'} for ${searchParams}`}</span>
                 <div className='search-results-page-spot-cards-grid-div'>
                     {searchResults.length > 0 && searchResults.map(spot => (
                         <SpotCard key={spot.id} spot={spot}/>
@@ -52,7 +55,7 @@ function Search () {
             </div>
             <div className='google-maps-api-container'>
                 <div className='google-maps-fixed-div'>
-                    <GoogleMaps searchParams={searchParams} searchResults={searchResults}/>
+                    <GoogleMaps searchParams={searchParams} searchResults={searchResults} setSearchResults={setSearchResults}/>
                 </div>
             </div>
         </div>
