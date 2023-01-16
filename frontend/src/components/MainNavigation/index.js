@@ -429,15 +429,6 @@ function MainNavigation({ isLoaded }) {
                                                             handleClearDates()
                                                         }}
                                                     >Clear dates</span>
-                                                    {/* <span id='close-calendar'
-                                                                            onClick={(e) => {
-                                                                                e.stopPropagation()
-                                                                                if(editingDate) {
-                                                                                    handleConfirmReservation(booking.id)
-                                                                                }
-                                                                            }}
-                                                                            style={{width: '80px'}}
-                                                                        >{editingDate ? 'Confirm' : 'Cancel'}</span> */}
                                                 </div>
                                             </div>
                                         </div>
