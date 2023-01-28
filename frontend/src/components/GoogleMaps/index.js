@@ -54,7 +54,7 @@ const { isLoaded } = useJsApiLoader({
   })
 
   const containerStyle = {
-    width: '76%',
+    width: '100%',
     height: '100%'
   };
 
